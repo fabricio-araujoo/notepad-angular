@@ -1,0 +1,116 @@
+@import "tokens";
+@import "mixins";
+
+@mixin open() {
+  width: 15rem;
+}
+
+.sidebar {
+  $icon-size: 1.125rem;
+  $border-left: 4px;
+
+  height: 100%;
+
+  transition: all 0.1s ease-in;
+
+  @include open();
+
+  &:hover {
+    @include open();
+  }
+
+  &--collapse {
+    width: calc(
+      map-get($map: $padding, $key: lg) + $icon-size +
+        map-get($map: $padding, $key: lg)
+    );
+  }
+
+  &__home {
+    margin-bottom: map-get($map: $margin, $key: lg);
+  }
+
+  &__item {
+    width: 100%;
+    padding: map-get($map: $padding, $key: md);
+    padding-left: calc(map-get($map: $padding, $key: lg) - $border-left);
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: map-get($map: $gap, $key: md);
+
+    border-left: $border-left solid transparent;
+
+    overflow: hidden;
+
+    transition: all 0.1s ease-in;
+
+    &:hover {
+      border-left: $border-left solid $primary;
+    }
+
+    &--active {
+      background-color: $primary-container;
+      border-left: $border-left solid $primary;
+    }
+
+    &--add {
+      cursor: pointer;
+
+      color: $primary;
+    }
+  }
+
+  &__icon {
+    width: $icon-size;
+    height: $icon-size;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    color: $primary;
+
+    @include body-small();
+
+    &--tag {
+      color: $on-background;
+    }
+  }
+
+  &__tags {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: map-get($map: $gap, $key: md);
+  }
+
+  &__list {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: map-get($map: $gap, $key: sm);
+
+    & > li {
+      width: 100%;
+    }
+  }
+
+  &__label {
+    margin-left: map-get($map: $margin, $key: md);
+
+    text-wrap: nowrap;
+
+    @include body-small($font-weight-semi-bold);
+  }
+}

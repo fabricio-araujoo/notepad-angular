@@ -1,0 +1,36 @@
+**`src/`**
+
+- **`docs/`**
+- **`core/`**
+  - **`di/`**
+  - **`router/`**
+  - **`plugins/`**
+- **`products/`**
+  - **`contabil/`**
+    - **`components/`**
+      - **`ContabilButton/`**
+    - **`styles/`**
+    - **`views/`**
+  - **`financas/`**
+    - **`components/`**
+      - **`FinancasButton/`**
+    - **`styles/`**
+    - **`views/`**
+  - **`antecipa/`**
+    - **`components/`**
+      - **`AntecipaButton/`**
+    - **`styles/`**
+    - **`views/`**
+  - **`cielo/`**
+    - **`components/`**
+      - **`CieloButton/`**
+    - **`styles/`**
+    - **`views/`**
+- **`shared/`**
+  - **`components/`**
+    - **`F360Button/`**
+    - **`F360Layout/`**
+  - **`styles/`**
+  - **`views/`**
+    - **`faq/`**
+- **`vue-components/`**

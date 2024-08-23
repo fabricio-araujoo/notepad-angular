@@ -1,0 +1,19 @@
+@import "tokens";
+
+@mixin body-small($weight: $font-weight-regular) {
+  font-size: $font-size-body-small;
+  font-weight: $weight;
+  line-height: $line-height-body-small;
+}
+
+@mixin body-regular($weight: $font-weight-regular) {
+  font-size: $font-size-body-regular;
+  font-weight: $weight;
+  line-height: $line-height-body-regular;
+}
+
+@mixin body-large($weight: $font-weight-regular) {
+  font-size: $font-size-body-large;
+  font-weight: $weight;
+  line-height: $line-height-body-large;
+}

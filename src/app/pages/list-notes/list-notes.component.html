@@ -1,0 +1,26 @@
+<div class="list-notes">
+  <div class="list-notes__panel">
+    <div class="list-notes__title">
+      <p>FIXADAS</p>
+    </div>
+    <app-grid
+      class="list-notes__grid"
+      cdkDropListOrientation="mixed"
+      cdkDropList
+      (cdkDropListDropped)="drop($event)"
+    >
+      @for (card of cards; track card) {
+      <app-card class="list-notes__card card" cdkDrag>
+        <div class="card__title">{{ card.title }}</div>
+        <div class="card__content">{{ card.content }}</div>
+      </app-card>
+      }
+    </app-grid>
+  </div>
+
+  <div class="list-notes__panel">
+    <div class="list-notes__title">
+      <p>OUTRAS</p>
+    </div>
+  </div>
+</div>

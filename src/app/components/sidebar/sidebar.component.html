@@ -1,0 +1,48 @@
+<nav class="sidebar" [ngClass]="{ 'sidebar--collapse': collapse }">
+  <div class="sidebar__home">
+    <a
+      class="sidebar__item"
+      routerLinkActive="active"
+      [routerLink]="['/']"
+      [ngClass]="{
+        'sidebar__item--active': currentRoute === '/',
+        'sidebar__item--collapse': collapse
+      }"
+    >
+      <mat-icon class="sidebar__icon" svgIcon="custom-note"></mat-icon>
+      <span class="sidebar__label">Notas</span>
+    </a>
+  </div>
+
+  <div class="sidebar__tags">
+    <ul class="sidebar__list">
+      <li>
+        <a
+          class="sidebar__item sidebar__item--add"
+          routerLinkActive="inactive"
+          [ngClass]="{
+            'sidebar__item--collapse': collapse
+          }"
+        >
+          <mat-icon class="sidebar__icon" svgIcon="custom-edit"></mat-icon>
+          <span class="sidebar__label">Editar marcadores</span>
+        </a>
+      </li>
+      <li>
+        <a
+          class="sidebar__item"
+          routerLinkActive="active"
+          *ngFor="let tag of tags"
+          [routerLink]="[tag.path]"
+          [ngClass]="{
+            'sidebar__item--active': currentRoute === tag.path,
+            'sidebar__item--collapse': collapse
+          }"
+        >
+          <span class="sidebar__icon sidebar__icon--tag">#</span>
+          <span class="sidebar__label">{{ tag.name }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
