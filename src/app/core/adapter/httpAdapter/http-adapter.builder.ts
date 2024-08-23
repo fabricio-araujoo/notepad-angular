@@ -1,5 +1,5 @@
 import { HttpParams } from '@angular/common/http';
-import { HttpServiceGet } from '../services/httpService/types';
+import { HttpServiceGet } from './types';
 
 export const buildQueryParams = (
   queryParams: HttpServiceGet['queryParams'] = {}

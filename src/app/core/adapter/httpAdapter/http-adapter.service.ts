@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { buildQueryParams } from '~/app/utils/httpService';
 import { HttpServiceGet } from './types';
+import { buildQueryParams } from './http-adapter.builder';
 
 @Injectable({
   providedIn: 'root',
 })
-export class HttpService {
+export class HttpAdapterService {
   readonly baseUrl: string = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}

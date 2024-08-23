@@ -1,17 +1,24 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LayoutComponent } from './components/layout/layout.component';
-import { IconService } from './components/icon/icon.service';
-import { TagsService } from './services/tagsService/tags.service';
-import { Tag } from './types/Tag';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { HeaderComponent } from './components/header/header.component';
+import { TagsService } from './core/services/tagsService/tags.service';
+import { Tag } from './core/entities/Tag';
+import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { CoreModule } from './core/core.module';
+import { IconAdapterService } from './core/adapter/iconAdapter/icon-adapter.service';
+import { LayoutComponent } from './shared/components/layout/layout.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LayoutComponent, SidebarComponent, HeaderComponent],
-  providers: [IconService],
+  imports: [
+    RouterOutlet,
+    CoreModule,
+    LayoutComponent,
+    SidebarComponent,
+    HeaderComponent,
+  ],
+  providers: [IconAdapterService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -23,9 +30,9 @@ export class AppComponent implements OnInit {
   isSidebarCollapse: boolean = false;
 
   constructor(
-    private cdr: ChangeDetectorRef,
-    private iconService: IconService,
-    private tagsService: TagsService
+    private iconService: IconAdapterService,
+    private tagsService: TagsService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -35,9 +42,6 @@ export class AppComponent implements OnInit {
   }
 
   collaseSidebar() {
-    console.log('collaseSidebar');
-    console.log({ isSidebarCollapse: this.isSidebarCollapse });
-
     this.isSidebarCollapse = !this.isSidebarCollapse;
     this.cdr.detectChanges(); // Força a detecção de alteração no 'isSidebarCollapse'
   }

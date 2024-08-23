@@ -35,13 +35,8 @@ $angular-notepad-theme: mat.define-theme(
 
 // Comment out the line below if you want to use the deprecated `color` inputs.
 // @include mat.color-variants-backwards-compatibility($angular-notepad-theme);
+
+// My Style
+
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap");
-
 @import "base";
-@import "tokens";
-
-html,
-body {
-  height: 100%;
-  font-family: $font-family;
-}

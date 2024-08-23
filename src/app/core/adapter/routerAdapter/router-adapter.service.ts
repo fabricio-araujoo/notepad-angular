@@ -5,7 +5,7 @@ import { BehaviorSubject, filter } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class RoutesService {
+export class RouterAdapterService {
   private currentRouteSubject = new BehaviorSubject<string>('');
 
   currentRoute$ = this.currentRouteSubject.asObservable();

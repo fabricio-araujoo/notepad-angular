@@ -32,7 +32,7 @@
             ],
             "styles": ["src/styles.scss"],
             "stylePreprocessorOptions": {
-              "includePaths": ["src/app/theme"]
+              "includePaths": ["src/app/shared/theme"]
             },
             "scripts": []
           },

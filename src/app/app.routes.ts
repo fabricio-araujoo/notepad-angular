@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
-import { ListNotesComponent } from './pages/list-notes/list-notes.component';
-import { TaggedListNotesComponent } from './pages/tagged-list-notes/tagged-list-notes.component';
+import { ListNotesComponent } from './modules/list-notes/list-notes.component';
 
 export const routes: Routes = [
   {
@@ -9,7 +8,7 @@ export const routes: Routes = [
   },
   {
     path: 'tag/:label',
-    component: TaggedListNotesComponent,
+    component: ListNotesComponent,
   },
   {
     path: '**',

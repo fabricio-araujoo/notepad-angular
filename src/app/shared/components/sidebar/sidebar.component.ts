@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
-import { RoutesService } from '~/app/routes/routes.service';
-import { Tag } from '~/app/types/Tag';
+import { RouterAdapterService } from '~/app/core/adapter/routerAdapter/router-adapter.service';
+import { Tag } from '~/app/core/entities/Tag';
 
 @Component({
   selector: 'app-sidebar',
@@ -19,7 +19,7 @@ export class SidebarComponent implements OnInit {
 
   currentRoute!: string;
 
-  constructor(private routeService: RoutesService) {}
+  constructor(private routeService: RouterAdapterService) {}
 
   ngOnInit(): void {
     this.getCurrentRoute();

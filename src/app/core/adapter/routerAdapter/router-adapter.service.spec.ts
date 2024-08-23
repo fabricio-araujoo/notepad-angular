@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RoutesService } from './routes.service';
+import { RouterAdapterService } from './router-adapter.service';
 
-describe('RoutesService', () => {
-  let service: RoutesService;
+describe('RouterAdapterService', () => {
+  let service: RouterAdapterService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(RoutesService);
+    service = TestBed.inject(RouterAdapterService);
   });
 
   it('should be created', () => {

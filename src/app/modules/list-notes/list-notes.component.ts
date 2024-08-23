@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { CardComponent } from '../../components/card/card.component';
-import { GridComponent } from '../../components/grid/grid.component';
-import { Note } from '~/app/types/Note';
 import {
   CdkDrag,
   CdkDragDrop,
@@ -9,6 +6,9 @@ import {
   moveItemInArray,
 } from '@angular/cdk/drag-drop';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { CardComponent } from '~/app/shared/components/card/card.component';
+import { GridComponent } from '~/app/shared/components/grid/grid.component';
+import { Note } from '~/app/core/entities/Note';
 
 @Component({
   selector: 'app-list-notes',
