@@ -1,13 +1,1 @@
-<app-layout [tags]="tags">
-  <div class="app__header">
-    <app-header (collapse)="collaseSidebar()"></app-header>
-  </div>
-
-  <div class="app__sidebar">
-    <app-sidebar [tags]="tags" [collapse]="isSidebarCollapse"></app-sidebar>
-  </div>
-
-  <div class="app__content">
-    <router-outlet />
-  </div>
-</app-layout>
+<router-outlet />

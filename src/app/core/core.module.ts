@@ -1,15 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { TagsService } from './services/tagsService/tags.service';
-import { HttpAdapterService } from './adapter/httpAdapter/http-adapter.service';
-import { RouterAdapterService } from './adapter/routerAdapter/router-adapter.service';
-
-const adapters = [HttpAdapterService, RouterAdapterService];
-
-const services = [TagsService];
+import { HttpAdapterService } from './adapter/http-adapter/http-adapter.service';
+import { RouterAdapterService } from './adapter/router-adapter/router-adapter.service';
+import { IconAdapterService } from './adapter/icon-adapter/icon-adapter.service';
+import { LocalStorageService } from './adapter/local-storage/local-storage.service';
 
 @NgModule({
   imports: [CommonModule],
-  providers: [...adapters, ...services], // Note que isso pode ser opcional se já estiver no providedIn: 'root'
+  providers: [
+    HttpAdapterService,
+    IconAdapterService,
+    LocalStorageService,
+    RouterAdapterService,
+  ],
 })
 export class CoreModule {}

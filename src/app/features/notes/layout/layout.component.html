@@ -1,0 +1,13 @@
+<div class="layout">
+  <div class="layout__header">
+    <app-header (collapse)="collaseSidebar()"></app-header>
+  </div>
+
+  <div class="layout__sidebar">
+    <app-sidebar [tags]="tags" [collapse]="isSidebarCollapse"></app-sidebar>
+  </div>
+
+  <div class="layout__content">
+    <ng-content></ng-content>
+  </div>
+</div>
