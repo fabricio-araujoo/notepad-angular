@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { SignInService } from '../../services/sign-in/sign-in.service';
+import { Component } from '@angular/core';
+import { SignInUseCase } from '../../use-cases/sign-in/sign-in.use-case';
 
 @Component({
   selector: 'app-sign-in',
@@ -8,10 +8,13 @@ import { SignInService } from '../../services/sign-in/sign-in.service';
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss',
 })
-export class SignInComponent implements OnInit {
-  constructor(private signInService: SignInService) {}
+export class SignInComponent {
+  constructor(private signInUseCase: SignInUseCase) {}
 
-  ngOnInit(): void {
-    this.signInService.signIn();
+  async onLogin() {
+    await this.signInUseCase.execute({
+      email: 'test@mail.com',
+      password: 'test',
+    });
   }
 }

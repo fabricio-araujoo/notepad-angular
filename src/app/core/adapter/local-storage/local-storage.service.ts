@@ -5,13 +5,15 @@ import { ELocalStorageKeys } from '~/app/shared/interfaces/local-storage';
   providedIn: 'root',
 })
 export class LocalStorageService {
-  constructor() {}
-
-  public get(key: ELocalStorageKeys) {
+  get(key: ELocalStorageKeys) {
     return localStorage.getItem(key);
   }
 
-  public set(key: ELocalStorageKeys, value: unknown) {
+  set(key: ELocalStorageKeys, value: unknown) {
     return localStorage.setItem(key, `${value}`);
+  }
+
+  remove(key: ELocalStorageKeys) {
+    return localStorage.removeItem(key);
   }
 }

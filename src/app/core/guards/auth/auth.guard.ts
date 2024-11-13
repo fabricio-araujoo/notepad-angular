@@ -1,15 +1,22 @@
-import { inject } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
-import { LocalStorageService } from '../../adapter/local-storage/local-storage.service';
+import { Injectable } from '@angular/core';
+import { CanActivate } from '@angular/router';
+import { RouterAdapterService } from '../../adapter/router-adapter/router-adapter.service';
 import { ELocalStorageKeys } from '~/app/shared/interfaces/local-storage';
 
-export const authGuard: CanActivateFn = (route, state) => {
-  console.log({ route, state });
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthGuard implements CanActivate {
+  constructor(private router: RouterAdapterService) {}
 
-  const router: Router = inject(Router);
-  const localStorageService = inject(LocalStorageService);
+  canActivate(): boolean {
+    const token = localStorage.getItem(ELocalStorageKeys.access_token);
 
-  const access_token = localStorageService.get(ELocalStorageKeys.access_token);
+    if (!token) {
+      this.router.navigate('/sign-in');
 
-  return Boolean(access_token) || router.navigate(['sign-in']);
-};
+      return false;
+    }
+    return true;
+  }
+}

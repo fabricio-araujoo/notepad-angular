@@ -4,11 +4,12 @@ import {
   CdkDropList,
   moveItemInArray,
 } from '@angular/cdk/drag-drop';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GridComponent } from './components/grid/grid.component';
 import { CardComponent } from './components/card/card.component';
 import { LayoutComponent } from './layout/layout.component';
 import { INote } from '~/app/shared/interfaces/note';
+import { GetUserUseCase } from './use-cases/get-user/get-user.use-case';
 
 @Component({
   selector: 'app-notes',
@@ -23,7 +24,7 @@ import { INote } from '~/app/shared/interfaces/note';
   templateUrl: './notes.component.html',
   styleUrl: './notes.component.scss',
 })
-export class NotesComponent {
+export class NotesComponent implements OnInit {
   cards: INote[] = [
     { title: 'Bronze age', content: 'Bronze age' },
     { title: 'Iron age', content: 'Iron age' },
@@ -32,9 +33,17 @@ export class NotesComponent {
     { title: 'Long nineteenth century', content: 'Long nineteenth century' },
   ];
 
+  constructor(private getUserUseCase: GetUserUseCase) {}
+
+  ngOnInit(): void {
+    this.fetchUser();
+  }
+
+  private async fetchUser() {
+    await this.getUserUseCase.execute();
+  }
+
   drop(event: CdkDragDrop<INote[]>) {
     moveItemInArray<INote>(this.cards, event.previousIndex, event.currentIndex);
-
-    console.log({ cards: this.cards });
   }
 }

@@ -21,4 +21,8 @@ export class RouterAdapterService {
   getCurrentRoute(): string {
     return this.router.url;
   }
+
+  navigate(url: string): void {
+    this.router.navigate([url]);
+  }
 }

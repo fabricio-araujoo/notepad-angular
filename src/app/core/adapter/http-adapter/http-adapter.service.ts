@@ -1,13 +1,17 @@
-import { HttpClient } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpParams,
+  HttpResponse,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { IHttpServiceGet, IHttpServicePost } from './http-adapter.interface';
-import { buildQueryParams } from './http-adapter.builder';
+import { firstValueFrom } from 'rxjs';
+import { IHttpService } from './http-adapter.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class HttpAdapterService {
+export class HttpAdapterService implements IHttpService {
   readonly baseUrl: string = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}
@@ -16,22 +20,53 @@ export class HttpAdapterService {
     return this.baseUrl + url;
   }
 
-  public get<T>(params: IHttpServiceGet): Observable<T> {
-    const queryParams = buildQueryParams(params.queryParams);
-
-    return this.http.get<T>(this.buildUrl(params.url), {
-      params: queryParams,
-      ...params.config,
-    });
+  get<T>(
+    url: string,
+    options?: { headers?: HttpHeaders; params?: HttpParams }
+  ): Promise<HttpResponse<T>> {
+    return firstValueFrom(
+      this.http.get<T>(this.buildUrl(url), {
+        ...options,
+        observe: 'response' as const,
+      })
+    );
   }
 
-  public post<T>(params: IHttpServicePost): Observable<T> {
-    console.log('post');
+  post<T>(
+    url: string,
+    body: any,
+    options?: { headers?: HttpHeaders; params?: HttpParams }
+  ): Promise<HttpResponse<T>> {
+    return firstValueFrom(
+      this.http.post<T>(this.buildUrl(url), body, {
+        ...options,
+        observe: 'response' as const,
+      })
+    );
+  }
 
-    return this.http.post<T>(
-      this.buildUrl(params.url),
-      params.body,
-      params.config
+  put<T>(
+    url: string,
+    body: any,
+    options?: { headers?: HttpHeaders; params?: HttpParams }
+  ): Promise<HttpResponse<T>> {
+    return firstValueFrom(
+      this.http.put<T>(this.buildUrl(url), body, {
+        ...options,
+        observe: 'response' as const,
+      })
+    );
+  }
+
+  delete<T>(
+    url: string,
+    options?: { headers?: HttpHeaders; params?: HttpParams }
+  ): Promise<HttpResponse<T>> {
+    return firstValueFrom(
+      this.http.delete<T>(this.buildUrl(url), {
+        ...options,
+        observe: 'response' as const,
+      })
     );
   }
 }

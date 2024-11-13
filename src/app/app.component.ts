@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { IconAdapterService } from './core/adapter/icon-adapter/icon-adapter.service';
@@ -11,7 +11,7 @@ import { IconAdapterService } from './core/adapter/icon-adapter/icon-adapter.ser
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'angular-notepad';
 
   isSidebarCollapse: boolean = false;
@@ -20,14 +20,6 @@ export class AppComponent implements OnInit {
     private iconService: IconAdapterService,
     private cdr: ChangeDetectorRef
   ) {}
-
-  ngOnInit(): void {
-    console.log('ngOnInit');
-
-    // this.tagsService.getTagList().subscribe((data) => {
-    //   this.tags = data;
-    // });
-  }
 
   collaseSidebar() {
     this.isSidebarCollapse = !this.isSidebarCollapse;
