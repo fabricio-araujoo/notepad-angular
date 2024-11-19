@@ -1,1 +1,11 @@
-<p>button works!</p>
+<button
+  class="button"
+  [ngClass]="{
+    'button--primary': variant === 'primary',
+    'button--block': block,
+    'button--disabled': disabled
+  }"
+  [disabled]="disabled"
+>
+  <ng-content></ng-content>
+</button>

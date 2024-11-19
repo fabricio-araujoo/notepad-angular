@@ -4,6 +4,7 @@ import { HttpAdapterService } from '../../adapter/http-adapter/http-adapter.serv
 import { LocalStorageService } from '../../adapter/local-storage/local-storage.service';
 import { RouterAdapterService } from '../../adapter/router-adapter/router-adapter.service';
 import { ELocalStorageKeys } from '~/app/shared/interfaces/local-storage';
+import { IDefaultResponse } from '../../adapter/http-adapter/http-adapter.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ export class AuthService {
 
   async signIn(params: ISignInParams): Promise<ISignInResponse | undefined> {
     try {
-      const response = await this.http.post<ISignInResponse>(
+      const response = await this.http.post<IDefaultResponse<ISignInResponse>>(
         '/v1/notepad/auth/sign-in',
         params
       );
@@ -26,7 +27,7 @@ export class AuthService {
         return;
       }
 
-      return response.body;
+      return response.body?.result;
     } catch {
       throw new Error();
     }

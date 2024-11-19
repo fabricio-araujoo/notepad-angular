@@ -1,1 +1,19 @@
-<p>input works!</p>
+<div class="input" [ngClass]="{ 'input--full': full }">
+  <label class="input__label" [for]="id" *ngIf="label">
+    {{ label }}
+  </label>
+
+  <input
+    class="input__field"
+    [ngClass]="{ 'input__field--full': full }"
+    [id]="id"
+    [value]="value"
+    [type]="type"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
+  />
+
+  <div class="input__error" *ngIf="showError">
+    {{ error }}
+  </div>
+</div>

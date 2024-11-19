@@ -1,0 +1,51 @@
+@import "tokens";
+@import "mixins";
+
+.sign-in {
+  width: 100%;
+  height: 100%;
+  background: $primary;
+
+  &__container {
+    position: fixed;
+    right: 0;
+
+    width: 40%;
+    height: 100%;
+    padding-inline: 5rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: map-get($map: $gap, $key: xl);
+
+    background-color: $on-primary;
+  }
+
+  &__form {
+    width: 100%;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    gap: map-get($map: $gap, $key: md);
+  }
+
+  &__submit {
+    margin-top: map-get($map: $margin, $key: lg);
+  }
+
+  &__forgot-password {
+    cursor: pointer;
+
+    color: $default;
+
+    @include body-small();
+    @include transition();
+
+    &:hover {
+      color: $primary;
+    }
+  }
+}

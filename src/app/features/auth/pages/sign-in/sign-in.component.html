@@ -1,3 +1,38 @@
-<p>sign-in works!</p>
+<div class="sign-in">
+  <div class="sign-in__container">
+    <div class="sign-in__title">
+      <h4>Acesse sua conta</h4>
+    </div>
 
-<button (click)="onLogin()">Login</button>
+    <form class="sign-in__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <app-input
+        [id]="'email'"
+        [label]="'E-mail: '"
+        formControlName="email"
+        [error]="getErrorMessage('email')"
+        [showError]="false"
+      />
+
+      <app-input
+        [id]="'password'"
+        [label]="'Senha: '"
+        [type]="'password'"
+        formControlName="password"
+        [error]="getErrorMessage('password')"
+        [showError]="false"
+      />
+
+      <app-button
+        class="sign-in__submit"
+        type="submit"
+        [variant]="'primary'"
+        [block]="true"
+        [disabled]="form.invalid"
+      >
+        Enviar
+      </app-button>
+    </form>
+
+    <p class="sign-in__forgot-password">Esqueci minha senha</p>
+  </div>
+</div>

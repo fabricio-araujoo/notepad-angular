@@ -1,0 +1,59 @@
+@import "tokens";
+@import "mixins";
+
+.button {
+  cursor: pointer;
+
+  box-sizing: border-box;
+  height: 2rem;
+  padding: 0.25rem 0.75rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: $default;
+
+  border: 0.0625rem solid $border-default;
+  border-radius: 0.375rem;
+
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
+
+  @include body-small();
+  @include transition();
+
+  &--block {
+    width: 100%;
+  }
+
+  &:hover {
+    color: $primary;
+    border-color: $border-primary;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+
+    color: $border-default;
+    background: #0000000a;
+    border-color: $border-default;
+
+    &:hover {
+      color: $border-default;
+      background: #0000000a;
+      border-color: $border-default;
+    }
+  }
+
+  &--primary {
+    background: $primary;
+    color: $on-primary;
+    border-color: $border-primary;
+
+    &:hover {
+      background: $on-primary-container;
+      color: $on-primary;
+      border-color: $border-primary-hover;
+    }
+  }
+}

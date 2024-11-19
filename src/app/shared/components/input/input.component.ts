@@ -1,12 +1,75 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {
+  Component,
+  EventEmitter,
+  forwardRef,
+  Input,
+  Output,
+} from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+type InputType = 'text' | 'number' | 'email' | 'password';
 
 @Component({
   selector: 'app-input',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputComponent),
+      multi: true,
+    },
+  ],
   templateUrl: './input.component.html',
-  styleUrl: './input.component.scss'
+  styleUrl: './input.component.scss',
 })
-export class InputComponent {
+export class InputComponent implements ControlValueAccessor {
+  @Input() id: string = '';
+  @Input() type: InputType = 'text';
+  @Input() label?: string;
+  @Input() placeholder?: string;
+  @Input() error?: string;
+  @Input() showError?: boolean = false;
+  @Input() full?: boolean = false;
 
+  // Output para eventos no modo independente
+  @Output() valueChange = new EventEmitter<string>();
+
+  value: string | null = null; // Valor do input
+
+  private onChange: (value: string) => void = () => {};
+  private onTouched: () => void = () => {};
+
+  // Métodos do ControlValueAccessor (para formulários reativos)
+  writeValue(value: string): void {
+    this.value = value;
+  }
+
+  registerOnChange(fn: (value: string) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  // Métodos para interação com o input
+  onInput(event: Event): void {
+    const target = event.target as HTMLInputElement;
+
+    this.value = target.value;
+    this.onChange(this.value); // Atualiza o valor no formulário reativo
+    this.valueChange.emit(this.value); // Emite o evento no modo independente
+  }
+
+  onBlur(): void {
+    this.onTouched(); // Marca como "tocado" no formulário reativo
+  }
+
+  getClasses() {
+    return {
+      'input__field--full': this.full,
+    };
+  }
 }

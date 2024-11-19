@@ -1,0 +1,42 @@
+@import "tokens";
+@import "mixins";
+
+.input {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: map-get($map: $gap, $key: md);
+
+  &--full {
+    width: 100%;
+  }
+
+  &__label {
+    @include body-small();
+  }
+
+  &__field {
+    height: 2rem;
+    padding: 0.25rem 0.75rem;
+
+    border: 0.0625rem solid $border-default;
+    border-radius: 0.375rem;
+
+    @include body-small();
+    @include transition();
+
+    &--full {
+      width: 100%;
+    }
+
+    &:hover {
+      border-color: $primary;
+    }
+
+    &:focus-within {
+      border-color: $primary;
+      box-shadow: 0 0 0 2px rgba(107, 141, 242, 0.2),
+        0 2px 8px rgba(107, 141, 242, 0.15);
+    }
+  }
+}
