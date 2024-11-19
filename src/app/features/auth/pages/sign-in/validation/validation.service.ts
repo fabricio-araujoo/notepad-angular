@@ -9,11 +9,6 @@ export class ValidationService {
     {
       required: 'Este campo é obrigatório.',
       email: 'Formato de e-mail inválido.',
-      custom: 'Valor inválido.',
-      minlength: (params) => {
-        const { requiredLength } = params as { requiredLength: number };
-        return `Mínimo de ${requiredLength} caracteres.`;
-      },
     };
 
   static getErrorMessage(errorKey: string, errorValue?: unknown): string {

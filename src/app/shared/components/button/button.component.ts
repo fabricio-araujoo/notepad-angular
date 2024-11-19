@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
-type ButtonVariant = 'default' | 'primary';
+type ButtonVariant = 'default' | 'primary' | 'link';
 
 type ButtonType = 'button' | 'submit';
 

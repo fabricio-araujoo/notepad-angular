@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { ValidationService } from './validation/validation.service';
 import { InputComponent } from '../../../../shared/components/input/input.component';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
+import { LoadingService } from '~/app/core/services/loading/loading.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -21,9 +22,15 @@ import { ButtonComponent } from '../../../../shared/components/button/button.com
 export class SignInComponent {
   form: FormGroup;
 
-  constructor(private signInUseCase: SignInUseCase, private fb: FormBuilder) {
+  error?: string;
+
+  constructor(
+    private signInUseCase: SignInUseCase,
+    private fb: FormBuilder,
+    public loadingService: LoadingService
+  ) {
     this.form = this.fb.group({
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
   }
@@ -33,16 +40,11 @@ export class SignInComponent {
       return;
     }
 
-    // this.onSignIn();
+    this.onSignIn();
   }
 
-  async onSignIn() {
-    const { email, password } = this.form.value;
-
-    await this.signInUseCase.execute({
-      email,
-      password,
-    });
+  onClickForgotPassword() {
+    console.log('esqueci minha senha');
   }
 
   getErrorMessage(fieldName: string): string | undefined {
@@ -59,5 +61,22 @@ export class SignInComponent {
     const errorValue = field.getError(firstErrorKey);
 
     return ValidationService.getErrorMessage(firstErrorKey, errorValue);
+  }
+
+  async onSignIn() {
+    this.loadingService.show();
+
+    const { email, password } = this.form.value;
+
+    const response = await this.signInUseCase.execute({
+      email,
+      password,
+    });
+
+    if (response?.error) {
+      this.error = response.error;
+    }
+
+    this.loadingService.hide();
   }
 }

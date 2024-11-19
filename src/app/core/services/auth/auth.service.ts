@@ -5,6 +5,7 @@ import { LocalStorageService } from '../../adapter/local-storage/local-storage.s
 import { RouterAdapterService } from '../../adapter/router-adapter/router-adapter.service';
 import { ELocalStorageKeys } from '~/app/shared/interfaces/local-storage';
 import { IDefaultResponse } from '../../adapter/http-adapter/http-adapter.interface';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -16,20 +17,26 @@ export class AuthService {
     private routerService: RouterAdapterService
   ) {}
 
-  async signIn(params: ISignInParams): Promise<ISignInResponse | undefined> {
+  async signIn(
+    params: ISignInParams
+  ): Promise<IDefaultResponse<ISignInResponse> | undefined> {
     try {
       const response = await this.http.post<IDefaultResponse<ISignInResponse>>(
         '/v1/notepad/auth/sign-in',
         params
       );
 
-      if (response.status !== 200 || !response.body) {
+      if (!response.body) {
         return;
       }
 
-      return response.body?.result;
-    } catch {
-      throw new Error();
+      return response.body;
+    } catch (err) {
+      if (err instanceof HttpErrorResponse) {
+        return err.error;
+      }
+
+      return;
     }
   }
 

@@ -5,7 +5,10 @@
 
   <input
     class="input__field"
-    [ngClass]="{ 'input__field--full': full }"
+    [ngClass]="{
+      'input__field--full': full,
+      'input__field--error': showError && error
+    }"
     [id]="id"
     [value]="value"
     [type]="type"

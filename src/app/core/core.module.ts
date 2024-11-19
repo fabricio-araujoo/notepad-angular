@@ -6,6 +6,7 @@ import { IconAdapterService } from './adapter/icon-adapter/icon-adapter.service'
 import { LocalStorageService } from './adapter/local-storage/local-storage.service';
 import { AuthService } from './services/auth/auth.service';
 import { UserService } from './services/user/user.service';
+import { LoadingService } from './services/loading/loading.service';
 
 @NgModule({
   imports: [CommonModule],
@@ -16,6 +17,7 @@ import { UserService } from './services/user/user.service';
     RouterAdapterService,
     AuthService,
     UserService,
+    LoadingService,
   ],
 })
 export class CoreModule {}

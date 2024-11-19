@@ -31,6 +31,6 @@ export type IHttpServiceOptions = Record<string, any>;
 
 export type IDefaultResponse<T> = {
   code: number;
-  error?: string | string[];
+  error?: string;
   result?: T;
 };

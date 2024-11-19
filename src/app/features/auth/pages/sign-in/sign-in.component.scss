@@ -23,6 +23,42 @@
     background-color: $on-primary;
   }
 
+  &__error {
+    position: relative;
+
+    box-sizing: border-box;
+    width: 100%;
+    padding: map-get($map: $padding, $key: md);
+    padding-left: map-get($map: $padding, $key: lg);
+
+    background: $error-container;
+
+    border-radius: 0.375rem;
+    border: 0.0625rem solid $error;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 0.6875rem;
+      top: -1px;
+      bottom: -1px;
+      left: 0px;
+      border-radius: 0.375rem 0px 0px 0.375rem;
+      background: linear-gradient(
+        to left,
+        transparent 6px,
+        rgb(219, 48, 48) 6px
+      );
+    }
+
+    & > p {
+      color: $error;
+      font-size: 0.8125rem !important;
+
+      @include body-small();
+    }
+  }
+
   &__form {
     width: 100%;
     height: fit-content;

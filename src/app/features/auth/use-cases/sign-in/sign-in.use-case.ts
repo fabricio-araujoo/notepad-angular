@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ISignInUseCaseInput } from './sign-in.use-case.interface';
+import {
+  ISignInUseCaseInput,
+  ISignInUseCaseOutput,
+} from './sign-in.use-case.interface';
 import { LocalStorageService } from '~/app/core/adapter/local-storage/local-storage.service';
 import { RouterAdapterService } from '~/app/core/adapter/router-adapter/router-adapter.service';
 import { ELocalStorageKeys } from '~/app/shared/interfaces/local-storage';
@@ -15,21 +18,28 @@ export class SignInUseCase {
     private routerService: RouterAdapterService
   ) {}
 
-  async execute(input: ISignInUseCaseInput): Promise<void> {
+  async execute(
+    input: ISignInUseCaseInput
+  ): Promise<ISignInUseCaseOutput | undefined> {
     if (!input.email || !input.password) {
       return;
     }
 
     const response = await this.authService.signIn(input);
 
-    const token = response?.access_token || '';
+    const token = response?.result?.access_token || '';
 
     if (!token) {
-      return;
+      return {
+        error:
+          response?.error ||
+          'Não foi possível fazer o login, tente novamente mais tarde.',
+      };
     }
 
     this.localStorageService.set(ELocalStorageKeys.access_token, token);
-
     this.routerService.navigate('/notes');
+
+    return;
   }
 }

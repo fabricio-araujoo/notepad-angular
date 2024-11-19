@@ -29,6 +29,10 @@
       width: 100%;
     }
 
+    &--error {
+      border-color: $error;
+    }
+
     &:hover {
       border-color: $primary;
     }
@@ -38,5 +42,11 @@
       box-shadow: 0 0 0 2px rgba(107, 141, 242, 0.2),
         0 2px 8px rgba(107, 141, 242, 0.15);
     }
+  }
+
+  &__error {
+    color: $error;
+
+    @include body-small();
   }
 }

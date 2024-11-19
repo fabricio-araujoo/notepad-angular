@@ -22,10 +22,6 @@
   @include body-small();
   @include transition();
 
-  &--block {
-    width: 100%;
-  }
-
   &:hover {
     color: $primary;
     border-color: $border-primary;
@@ -45,6 +41,10 @@
     }
   }
 
+  &--block {
+    width: 100%;
+  }
+
   &--primary {
     background: $primary;
     color: $on-primary;
@@ -54,6 +54,31 @@
       background: $on-primary-container;
       color: $on-primary;
       border-color: $border-primary-hover;
+    }
+  }
+
+  &--link {
+    background: transparent;
+    color: $primary;
+    border-color: transparent;
+    box-shadow: none;
+
+    &:hover {
+      background: transparent;
+      color: $on-primary-container;
+      border-color: transparent;
+    }
+
+    &:disabled {
+      color: $border-default;
+      background: transparent;
+      border-color: transparent;
+
+      &:hover {
+        color: $border-default;
+        background: transparent;
+        border-color: transparent;
+      }
     }
   }
 }
