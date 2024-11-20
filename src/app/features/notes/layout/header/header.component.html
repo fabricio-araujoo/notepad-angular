@@ -16,6 +16,11 @@
   </div>
 
   <div class="header__sign-out">
-    <button (click)="handleSignOut()">Sair</button>
+    <app-button
+      [variant]="'text'"
+      [suffixIcon]="'custom-exit'"
+      (click)="handleSignOut()"
+      matTooltip="Sair"
+    ></app-button>
   </div>
 </header>

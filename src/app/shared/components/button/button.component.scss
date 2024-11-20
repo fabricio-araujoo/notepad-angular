@@ -11,6 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: map-get($map: $gap, $key: md);
 
   color: $default;
 
@@ -43,6 +44,11 @@
 
   &--block {
     width: 100%;
+  }
+
+  &--icon-only {
+    width: 2rem;
+    padding: 0.25rem;
   }
 
   &--primary {
@@ -80,5 +86,34 @@
         border-color: transparent;
       }
     }
+  }
+
+  &--text {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+
+    &:hover {
+      background: transparent;
+      color: $on-primary-container;
+      border-color: transparent;
+    }
+
+    &:disabled {
+      color: $border-default;
+      background: transparent;
+      border-color: transparent;
+
+      &:hover {
+        color: $border-default;
+        background: transparent;
+        border-color: transparent;
+      }
+    }
+  }
+
+  &__icon {
+    width: 1.125rem;
+    height: 1.125rem;
   }
 }

@@ -1,7 +1,9 @@
 <div class="input" [ngClass]="{ 'input--full': full }">
-  <label class="input__label" [for]="id" *ngIf="label">
+  @if (label) {
+  <label class="input__label" [for]="id">
     {{ label }}
   </label>
+  }
 
   <input
     class="input__field"
@@ -16,7 +18,9 @@
     (blur)="onBlur()"
   />
 
-  <div class="input__error" *ngIf="showError">
+  @if (showError && error) {
+  <div class="input__error">
     {{ error }}
   </div>
+  }
 </div>

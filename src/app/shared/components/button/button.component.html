@@ -1,12 +1,19 @@
 <button
+  #button
   class="button"
   [ngClass]="{
     'button--primary': variant === 'primary',
     'button--link': variant === 'link',
+    'button--text': variant === 'text',
     'button--block': block,
-    'button--disabled': disabled
+    'button--disabled': disabled,
+    'button--icon-only': isIconOnly
   }"
   [disabled]="disabled"
 >
+  @if (suffixIcon) {
+  <mat-icon class="button__icon" [svgIcon]="suffixIcon"></mat-icon>
+  }
+
   <ng-content></ng-content>
 </button>

@@ -7,10 +7,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ValidationService } from './validation/validation.service';
 import { InputComponent } from '../../../../shared/components/input/input.component';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { LoadingService } from '~/app/core/services/loading/loading.service';
+import { ValidationService } from '../../validation/sign-in/validation.service';
 
 @Component({
   selector: 'app-sign-in',
