@@ -37,7 +37,6 @@ export class ButtonComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     if (this.suffixIcon) {
       const contentNodes = this.button.nativeElement.childNodes;
-      console.log({ contentNodes });
 
       this.isIconOnly = !Array.from(contentNodes).some((node: unknown) => {
         const _node = node as ChildNode;
