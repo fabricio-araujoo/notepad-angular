@@ -40,7 +40,19 @@
       cursor: default;
       user-select: none;
 
-      @include h5($font-weight-bold);
+      @include h6($font-weight-bold);
+    }
+  }
+
+  &__profile {
+    display: flex;
+    align-items: center;
+    gap: map-get($map: $gap, $key: md);
+  }
+
+  &__user {
+    & > h4 {
+      @include body-small();
     }
   }
 }

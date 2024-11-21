@@ -6,18 +6,25 @@ import { IconAdapterService } from './adapter/icon-adapter/icon-adapter.service'
 import { LocalStorageService } from './adapter/local-storage/local-storage.service';
 import { AuthService } from './services/auth/auth.service';
 import { UserService } from './services/user/user.service';
-import { LoadingService } from './services/loading/loading.service';
+import { LoadingService } from './stores/loading/loading.service';
+import { ProfileService } from './stores/profile/profile.service';
 
 @NgModule({
   imports: [CommonModule],
   providers: [
+    // Adapters
     HttpAdapterService,
     IconAdapterService,
     LocalStorageService,
     RouterAdapterService,
+
+    // Services
     AuthService,
     UserService,
+
+    // Store
     LoadingService,
+    ProfileService,
   ],
 })
 export class CoreModule {}

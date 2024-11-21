@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpAdapterService } from '../../adapter/http-adapter/http-adapter.service';
 import { IGetCurrentUserReponse } from './user.service.interface';
 import { IDefaultResponse } from '../../adapter/http-adapter/http-adapter.interface';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -15,13 +16,17 @@ export class UserService {
         IDefaultResponse<IGetCurrentUserReponse>
       >('/v1/notepad/user/get-current');
 
-      if (response.status !== 200 || !response.body) {
+      if (!response.body) {
         return;
       }
 
       return response.body?.result;
-    } catch {
-      throw new Error();
+    } catch (err) {
+      if (err instanceof HttpErrorResponse) {
+        return err.error;
+      }
+
+      return;
     }
   }
 }

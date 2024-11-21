@@ -10,6 +10,7 @@ import { CardComponent } from './components/card/card.component';
 import { LayoutComponent } from './layout/layout.component';
 import { INote } from '~/app/shared/interfaces/note';
 import { GetUserUseCase } from './use-cases/get-user/get-user.use-case';
+import { ListNotesUseCase } from './use-cases/list-notes/list-notes.use-case';
 
 @Component({
   selector: 'app-notes',
@@ -25,22 +26,28 @@ import { GetUserUseCase } from './use-cases/get-user/get-user.use-case';
   styleUrl: './notes.component.scss',
 })
 export class NotesComponent implements OnInit {
-  cards: INote[] = [
-    { title: 'Bronze age', content: 'Bronze age' },
-    { title: 'Iron age', content: 'Iron age' },
-    { title: 'Middle ages', content: 'Middle ages' },
-    { title: 'Early modern period', content: 'Early modern period' },
-    { title: 'Long nineteenth century', content: 'Long nineteenth century' },
-  ];
+  cards: INote[] = [];
 
-  constructor(private getUserUseCase: GetUserUseCase) {}
+  constructor(
+    private getUserUseCase: GetUserUseCase,
+    private listNotesUseCase: ListNotesUseCase
+  ) {}
 
   ngOnInit(): void {
     this.fetchUser();
+    this.fetchListNotes();
   }
 
   private async fetchUser() {
     await this.getUserUseCase.execute();
+  }
+
+  private async fetchListNotes() {
+    const notes = await this.listNotesUseCase.execute();
+
+    this.cards = notes;
+
+    console.log(this.cards);
   }
 
   drop(event: CdkDragDrop<INote[]>) {

@@ -9,7 +9,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { InputComponent } from '../../../../shared/components/input/input.component';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
-import { LoadingService } from '~/app/core/services/loading/loading.service';
+import { LoadingService } from '~/app/core/stores/loading/loading.service';
 import { ValidationService } from '../../validation/sign-in/validation.service';
 
 @Component({
