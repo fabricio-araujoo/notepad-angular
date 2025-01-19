@@ -22,6 +22,7 @@ type ButtonType = 'button' | 'submit';
 })
 export class ButtonComponent implements AfterViewInit {
   @ViewChild('button', { static: false }) button!: ElementRef;
+  @ViewChild('textContainer', { static: false }) textContainer?: ElementRef;
 
   @Input() variant?: ButtonVariant = 'default'; // Define estilo
   @Input() type?: ButtonType = 'button';
@@ -34,27 +35,17 @@ export class ButtonComponent implements AfterViewInit {
   constructor(private cdr: ChangeDetectorRef) {}
 
   // Semelhante ao onBeforeMount do Vue
-  ngAfterViewInit(): void {
-    if (this.suffixIcon) {
-      const contentNodes = this.button.nativeElement.childNodes;
+  ngAfterViewInit() {
+    this.checkContent();
+  }
 
-      this.isIconOnly = !Array.from(contentNodes).some((node: unknown) => {
-        const _node = node as ChildNode;
+  private checkContent() {
+    // Verifica se o span tem conteúdo ou não
+    const hasContent =
+      this.textContainer?.nativeElement?.textContent?.trim()?.length > 0;
+    this.isIconOnly = !hasContent;
 
-        if (
-          _node.nodeType === Node.ELEMENT_NODE &&
-          _node.nodeName === 'MAT-ICON'
-        ) {
-          return false;
-        }
-
-        return (
-          _node.nodeType === Node.TEXT_NODE ||
-          _node.nodeType === Node.ELEMENT_NODE
-        );
-      });
-
-      this.cdr.detectChanges();
-    }
+    // Solicita ao Angular que verifique mudanças se necessário
+    this.cdr.detectChanges();
   }
 }

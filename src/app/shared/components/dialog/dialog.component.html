@@ -1,1 +1,7 @@
-<ng-content></ng-content>
+<mat-dialog-content>
+  <ng-content></ng-content>
+</mat-dialog-content>
+
+<mat-dialog-actions *ngIf="hasFooter">
+  <ng-content select="[footer]"></ng-content>
+</mat-dialog-actions>

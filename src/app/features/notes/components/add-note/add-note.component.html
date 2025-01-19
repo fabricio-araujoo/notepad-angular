@@ -1,19 +1,26 @@
 <app-dialog>
-  <mat-dialog-content>
-    <div class="add-note">
-      <app-input
-        placeholder="Título"
-        variant="borderless"
-        [full]="true"
-      ></app-input>
-      <app-text-editor
-        class="add-note__editor"
-        placeholder="Digite sua nota"
-      ></app-text-editor>
-    </div>
-  </mat-dialog-content>
+  <div class="add-note">
+    <app-input
+      placeholder="Título"
+      variant="borderless"
+      [full]="true"
+      (inputChange)="onTitleChange($event)"
+    ></app-input>
+    <app-text-editor
+      class="add-note__editor"
+      placeholder="Digite sua nota"
+      (contentChange)="onEditorChange($event)"
+    ></app-text-editor>
+  </div>
 
-  <mat-dialog-actions>
+  <div class="add-note__footer" #footer>
+    <app-menu
+      [items]="addNoteOptions"
+      (itemSelected)="handleMenuSelection($event)"
+    >
+      <app-button suffixIcon="custom-options" variant="text"></app-button>
+    </app-menu>
+
     <app-button (click)="onSave()">Salvar</app-button>
-  </mat-dialog-actions>
+  </div>
 </app-dialog>

@@ -28,4 +28,8 @@ export const registry: IconRegistry[] = [
     name: 'notepad',
     url: '/assets/icons/notepad.svg',
   },
+  {
+    name: 'options',
+    url: '/assets/icons/options.svg',
+  },
 ];

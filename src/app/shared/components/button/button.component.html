@@ -15,7 +15,7 @@
   <mat-icon class="button__icon" [svgIcon]="suffixIcon"></mat-icon>
   }
 
-  <span class="button__text">
+  <span class="button__text" *ngIf="!isIconOnly" #textContainer>
     <ng-content></ng-content>
   </span>
 </button>

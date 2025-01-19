@@ -20,4 +20,10 @@
   &__editor {
     padding-inline: 0;
   }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }

@@ -1,0 +1,16 @@
+<div [matMenuTriggerFor]="appMenu">
+  <ng-content></ng-content>
+</div>
+
+<mat-menu #appMenu="matMenu">
+  <ng-container *ngFor="let item of items">
+    <button
+      mat-menu-item
+      [disabled]="item.disabled"
+      (click)="onMenuItemClick($event, item)"
+    >
+      <mat-icon *ngIf="item.icon">{{ item.icon }}</mat-icon>
+      {{ item.label }}
+    </button>
+  </ng-container>
+</mat-menu>

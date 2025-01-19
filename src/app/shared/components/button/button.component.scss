@@ -1,9 +1,9 @@
 @use "tokens" as *;
-
 @use "mixins" as *;
 
 .button {
   cursor: pointer;
+  font-family: $font-family;
 
   box-sizing: border-box;
   height: 2rem;
@@ -94,8 +94,8 @@
     box-shadow: none;
 
     &:hover {
-      background: transparent;
-      color: $on-primary-container;
+      background: $background-container;
+      color: $default;
       border-color: transparent;
     }
 

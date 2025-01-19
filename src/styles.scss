@@ -5,6 +5,7 @@
 
 // My Style
 @use "base" as *;
+@use "tokens" as *;
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
@@ -30,4 +31,18 @@ $angular-notepad-theme: mat.define-theme(
 // that you are using.
 :root {
   @include mat.all-component-themes($angular-notepad-theme);
+
+  @include mat.menu-overrides(
+    (
+      container-color: $background,
+
+      item-label-text-font: $font-family,
+      item-label-text-size: $font-size-body-small,
+      item-label-text-line-height: $line-height-body-small,
+      item-label-text-weight: $font-weight-regular,
+
+      item-icon-color: $default,
+      item-label-text-color: $default,
+    )
+  );
 }

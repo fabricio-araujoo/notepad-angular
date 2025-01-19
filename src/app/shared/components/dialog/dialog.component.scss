@@ -4,18 +4,23 @@
   padding: 0 !important;
 }
 
-::ng-deep .mat-mdc-dialog-surface {
+@mixin custom-padding($padding: $padding) {
   padding: map-get($map: $padding, $key: lg);
-  border-radius: 0.5rem;
+}
+
+::ng-deep .mat-mdc-dialog-surface {
+  @include reset-padding;
+
+  border-radius: 0.25rem;
   background-color: $background;
 }
 
 ::ng-deep .mat-mdc-dialog-container .mat-mdc-dialog-content {
-  @include reset-padding;
+  @include custom-padding;
 }
 
 ::ng-deep .mat-mdc-dialog-actions {
   min-height: unset;
 
-  @include reset-padding;
+  @include custom-padding;
 }
