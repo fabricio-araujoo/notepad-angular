@@ -1,5 +1,7 @@
-@import "tokens";
-@import "mixins";
+@use "@angular/material" as mat;
+
+@use "tokens" as *;
+@use "mixins" as *;
 
 .notes {
   width: 100%;
@@ -36,35 +38,4 @@
   &__grid.cdk-drop-list-dragging &__card:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
   }
-}
-
-.card {
-  height: fit-content;
-
-  display: block;
-
-  margin-bottom: map-get($map: $margin, $key: md);
-
-  &__title {
-    @include body-regular($font-weight-bold);
-  }
-
-  &__content {
-    @include body-small();
-  }
-}
-
-.cdk-drag-preview {
-  box-sizing: border-box;
-
-  border-radius: 8px;
-  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2);
-}
-
-.cdk-drag-placeholder {
-  opacity: 0;
-}
-
-.cdk-drag-animating {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }

@@ -1,4 +1,4 @@
-@import "tokens";
+@use "tokens" as *;
 
 @mixin h1($weight: $font-weight-bold) {
   font-size: $font-size-h1;

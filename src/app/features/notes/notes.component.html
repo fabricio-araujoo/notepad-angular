@@ -1,28 +1,28 @@
 <app-layout>
   <div class="notes">
+    <app-button
+      type="button"
+      variant="primary"
+      suffixIcon="custom-add"
+      (click)="openAddNote()"
+    >
+      Adicionar nota
+    </app-button>
+
     <div class="notes__panel">
       <div class="notes__title">
-        <p>FIXADAS</p>
+        <p>Fixadas</p>
       </div>
-      <app-grid
-        class="notes__grid"
-        cdkDropListOrientation="mixed"
-        cdkDropList
-        (cdkDropListDropped)="drop($event)"
-      >
-        @for (card of cards; track card) {
-        <app-card class="notes__card card" cdkDrag>
-          <div class="card__title">{{ card.title }}</div>
-          <div class="card__content">{{ card.content }}</div>
-        </app-card>
-        }
-      </app-grid>
+
+      <app-grid [items]="notes"></app-grid>
     </div>
 
     <div class="notes__panel">
       <div class="notes__title">
-        <p>OUTRAS</p>
+        <p>Outras</p>
       </div>
+
+      <app-grid [items]="notes"></app-grid>
     </div>
   </div>
 </app-layout>

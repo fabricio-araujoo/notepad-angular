@@ -1,5 +1,6 @@
-@import "tokens";
-@import "mixins";
+@use "tokens" as *;
+
+@use "mixins" as *;
 
 .button {
   cursor: pointer;
@@ -20,7 +21,6 @@
 
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
 
-  @include body-small();
   @include transition();
 
   &:hover {
@@ -115,5 +115,9 @@
   &__icon {
     width: 1.125rem;
     height: 1.125rem;
+  }
+
+  &__text {
+    @include body-small();
   }
 }

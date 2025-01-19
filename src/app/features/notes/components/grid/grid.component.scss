@@ -1,11 +1,50 @@
-@import "tokens";
+@use "tokens" as *;
+
+@use "mixins" as *;
+
+:host {
+  width: 100%;
+}
 
 .grid {
-  width: 100%;
-  height: auto;
+  &__container {
+    width: 100%;
 
-  column-width: 15rem;
-  column-gap: map-get($map: $gap, $key: md);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(14.875rem, 1fr));
+    gap: map-get($map: $gap, $key: lg);
+  }
 
-  transition: all 0.1s ease;
+  &__card {
+    width: 100%;
+    height: fit-content;
+
+    border-radius: 0.25rem;
+
+    background-color: #ffffff;
+
+    @include transition(box-shadow);
+
+    &:hover {
+      box-shadow: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  &__container.cdk-drop-list-dragging &__card:not(.cdk-drag-placeholder) {
+    @include transition();
+  }
+}
+
+/* Estilo enquanto arrasta */
+.cdk-drag-preview {
+  box-shadow: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.2);
+  border-radius: 0.25rem;
+}
+
+.cdk-drag-placeholder {
+  visibility: hidden; /* Oculta o espaço do item arrastado */
+}
+
+.cdk-drag-animating {
+  @include transition();
 }

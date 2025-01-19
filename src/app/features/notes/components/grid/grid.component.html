@@ -1,3 +1,15 @@
-<div class="grid">
-  <ng-content></ng-content>
+<div
+  class="grid__container"
+  cdkDropListOrientation="mixed"
+  cdkDropList
+  (cdkDropListDropped)="drop($event)"
+>
+  @for (card of items; track card) {
+  <div class="grid__card" cdkDrag>
+    <app-card>
+      <div class="card__title">{{ card.title }}</div>
+      <div class="card__content">{{ card.content }}</div>
+    </app-card>
+  </div>
+  }
 </div>

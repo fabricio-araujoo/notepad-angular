@@ -1,0 +1,19 @@
+<app-dialog>
+  <mat-dialog-content>
+    <div class="add-note">
+      <app-input
+        placeholder="Título"
+        variant="borderless"
+        [full]="true"
+      ></app-input>
+      <app-text-editor
+        class="add-note__editor"
+        placeholder="Digite sua nota"
+      ></app-text-editor>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <app-button (click)="onSave()">Salvar</app-button>
+  </mat-dialog-actions>
+</app-dialog>

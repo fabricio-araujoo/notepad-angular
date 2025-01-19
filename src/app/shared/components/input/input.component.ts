@@ -10,6 +10,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 type InputType = 'text' | 'number' | 'email' | 'password';
 
+type InputSize = 'normal' | 'large';
+
+type InputVariant = 'outlined' | 'borderless';
+
 @Component({
   selector: 'app-input',
   standalone: true,
@@ -28,13 +32,16 @@ export class InputComponent implements ControlValueAccessor {
   @Input() id: string = '';
   @Input() type: InputType = 'text';
   @Input() label?: string;
-  @Input() placeholder?: string;
+  @Input() placeholder?: string = '';
   @Input() error?: string;
   @Input() showError?: boolean = false;
   @Input() full?: boolean = false;
+  @Input() size?: InputSize = 'normal';
+  @Input() variant?: InputVariant = 'outlined';
 
   // Output para eventos no modo independente
-  @Output() valueChange = new EventEmitter<string>();
+  @Output() inputChange = new EventEmitter<string>();
+  @Output() inputFocus = new EventEmitter<string>();
 
   value: string | null = null; // Valor do input
 
@@ -60,11 +67,15 @@ export class InputComponent implements ControlValueAccessor {
 
     this.value = target.value;
     this.onChange(this.value); // Atualiza o valor no formulário reativo
-    this.valueChange.emit(this.value); // Emite o evento no modo independente
+    this.inputChange.emit(this.value); // Emite o evento no modo independente
   }
 
   onBlur(): void {
     this.onTouched(); // Marca como "tocado" no formulário reativo
+  }
+
+  onFocus(): void {
+    this.inputFocus.emit();
   }
 
   getClasses() {

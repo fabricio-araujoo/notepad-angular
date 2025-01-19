@@ -1,0 +1,21 @@
+@use "tokens" as *;
+
+@mixin reset-padding {
+  padding: 0 !important;
+}
+
+::ng-deep .mat-mdc-dialog-surface {
+  padding: map-get($map: $padding, $key: lg);
+  border-radius: 0.5rem;
+  background-color: $background;
+}
+
+::ng-deep .mat-mdc-dialog-container .mat-mdc-dialog-content {
+  @include reset-padding;
+}
+
+::ng-deep .mat-mdc-dialog-actions {
+  min-height: unset;
+
+  @include reset-padding;
+}

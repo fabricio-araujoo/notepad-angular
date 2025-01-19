@@ -1,32 +1,25 @@
-import {
-  CdkDrag,
-  CdkDragDrop,
-  CdkDropList,
-  moveItemInArray,
-} from '@angular/cdk/drag-drop';
-import { Component, OnInit } from '@angular/core';
-import { GridComponent } from './components/grid/grid.component';
-import { CardComponent } from './components/card/card.component';
-import { LayoutComponent } from './layout/layout.component';
+import { Component, inject, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { INote } from '~/app/shared/interfaces/note';
+import { ButtonComponent } from '../../shared/components/button/button.component';
+import { AddNoteComponent } from './components/add-note/add-note.component';
+import { GridComponent } from './components/grid/grid.component';
+import { LayoutComponent } from './layout/layout.component';
 import { GetUserUseCase } from './use-cases/get-user/get-user.use-case';
 import { ListNotesUseCase } from './use-cases/list-notes/list-notes.use-case';
 
 @Component({
   selector: 'app-notes',
   standalone: true,
-  imports: [
-    CdkDropList,
-    CdkDrag,
-    LayoutComponent,
-    GridComponent,
-    CardComponent,
-  ],
+  imports: [LayoutComponent, GridComponent, ButtonComponent],
   templateUrl: './notes.component.html',
   styleUrl: './notes.component.scss',
 })
 export class NotesComponent implements OnInit {
-  cards: INote[] = [];
+  notes: INote[] = [];
+  fixed: INote[] = [];
+
+  dialog = inject(MatDialog);
 
   constructor(
     private getUserUseCase: GetUserUseCase,
@@ -45,12 +38,14 @@ export class NotesComponent implements OnInit {
   private async fetchListNotes() {
     const notes = await this.listNotesUseCase.execute();
 
-    this.cards = notes;
+    this.notes = notes;
 
-    console.log(this.cards);
+    console.log(this.notes);
   }
 
-  drop(event: CdkDragDrop<INote[]>) {
-    moveItemInArray<INote>(this.cards, event.previousIndex, event.currentIndex);
+  openAddNote() {
+    this.dialog.open(AddNoteComponent, {
+      width: '500px',
+    });
   }
 }

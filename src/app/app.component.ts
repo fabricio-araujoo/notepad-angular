@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CoreModule } from './core/core.module';
 import { IconAdapterService } from './core/adapter/icon-adapter/icon-adapter.service';
+import { CoreModule } from './core/core.module';
 
 @Component({
   selector: 'app-root',

@@ -1,5 +1,6 @@
-@import "tokens";
-@import "mixins";
+@use "tokens" as *;
+
+@use "mixins" as *;
 
 @mixin open() {
   width: 15rem;

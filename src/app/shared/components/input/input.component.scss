@@ -1,5 +1,6 @@
-@import "tokens";
-@import "mixins";
+@use "tokens" as *;
+
+@use "mixins" as *;
 
 .input {
   display: flex;
@@ -33,6 +34,18 @@
       border-color: $error;
     }
 
+    &--large {
+      height: 3rem;
+    }
+
+    &--borderless {
+      border: none;
+
+      &:focus-within {
+        box-shadow: none !important;
+      }
+    }
+
     &:hover {
       border-color: $primary;
     }
@@ -41,6 +54,11 @@
       border-color: $primary;
       box-shadow: 0 0 0 2px rgba(107, 141, 242, 0.2),
         0 2px 8px rgba(107, 141, 242, 0.15);
+    }
+
+    &::placeholder {
+      color: $placeholder;
+      opacity: 1; /* Firefox */
     }
   }
 

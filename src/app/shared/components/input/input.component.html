@@ -9,13 +9,17 @@
     class="input__field"
     [ngClass]="{
       'input__field--full': full,
-      'input__field--error': showError && error
+      'input__field--error': showError && error,
+      'input__field--large': size === 'large',
+      'input__field--borderless': variant === 'borderless',
     }"
     [id]="id"
     [value]="value"
     [type]="type"
+    [placeholder]="placeholder"
     (input)="onInput($event)"
     (blur)="onBlur()"
+    (focus)="onFocus()"
   />
 
   @if (showError && error) {

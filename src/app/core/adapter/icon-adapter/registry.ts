@@ -5,6 +5,10 @@ type IconRegistry = {
 
 export const registry: IconRegistry[] = [
   {
+    name: 'add',
+    url: '/assets/icons/add.svg',
+  },
+  {
     name: 'edit',
     url: '/assets/icons/edit.svg',
   },

@@ -1,4 +1,4 @@
-@import "tokens";
+@use "tokens" as *;
 
 @mixin body-small($weight: $font-weight-regular) {
   font-size: $font-size-body-small;

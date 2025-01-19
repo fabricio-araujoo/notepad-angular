@@ -1,0 +1,14 @@
+@use "tokens" as *;
+
+@use "mixins" as *;
+
+.card {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: map-get($map: $padding, $key: md);
+
+  border: 1px solid #ddd;
+
+  border-radius: 0.25rem;
+}
