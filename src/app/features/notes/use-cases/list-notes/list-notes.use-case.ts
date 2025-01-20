@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { IListNotesUseCaseOutput } from './list-notes.use-case.interface';
 import { NotesService } from '../../services/notes/notes.service';
+import { IListNotesUseCaseOutput } from './list-notes.use-case.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +18,7 @@ export class ListNotesUseCase {
     const notes = response.notes;
 
     return notes.map((note) => ({
-      id: note?._id || '',
+      _id: note?._id || '',
       content: note?.content || '',
       title: note?.title || '',
     }));

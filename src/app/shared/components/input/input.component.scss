@@ -57,7 +57,7 @@
     }
 
     &::placeholder {
-      color: $placeholder;
+      color: $placeholder-color;
       opacity: 1; /* Firefox */
     }
   }

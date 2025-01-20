@@ -1,9 +1,16 @@
+type IReponseNoteItem = {
+  _id: string;
+  title: string;
+  content: string;
+};
+
 export type IGetNotesResponse = {
   notes: IReponseNoteItem[];
 };
 
-type IReponseNoteItem = {
-  _id: string;
-  title?: string;
-  content?: string;
+export type IAddNoteParams = {
+  title: string;
+  content: string;
 };
+
+export type IAddNoteResponse = IReponseNoteItem;

@@ -1,0 +1,34 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+@mixin default-style() {
+  color: $notification-color !important;
+  box-shadow: none !important;
+  border-radius: 0.5rem !important;
+
+  @include body-small();
+}
+
+.toast-success {
+  background-color: $success !important;
+
+  @include default-style();
+}
+
+.toast-error {
+  background-color: $error !important;
+
+  @include default-style();
+}
+
+.toast-info {
+  background-color: $info !important;
+
+  @include default-style();
+}
+
+.toast-warning {
+  background-color: $warning !important;
+
+  @include default-style();
+}

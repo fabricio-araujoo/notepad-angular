@@ -48,7 +48,7 @@
   }
 
   & .is-editor-empty:first-child::before {
-    color: $placeholder;
+    color: $placeholder-color;
     content: attr(data-placeholder);
     float: left;
     height: 0;
