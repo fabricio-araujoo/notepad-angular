@@ -47,5 +47,9 @@ export class NotesComponent implements OnInit {
     this.dialog.open(AddNoteComponent, {
       width: '500px',
     });
+
+    this.dialog.afterAllClosed.subscribe(() => {
+      this.fetchListNotes();
+    });
   }
 }

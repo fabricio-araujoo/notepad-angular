@@ -13,14 +13,18 @@
     ></app-text-editor>
   </div>
 
-  <div class="add-note__footer" #footer>
-    <app-menu
-      [items]="addNoteOptions"
-      (itemSelected)="handleMenuSelection($event)"
-    >
-      <app-button suffixIcon="custom-options" variant="text"></app-button>
-    </app-menu>
+  <ng-content #footer>
+    <div class="add-note__footer">
+      <div class="add-note__options">
+        <app-menu
+          [items]="addNoteOptions"
+          (itemSelected)="onMenuSelectionClick($event)"
+        >
+          <app-button suffixIcon="custom-options" variant="text"></app-button>
+        </app-menu>
+      </div>
 
-    <app-button (click)="onSave()">Salvar</app-button>
-  </div>
+      <app-button (click)="onSave()">Salvar</app-button>
+    </div>
+  </ng-content>
 </app-dialog>

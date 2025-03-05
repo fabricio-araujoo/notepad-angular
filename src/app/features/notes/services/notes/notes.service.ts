@@ -37,7 +37,7 @@ export class NotesService {
   async addNote(params: IAddNoteParams): Promise<IAddNoteResponse | undefined> {
     try {
       const response = await this.http.post<IDefaultResponse<IAddNoteResponse>>(
-        '/v1/notepad/notes/add',
+        '/v1/notepad/notes/create',
         { ...params }
       );
 

@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
@@ -9,6 +10,7 @@ import {
   MenuItem,
 } from '../../../../shared/components/menu/menu.component';
 import { TextEditorComponent } from '../../../../shared/components/text-editor/text-editor.component';
+import { SaveNoteUseCase } from '../../use-cases/save-note/save-note.use-case';
 
 @Component({
   selector: 'app-add-note',
@@ -20,24 +22,26 @@ import { TextEditorComponent } from '../../../../shared/components/text-editor/t
     TextEditorComponent,
     ButtonComponent,
     MenuComponent,
+    OverlayModule,
   ],
   templateUrl: './add-note.component.html',
   styleUrl: './add-note.component.scss',
 })
 export class AddNoteComponent {
+  @Output() beforeSave = new EventEmitter<void>();
+
   hasFocus: boolean = false;
 
   addNoteOptions: MenuItem[] = [
-    { label: 'Editar' },
-    { label: 'Excluir', disabled: true },
-    { label: 'Ver Detalhes' },
-    { label: 'Configurações' },
+    { label: 'Excluir', disabled: true, visible: true },
   ];
 
   private title: string = '';
   private content: string = '';
 
   readonly dialogRef = inject(MatDialogRef<AddNoteComponent>);
+
+  constructor(private saveNoteUseCase: SaveNoteUseCase) {}
 
   onFocus() {
     this.hasFocus = true;
@@ -51,7 +55,7 @@ export class AddNoteComponent {
     this.content = content;
   }
 
-  handleMenuSelection(item: MenuItem): void {
+  onMenuSelectionClick(item: MenuItem): void {
     console.log('Item selecionado:', item);
   }
 
@@ -60,6 +64,13 @@ export class AddNoteComponent {
     console.log('Title:', this.title);
     console.log('Content:', this.content);
 
+    this.saveNoteUseCase.execute({
+      _id: '',
+      title: this.title,
+      content: this.content,
+    });
+
     this.dialogRef.close();
+    this.beforeSave.emit();
   }
 }

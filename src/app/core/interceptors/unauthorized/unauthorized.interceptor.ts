@@ -1,9 +1,9 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
-import { RouterAdapterService } from '../../adapter/router-adapter/router-adapter.service';
-import { LocalStorageService } from '../../adapter/local-storage/local-storage.service';
 import { ELocalStorageKeys } from '~/app/shared/interfaces/local-storage';
+import { LocalStorageService } from '../../adapter/local-storage/local-storage.service';
+import { RouterAdapterService } from '../../adapter/router-adapter/router-adapter.service';
 
 export const unauthorizedInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(RouterAdapterService);

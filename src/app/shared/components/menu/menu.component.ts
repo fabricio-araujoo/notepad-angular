@@ -7,6 +7,8 @@ export interface MenuItem {
   label: string;
   icon?: string; // Nome do ícone opcional
   disabled?: boolean; // Controla se o item está desabilitado
+  visible?: boolean; // Controla se o item está desabilitado
+  ref?: HTMLElement; // Referência opcional para o item
   action?: VoidFunction; // Callback ou dado associado ao item
 }
 
