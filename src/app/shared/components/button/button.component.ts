@@ -14,11 +14,10 @@ type ButtonVariant = 'default' | 'primary' | 'link' | 'text';
 type ButtonType = 'button' | 'submit';
 
 @Component({
-  selector: 'app-button',
-  standalone: true,
-  imports: [CommonModule, MatIconModule],
-  templateUrl: './button.component.html',
-  styleUrl: './button.component.scss',
+    selector: 'app-button',
+    imports: [CommonModule, MatIconModule],
+    templateUrl: './button.component.html',
+    styleUrl: './button.component.scss'
 })
 export class ButtonComponent implements AfterViewInit {
   @ViewChild('button', { static: false }) button!: ElementRef;

@@ -4,11 +4,10 @@ import { HeaderComponent } from './header/header.component';
 import { ITag } from '~/app/shared/interfaces/tag';
 
 @Component({
-  selector: 'app-layout',
-  standalone: true,
-  imports: [HeaderComponent, SidebarComponent],
-  templateUrl: './layout.component.html',
-  styleUrl: './layout.component.scss',
+    selector: 'app-layout',
+    imports: [HeaderComponent, SidebarComponent],
+    templateUrl: './layout.component.html',
+    styleUrl: './layout.component.scss'
 })
 export class LayoutComponent {
   tags: ITag[] = [];

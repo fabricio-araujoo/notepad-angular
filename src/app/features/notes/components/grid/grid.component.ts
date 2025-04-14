@@ -9,11 +9,10 @@ import { INote } from '~/app/shared/interfaces/note';
 import { CardComponent } from '../../../../shared/components/card/card.component';
 
 @Component({
-  selector: 'app-grid',
-  standalone: true,
-  imports: [CommonModule, CardComponent, DragDropModule],
-  templateUrl: './grid.component.html',
-  styleUrl: './grid.component.scss',
+    selector: 'app-grid',
+    imports: [CommonModule, CardComponent, DragDropModule],
+    templateUrl: './grid.component.html',
+    styleUrl: './grid.component.scss'
 })
 export class GridComponent {
   @Input() items: INote[] = [];

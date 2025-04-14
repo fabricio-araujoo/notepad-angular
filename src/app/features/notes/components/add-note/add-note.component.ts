@@ -13,19 +13,18 @@ import { TextEditorComponent } from '../../../../shared/components/text-editor/t
 import { SaveNoteUseCase } from '../../use-cases/save-note/save-note.use-case';
 
 @Component({
-  selector: 'app-add-note',
-  standalone: true,
-  imports: [
-    MatMenuModule,
-    DialogComponent,
-    InputComponent,
-    TextEditorComponent,
-    ButtonComponent,
-    MenuComponent,
-    OverlayModule,
-  ],
-  templateUrl: './add-note.component.html',
-  styleUrl: './add-note.component.scss',
+    selector: 'app-add-note',
+    imports: [
+        MatMenuModule,
+        DialogComponent,
+        InputComponent,
+        TextEditorComponent,
+        ButtonComponent,
+        MenuComponent,
+        OverlayModule,
+    ],
+    templateUrl: './add-note.component.html',
+    styleUrl: './add-note.component.scss'
 })
 export class AddNoteComponent {
   @Output() beforeSave = new EventEmitter<void>();

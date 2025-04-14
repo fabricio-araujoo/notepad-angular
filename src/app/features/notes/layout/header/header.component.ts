@@ -6,11 +6,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ProfileService } from '~/app/core/stores/profile/profile.service';
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [MatIconModule, ButtonComponent, MatTooltipModule],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+    selector: 'app-header',
+    imports: [MatIconModule, ButtonComponent, MatTooltipModule],
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
   @Output() collapse = new EventEmitter<void>();

@@ -13,11 +13,10 @@ import { LoadingService } from '~/app/core/stores/loading/loading.service';
 import { ValidationService } from '../../validation/sign-in/validation.service';
 
 @Component({
-  selector: 'app-sign-in',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, InputComponent, ButtonComponent],
-  templateUrl: './sign-in.component.html',
-  styleUrl: './sign-in.component.scss',
+    selector: 'app-sign-in',
+    imports: [CommonModule, ReactiveFormsModule, InputComponent, ButtonComponent],
+    templateUrl: './sign-in.component.html',
+    styleUrl: './sign-in.component.scss'
 })
 export class SignInComponent {
   form: FormGroup;

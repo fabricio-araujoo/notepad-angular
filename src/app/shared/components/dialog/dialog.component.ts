@@ -8,11 +8,10 @@ import {
 import { MatDialogActions, MatDialogContent } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-dialog',
-  standalone: true,
-  imports: [CommonModule, MatDialogContent, MatDialogActions],
-  templateUrl: './dialog.component.html',
-  styleUrl: './dialog.component.scss',
+    selector: 'app-dialog',
+    imports: [CommonModule, MatDialogContent, MatDialogActions],
+    templateUrl: './dialog.component.html',
+    styleUrl: './dialog.component.scss'
 })
 export class DialogComponent implements AfterContentInit {
   @ContentChild('footer', { read: TemplateRef })

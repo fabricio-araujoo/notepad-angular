@@ -6,11 +6,10 @@ import { RouterAdapterService } from '~/app/core/adapter/router-adapter/router-a
 import { ITag } from '~/app/shared/interfaces/tag';
 
 @Component({
-  selector: 'app-sidebar',
-  standalone: true,
-  imports: [CommonModule, MatIconModule, RouterLink],
-  templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss',
+    selector: 'app-sidebar',
+    imports: [CommonModule, MatIconModule, RouterLink],
+    templateUrl: './sidebar.component.html',
+    styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent implements OnInit {
   @Input() collapse: boolean = false;

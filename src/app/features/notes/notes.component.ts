@@ -9,11 +9,10 @@ import { GetUserUseCase } from './use-cases/get-user/get-user.use-case';
 import { ListNotesUseCase } from './use-cases/list-notes/list-notes.use-case';
 
 @Component({
-  selector: 'app-notes',
-  standalone: true,
-  imports: [LayoutComponent, GridComponent, ButtonComponent],
-  templateUrl: './notes.component.html',
-  styleUrl: './notes.component.scss',
+    selector: 'app-notes',
+    imports: [LayoutComponent, GridComponent, ButtonComponent],
+    templateUrl: './notes.component.html',
+    styleUrl: './notes.component.scss'
 })
 export class NotesComponent implements OnInit {
   notes: INote[] = [];

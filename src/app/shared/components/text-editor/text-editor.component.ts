@@ -16,11 +16,10 @@ import StarterKit from '@tiptap/starter-kit';
 import { NgxTiptapModule } from 'ngx-tiptap';
 
 @Component({
-  selector: 'app-text-editor',
-  standalone: true,
-  imports: [NgxTiptapModule],
-  templateUrl: './text-editor.component.html',
-  styleUrl: './text-editor.component.scss',
+    selector: 'app-text-editor',
+    imports: [NgxTiptapModule],
+    templateUrl: './text-editor.component.html',
+    styleUrl: './text-editor.component.scss'
 })
 export class TextEditorComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('editorContainer', { static: false }) editorContainer!: ElementRef;

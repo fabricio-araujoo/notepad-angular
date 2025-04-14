@@ -15,18 +15,17 @@ type InputSize = 'normal' | 'large';
 type InputVariant = 'outlined' | 'borderless';
 
 @Component({
-  selector: 'app-input',
-  standalone: true,
-  imports: [CommonModule],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputComponent),
-      multi: true,
-    },
-  ],
-  templateUrl: './input.component.html',
-  styleUrl: './input.component.scss',
+    selector: 'app-input',
+    imports: [CommonModule],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => InputComponent),
+            multi: true,
+        },
+    ],
+    templateUrl: './input.component.html',
+    styleUrl: './input.component.scss'
 })
 export class InputComponent implements ControlValueAccessor {
   @Input() id: string = '';

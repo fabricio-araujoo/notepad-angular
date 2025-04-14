@@ -4,12 +4,11 @@ import { IconAdapterService } from './core/adapter/icon-adapter/icon-adapter.ser
 import { CoreModule } from './core/core.module';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, CoreModule],
-  providers: [],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+    selector: 'app-root',
+    imports: [RouterOutlet, CoreModule],
+    providers: [],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'angular-notepad';
