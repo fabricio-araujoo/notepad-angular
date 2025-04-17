@@ -6,15 +6,41 @@
 
 <tiptap-bubble-menu [editor]="editor" class="bubble-menu">
   <button
+    class="bubble-menu__button"
     (click)="editor.chain().focus().toggleBold().run()"
     [class.active]="editor.isActive('bold')"
   >
-    Bold
+    <mat-icon class="bubble-menu__icon" svgIcon="custom-bold"></mat-icon>
   </button>
   <button
+    class="bubble-menu__button"
     (click)="editor.chain().focus().toggleItalic().run()"
     [class.active]="editor.isActive('italic')"
   >
-    Italic
+    <mat-icon class="bubble-menu__icon" svgIcon="custom-italic"></mat-icon>
+  </button>
+  <button
+    class="bubble-menu__button"
+    (click)="editor.chain().focus().toggleUnderline().run()"
+    [class.active]="editor.isActive('underline')"
+  >
+    <mat-icon class="bubble-menu__icon" svgIcon="custom-underline"></mat-icon>
+  </button>
+  <button
+    class="bubble-menu__button"
+    (click)="editor.chain().focus().toggleStrike().run()"
+    [class.active]="editor.isActive('strike')"
+  >
+    <mat-icon
+      class="bubble-menu__icon"
+      svgIcon="custom-strikethrough"
+    ></mat-icon>
+  </button>
+  <button
+    class="bubble-menu__button"
+    (click)="editor.chain().focus().toggleCode().run()"
+    [class.active]="editor.isActive('code')"
+  >
+    <mat-icon class="bubble-menu__icon" svgIcon="custom-code"></mat-icon>
   </button>
 </tiptap-bubble-menu>

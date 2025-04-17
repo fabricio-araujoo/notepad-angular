@@ -10,14 +10,16 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { MatIcon } from '@angular/material/icon';
 import { Editor } from '@tiptap/core';
 import Placeholder from '@tiptap/extension-placeholder';
+import Underline from '@tiptap/extension-underline';
 import StarterKit from '@tiptap/starter-kit';
 import { NgxTiptapModule } from 'ngx-tiptap';
 
 @Component({
   selector: 'app-text-editor',
-  imports: [NgxTiptapModule],
+  imports: [NgxTiptapModule, MatIcon],
   templateUrl: './text-editor.component.html',
   styleUrl: './text-editor.component.scss',
 })
@@ -43,6 +45,7 @@ export class TextEditorComponent implements OnInit, OnDestroy, AfterViewInit {
         Placeholder.configure({
           placeholder: this.placeholder,
         }),
+        Underline,
       ],
       onUpdate: ({ editor }) => {
         // Emite o conteúdo sempre que o editor for alterado

@@ -58,6 +58,7 @@
 }
 
 .bubble-menu {
+  height: 2.25rem;
   padding: 0.25rem;
 
   display: flex;
@@ -69,11 +70,11 @@
 
   z-index: 100;
 
-  & button {
+  &__button {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 4px 8px;
+    padding: 4px;
     border-radius: 4px;
 
     color: $font-default-color;
@@ -82,6 +83,20 @@
 
     &:hover {
       background-color: $background-container;
+    }
+  }
+
+  &__icon {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      fill: $font-default-color;
     }
   }
 }

@@ -9,8 +9,16 @@ export const registry: IconRegistry[] = [
     url: '/assets/icons/add.svg',
   },
   {
+    name: 'bold',
+    url: '/assets/icons/bold.svg',
+  },
+  {
     name: 'close',
     url: '/assets/icons/close.svg',
+  },
+  {
+    name: 'code',
+    url: '/assets/icons/code.svg',
   },
   {
     name: 'edit',
@@ -19,6 +27,10 @@ export const registry: IconRegistry[] = [
   {
     name: 'exit',
     url: '/assets/icons/exit.svg',
+  },
+  {
+    name: 'italic',
+    url: '/assets/icons/italic.svg',
   },
   {
     name: 'menu',
@@ -35,5 +47,13 @@ export const registry: IconRegistry[] = [
   {
     name: 'options',
     url: '/assets/icons/options.svg',
+  },
+  {
+    name: 'strikethrough',
+    url: '/assets/icons/strikethrough.svg',
+  },
+  {
+    name: 'underline',
+    url: '/assets/icons/underline.svg',
   },
 ];
