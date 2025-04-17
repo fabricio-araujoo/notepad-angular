@@ -1,22 +1,22 @@
+@use "sass:map" as map;
 @use "tokens" as *;
-
 @use "mixins" as *;
 
 .header {
   width: 100%;
   height: 4rem;
 
-  padding: 0 map-get($map: $padding, $key: lg);
+  padding: 0 map.get($map: $padding, $key: lg);
 
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: map-get($map: $gap, $key: xl);
+  gap: map.get($map: $gap, $key: xl);
 
   &__sidebar-control {
     display: flex;
     align-items: center;
-    gap: map-get($map: $gap, $key: lg);
+    gap: map.get($map: $gap, $key: lg);
   }
 
   &__icon {
@@ -35,7 +35,7 @@
   &__title {
     display: flex;
     align-items: center;
-    gap: map-get($map: $gap, $key: md);
+    gap: map.get($map: $gap, $key: md);
 
     & > h4 {
       cursor: default;
@@ -48,12 +48,12 @@
   &__profile {
     display: flex;
     align-items: center;
-    gap: map-get($map: $gap, $key: md);
+    gap: map.get($map: $gap, $key: md);
   }
 
   &__user {
     & > h4 {
-      @include body-small();
+      @include body-small;
     }
   }
 }

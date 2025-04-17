@@ -9,6 +9,10 @@ export const registry: IconRegistry[] = [
     url: '/assets/icons/add.svg',
   },
   {
+    name: 'close',
+    url: '/assets/icons/close.svg',
+  },
+  {
     name: 'edit',
     url: '/assets/icons/edit.svg',
   },

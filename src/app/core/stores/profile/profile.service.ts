@@ -1,19 +1,17 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
 import { IUser } from '~/app/shared/interfaces/user';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProfileService {
-  // O estado é armazenado aqui
-  private profile = new BehaviorSubject<IUser | null>(null);
+export class ProfileStore {
+  private readonly _profile = signal<IUser | null>(null);
 
-  // Expose o estado como um observable
-  profile$ = this.profile.asObservable();
+  get profile() {
+    return this._profile;
+  }
 
-  // Método para atualizar o estado
   updateProfile(profile: IUser) {
-    this.profile.next(profile);
+    this._profile.set(profile);
   }
 }

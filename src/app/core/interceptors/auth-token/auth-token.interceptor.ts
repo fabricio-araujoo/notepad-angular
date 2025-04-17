@@ -5,7 +5,7 @@ import { ELocalStorageKeys } from '~/app/shared/interfaces/local-storage';
 
 export const authTokenInterceptor: HttpInterceptorFn = (req, next) => {
   const accessToken = inject(LocalStorageService).get(
-    ELocalStorageKeys.access_token
+    ELocalStorageKeys.ACCESS_TOKEN
   );
 
   if (!accessToken) {

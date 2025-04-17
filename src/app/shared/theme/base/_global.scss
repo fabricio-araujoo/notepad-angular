@@ -6,6 +6,8 @@ html,
 body {
   height: 100%;
   font-family: $font-family;
+  background-color: $background;
+  color: $font-default-color;
 }
 
 ::-webkit-scrollbar {

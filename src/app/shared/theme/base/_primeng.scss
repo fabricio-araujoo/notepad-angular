@@ -1,0 +1,18 @@
+@use "sass:map" as map;
+@use "tokens" as *;
+
+.p-drawer {
+  background-color: $background !important; // sobrescrevendo o fundo do drawer
+  color: $font-default-color !important;
+
+  border: none !important;
+}
+
+.p-drawer-header {
+  padding: map.get($map: $padding, $key: lg) !important;
+}
+
+.p-drawer-content {
+  padding: 0 map.get($map: $padding, $key: lg) map.get($map: $padding, $key: lg)
+    map.get($map: $padding, $key: lg) !important;
+}

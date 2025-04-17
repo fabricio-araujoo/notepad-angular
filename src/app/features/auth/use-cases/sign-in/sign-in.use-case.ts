@@ -37,7 +37,7 @@ export class SignInUseCase {
       };
     }
 
-    this.localStorageService.set(ELocalStorageKeys.access_token, token);
+    this.localStorageService.set(ELocalStorageKeys.ACCESS_TOKEN, token);
     this.routerService.navigate('/notes');
 
     return;

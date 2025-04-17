@@ -41,7 +41,7 @@ export class AuthService {
   }
 
   async signOut() {
-    this.localStorage.remove(ELocalStorageKeys.access_token);
+    this.localStorage.remove(ELocalStorageKeys.ACCESS_TOKEN);
     this.routerService.navigate('/sign-in');
   }
 }

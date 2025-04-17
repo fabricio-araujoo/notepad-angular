@@ -2,11 +2,11 @@
 @use "mixins" as *;
 
 @mixin default-style() {
-  color: $notification-color !important;
+  color: $font-notification-color !important;
   box-shadow: none !important;
   border-radius: 0.5rem !important;
 
-  @include body-small();
+  @include body-small;
 }
 
 .toast-success {

@@ -1,0 +1,36 @@
+@use "sass:map" as map;
+@use "tokens" as *;
+@use "mixins" as *;
+
+.tag {
+  width: fit-content;
+  padding: 4px;
+
+  display: flex;
+  align-items: center;
+  gap: map.get($map: $gap, $key: sm);
+
+  border-radius: 0.25rem;
+
+  background-color: $tag-default-background;
+
+  span {
+    @include body-small($font-weight-semi-bold);
+
+    color: $font-default-color;
+    font-size: 0.75rem;
+  }
+
+  &__close {
+    width: 0.75rem;
+    height: 0.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+      color: $tag-close-hover;
+    }
+  }
+}

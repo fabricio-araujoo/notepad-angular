@@ -1,0 +1,119 @@
+@use "sass:map" as map;
+@use "tokens" as *;
+@use "mixins" as *;
+
+$input-height: 2rem;
+
+.tag-select {
+  position: relative;
+  width: 100%;
+
+  border: 0.0625rem solid transparent;
+
+  &__view {
+    box-sizing: border-box;
+    width: 100%;
+    height: 2rem;
+    padding: 0 map.get($map: $padding, $key: md);
+  }
+
+  &__dropdown {
+    border: 0.0625rem solid $border-default;
+    border-radius: 0.375rem;
+    box-shadow: 0 0 0 1px #00000019;
+  }
+}
+
+.view {
+  cursor: text;
+
+  display: flex;
+  align-items: center;
+
+  border: 0.0625rem solid transparent;
+  border-radius: 0.375rem;
+
+  &:hover {
+    background-color: $background-container;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: map.get($map: $gap, $key: sm);
+  }
+
+  &__empty {
+    @include body-small;
+
+    color: $font-placeholder-color;
+    line-height: $line-height-h4;
+  }
+}
+
+.dropdown {
+  width: 100%;
+  min-height: 2rem;
+
+  border: 0.0625rem solid $border-default;
+
+  &__container {
+    padding: 0.25rem map.get($map: $padding, $key: md);
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: map.get($map: $gap, $key: sm);
+
+    &--open {
+      border-bottom: 0.0625rem solid $border-default;
+    }
+  }
+
+  &__input {
+    flex: 1;
+
+    ::ng-deep .input__field {
+      height: auto;
+      padding: 0;
+
+      border-radius: 0;
+    }
+  }
+
+  &__options {
+    width: 100%;
+
+    padding-block: map.get($map: $padding, $key: sm);
+  }
+
+  &__tip {
+    padding-block: map.get($map: $padding, $key: sm);
+    padding-inline: map.get($map: $padding, $key: md);
+
+    @include body-small($font-weight-semi-bold);
+
+    color: $font-placeholder-color;
+    font-size: 0.75rem;
+  }
+
+  &__option {
+    cursor: pointer;
+    width: 100%;
+    padding-block: map.get($map: $padding, $key: sm);
+    padding-inline: map.get($map: $padding, $key: md);
+
+    display: flex;
+    align-items: center;
+    gap: map.get($map: $gap, $key: sm);
+
+    @include body-small;
+
+    font-size: 0.75rem;
+
+    &:hover {
+      background-color: $background-container;
+    }
+  }
+}

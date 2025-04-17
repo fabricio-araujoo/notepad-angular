@@ -7,8 +7,8 @@ import { NotificationAdapterService } from './adapter/notification-adapter/notif
 import { RouterAdapterService } from './adapter/router-adapter/router-adapter.service';
 import { AuthService } from './services/auth/auth.service';
 import { UserService } from './services/user/user.service';
-import { LoadingService } from './stores/loading/loading.service';
-import { ProfileService } from './stores/profile/profile.service';
+import { LoadingStore } from './stores/loading/loading.service';
+import { ProfileStore } from './stores/profile/profile.service';
 
 @NgModule({
   imports: [CommonModule],
@@ -25,8 +25,8 @@ import { ProfileService } from './stores/profile/profile.service';
     UserService,
 
     // Store
-    LoadingService,
-    ProfileService,
+    LoadingStore,
+    ProfileStore,
   ],
 })
 export class CoreModule {}

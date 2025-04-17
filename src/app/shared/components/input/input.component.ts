@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
+  ElementRef,
   EventEmitter,
   forwardRef,
   Input,
   Output,
+  ViewChild,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -15,32 +17,35 @@ type InputSize = 'normal' | 'large';
 type InputVariant = 'outlined' | 'borderless';
 
 @Component({
-    selector: 'app-input',
-    imports: [CommonModule],
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => InputComponent),
-            multi: true,
-        },
-    ],
-    templateUrl: './input.component.html',
-    styleUrl: './input.component.scss'
+  selector: 'app-input',
+  imports: [CommonModule],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputComponent),
+      multi: true,
+    },
+  ],
+  templateUrl: './input.component.html',
+  styleUrl: './input.component.scss',
 })
 export class InputComponent implements ControlValueAccessor {
+  @ViewChild('input', { static: true }) inputRef?: ElementRef<HTMLInputElement>;
+
   @Input() id: string = '';
   @Input() type: InputType = 'text';
   @Input() label?: string;
-  @Input() placeholder?: string = '';
   @Input() error?: string;
-  @Input() showError?: boolean = false;
-  @Input() full?: boolean = false;
+  @Input() showError?: boolean;
+  @Input() full?: boolean;
+  @Input() placeholder?: string = '';
   @Input() size?: InputSize = 'normal';
   @Input() variant?: InputVariant = 'outlined';
 
   // Output para eventos no modo independente
   @Output() inputChange = new EventEmitter<string>();
-  @Output() inputFocus = new EventEmitter<string>();
+  @Output() inputFocus = new EventEmitter<FocusEvent>();
+  @Output() inputBlur = new EventEmitter<FocusEvent>();
 
   value: string | null = null; // Valor do input
 
@@ -77,9 +82,7 @@ export class InputComponent implements ControlValueAccessor {
     this.inputFocus.emit();
   }
 
-  getClasses() {
-    return {
-      'input__field--full': this.full,
-    };
+  focus() {
+    this.inputRef?.nativeElement?.focus();
   }
 }

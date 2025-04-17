@@ -9,14 +9,14 @@ import {
 import { CommonModule } from '@angular/common';
 import { InputComponent } from '../../../../shared/components/input/input.component';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
-import { LoadingService } from '~/app/core/stores/loading/loading.service';
+import { LoadingStore } from '~/app/core/stores/loading/loading.service';
 import { ValidationService } from '../../validation/sign-in/validation.service';
 
 @Component({
-    selector: 'app-sign-in',
-    imports: [CommonModule, ReactiveFormsModule, InputComponent, ButtonComponent],
-    templateUrl: './sign-in.component.html',
-    styleUrl: './sign-in.component.scss'
+  selector: 'app-sign-in',
+  imports: [CommonModule, ReactiveFormsModule, InputComponent, ButtonComponent],
+  templateUrl: './sign-in.component.html',
+  styleUrl: './sign-in.component.scss',
 })
 export class SignInComponent {
   form: FormGroup;
@@ -24,9 +24,9 @@ export class SignInComponent {
   error?: string;
 
   constructor(
+    public loadingStore: LoadingStore,
     private signInUseCase: SignInUseCase,
-    private fb: FormBuilder,
-    public loadingService: LoadingService
+    private fb: FormBuilder
   ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -63,7 +63,7 @@ export class SignInComponent {
   }
 
   async onSignIn() {
-    this.loadingService.show();
+    this.loadingStore.show();
 
     const { email, password } = this.form.value;
 
@@ -76,6 +76,6 @@ export class SignInComponent {
       this.error = response.error;
     }
 
-    this.loadingService.hide();
+    this.loadingStore.hide();
   }
 }

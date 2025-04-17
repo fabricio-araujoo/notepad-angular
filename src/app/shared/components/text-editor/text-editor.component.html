@@ -3,3 +3,18 @@
   [editor]="editor"
   class="editor"
 ></tiptap-editor>
+
+<tiptap-bubble-menu [editor]="editor" class="bubble-menu">
+  <button
+    (click)="editor.chain().focus().toggleBold().run()"
+    [class.active]="editor.isActive('bold')"
+  >
+    Bold
+  </button>
+  <button
+    (click)="editor.chain().focus().toggleItalic().run()"
+    [class.active]="editor.isActive('italic')"
+  >
+    Italic
+  </button>
+</tiptap-bubble-menu>

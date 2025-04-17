@@ -9,6 +9,8 @@
       Adicionar nota
     </app-button>
 
+    <app-note-modal #noteDrawer></app-note-modal>
+
     <div class="notes__panel">
       <div class="notes__title">
         <p>Fixadas</p>
@@ -17,12 +19,12 @@
       <app-grid [items]="notes"></app-grid>
     </div>
 
-    <div class="notes__panel">
+    <!-- <div class="notes__panel">
       <div class="notes__title">
         <p>Outras</p>
       </div>
 
       <app-grid [items]="notes"></app-grid>
-    </div>
+    </div> -->
   </div>
 </app-layout>

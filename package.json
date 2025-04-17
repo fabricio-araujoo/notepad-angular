@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^19.2.6",
     "@angular/platform-browser-dynamic": "^19.2.6",
     "@angular/router": "^19.2.6",
+    "@primeng/themes": "^19.0.10",
     "@tiptap/core": "^2.11.2",
     "@tiptap/extension-bullet-list": "^2.11.2",
     "@tiptap/extension-code": "^2.10.3",
@@ -32,6 +33,7 @@
     "@tiptap/starter-kit": "^2.11.2",
     "ngx-tiptap": "^11.1.0",
     "ngx-toastr": "^19.0.0",
+    "primeng": "^19.0.10",
     "rxjs": "~7.8.0",
     "tslib": "^2.8.1",
     "zone.js": "^0.15.0"

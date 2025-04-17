@@ -1,0 +1,19 @@
+<p-drawer
+  styleClass="drawer"
+  position="right"
+  [style]="{ width: '600px', borderRadius: '5px' }"
+  [closable]="false"
+  [(visible)]="opened"
+>
+  <ng-template #header>
+    <div class="drawer__header">
+      <span class="drawer__title">{{ title }}</span>
+
+      <div class="drawer__close" (mousedown)="toogle()">
+        <mat-icon class="drawer__icon" svgIcon="custom-close"></mat-icon>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-content></ng-content>
+</p-drawer>

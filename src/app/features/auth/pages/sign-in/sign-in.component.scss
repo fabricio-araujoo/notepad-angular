@@ -1,5 +1,5 @@
+@use "sass:map" as map;
 @use "tokens" as *;
-
 @use "mixins" as *;
 
 .sign-in {
@@ -28,7 +28,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: map-get($map: $gap, $key: xl);
+    gap: map.get($map: $gap, $key: xl);
   }
 
   &__error {
@@ -36,8 +36,8 @@
 
     box-sizing: border-box;
     width: 100%;
-    padding: map-get($map: $padding, $key: md);
-    padding-left: map-get($map: $padding, $key: lg);
+    padding: map.get($map: $padding, $key: md);
+    padding-left: map.get($map: $padding, $key: lg);
 
     background: $error-container;
 
@@ -59,7 +59,7 @@
       color: $error;
       font-size: 0.8125rem !important;
 
-      @include body-small();
+      @include body-small;
     }
   }
 
@@ -69,19 +69,19 @@
 
     display: flex;
     flex-direction: column;
-    gap: map-get($map: $gap, $key: md);
+    gap: map.get($map: $gap, $key: md);
   }
 
   &__submit {
-    margin-top: map-get($map: $margin, $key: lg);
+    margin-top: map.get($map: $margin, $key: lg);
   }
 
   &__forgot-password {
     cursor: pointer;
 
-    color: $default;
+    color: $font-default-color;
 
-    @include body-small();
+    @include body-small;
     @include transition();
 
     &:hover {

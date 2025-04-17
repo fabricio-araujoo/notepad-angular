@@ -34,9 +34,9 @@
           type="submit"
           [variant]="'primary'"
           [block]="true"
-          [disabled]="form.invalid || !!(loadingService.isLoading$ | async)"
+          [disabled]="form.invalid || !!(loadingStore.isLoading$ | async)"
         >
-          {{ !!(loadingService.isLoading$ | async) ? "Entrando..." : "Enviar" }}
+          {{ !!(loadingStore.isLoading$ | async) ? "Entrando..." : "Enviar" }}
         </app-button>
       </form>
 

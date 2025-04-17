@@ -1,0 +1,16 @@
+<app-drawer #drawer title="Nota">
+  <div class="note-modal__config">
+    <app-input
+      class="note-modal__title"
+      variant="borderless"
+      placeholder="Nova nota"
+    ></app-input>
+
+    <div class="note-modal__tags tags">
+      <div class="tags__label"><span>Marcadores</span></div>
+      <app-tag-select class="tags__select"></app-tag-select>
+    </div>
+
+    <app-text-editor class="note-modal__editor"></app-text-editor>
+  </div>
+</app-drawer>

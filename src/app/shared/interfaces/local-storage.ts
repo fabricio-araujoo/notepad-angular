@@ -1,4 +1,5 @@
 export enum ELocalStorageKeys {
-  access_token = 'access_token',
-  current_user = 'current_user',
+  ACCESS_TOKEN = 'access_token',
+  CURRENT_USER = 'current_user',
+  SIDEBAR_COLLAPSE = 'sidebar_collapse',
 }

@@ -1,3 +1,4 @@
+@use "sass:map" as map;
 @use "tokens" as *;
 @use "mixins" as *;
 
@@ -12,9 +13,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: map-get($map: $gap, $key: md);
+  gap: map.get($map: $gap, $key: md);
 
-  color: $default;
+  color: $font-default-color;
 
   border: 0.0625rem solid $border-default;
   border-radius: 0.375rem;
@@ -95,7 +96,7 @@
 
     &:hover {
       background: $background-container;
-      color: $default;
+      color: $font-default-color;
       border-color: transparent;
     }
 
@@ -118,6 +119,6 @@
   }
 
   &__text {
-    @include body-small();
+    @include body-small;
   }
 }
