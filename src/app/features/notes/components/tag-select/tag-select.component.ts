@@ -35,8 +35,11 @@ interface Tag {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TagSelectComponent {
-  @ViewChild('tagSelectContainer') tagSelectContainerRef!: ElementRef;
-  @ViewChild('tagSelectInput') tagSelectInputRef!: InputComponent;
+  @ViewChild('tagSelectContainer')
+  tagSelectContainerRef!: ElementRef;
+
+  @ViewChild('tagSelectInput')
+  tagSelectInputRef!: InputComponent;
 
   inputValue = '';
 

@@ -25,7 +25,8 @@ import { TooltipComponent } from '../tooltip/tooltip.component';
   styleUrl: './text-editor.component.scss',
 })
 export class TextEditorComponent implements OnInit, OnDestroy, AfterViewInit {
-  @ViewChild('editorContainer', { static: false }) editorContainer!: ElementRef;
+  @ViewChild('editorContainer', { static: false })
+  editorContainer!: ElementRef;
 
   @Input() placeholder: string = 'Digite aqui...';
   @Input() initialContent: string = '';

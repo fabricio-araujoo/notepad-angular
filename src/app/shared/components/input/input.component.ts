@@ -30,7 +30,8 @@ type InputVariant = 'outlined' | 'borderless';
   styleUrl: './input.component.scss',
 })
 export class InputComponent implements ControlValueAccessor {
-  @ViewChild('input', { static: true }) inputRef?: ElementRef<HTMLInputElement>;
+  @ViewChild('input', { static: true })
+  inputRef?: ElementRef<HTMLInputElement>;
 
   @Input() id: string = '';
   @Input() type: InputType = 'text';

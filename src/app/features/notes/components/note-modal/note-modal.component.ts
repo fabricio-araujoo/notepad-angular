@@ -16,7 +16,8 @@ import { TagSelectComponent } from '../tag-select/tag-select.component';
   styleUrl: './note-modal.component.scss',
 })
 export class NoteModalComponent {
-  @ViewChild('drawer') private drawer!: DrawerComponent;
+  @ViewChild('drawer')
+  private drawer!: DrawerComponent;
 
   tags = [
     { label: 'Desenvolvimento', value: 'dev' },
@@ -24,11 +25,11 @@ export class NoteModalComponent {
     { label: 'Importante', value: 'important' },
   ];
 
-  open() {
-    this.drawer.toogle();
-  }
-
   handleClose() {
     console.log('close');
+  }
+
+  open() {
+    this.drawer.toogle();
   }
 }

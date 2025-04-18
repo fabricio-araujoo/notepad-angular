@@ -21,8 +21,11 @@ type ButtonType = 'button' | 'submit';
   styleUrl: './button.component.scss',
 })
 export class ButtonComponent implements AfterViewInit {
-  @ViewChild('button', { static: false }) button!: ElementRef;
-  @ViewChild('textContainer', { static: false }) textContainer?: ElementRef;
+  @ViewChild('button', { static: false })
+  button!: ElementRef;
+
+  @ViewChild('textContainer', { static: false })
+  textContainer?: ElementRef;
 
   @Input() variant?: ButtonVariant = 'default'; // Define estilo
   @Input() type?: ButtonType = 'button';
