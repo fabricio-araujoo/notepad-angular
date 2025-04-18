@@ -1,4 +1,8 @@
-<div #tagSelectContainer class="tag-select" (mousedown)="onFocusComponent()">
+<div
+  #tagSelectContainer
+  class="tag-select"
+  (mousedown)="handleFocusComponent()"
+>
   <div
     class="tag-select__view view"
     [style]="{ visibility: focused() ? 'hidden' : 'visible' }"
@@ -26,7 +30,7 @@
       [ngClass]="{ 'dropdown__container--open': focused }"
     >
       @for (item of selectedTags(); track item.id) {
-      <app-tag [close]="true" (closed)="onRemoveTag(item)">
+      <app-tag [close]="true" (closed)="handleRemoveTag(item)">
         {{ item.label }}
       </app-tag>
       }
@@ -44,14 +48,14 @@
       <span class="dropdown__tip"> Selecione uma opção ou crie uma </span>
 
       @for (item of filteredOptions(); track item.id) {
-      <div class="dropdown__option" (mousedown)="onSelectedTag(item)">
+      <div class="dropdown__option" (mousedown)="handleSelectedTag(item)">
         <app-tag>{{ item.label }}</app-tag>
       </div>
       }
 
       <div
         class="dropdown__option"
-        (mousedown)="onCreateTag()"
+        (mousedown)="handleCreateTag()"
         *ngIf="inputValue && !matchTagLabel()"
       >
         Criar <app-tag>{{ inputValue }}</app-tag>

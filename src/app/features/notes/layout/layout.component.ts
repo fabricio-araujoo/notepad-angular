@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { HeaderComponent } from './header/header.component';
-import { ITag } from '~/app/shared/interfaces/tag';
 import { LocalStorageService } from '~/app/core/adapter/local-storage/local-storage.service';
 import { ELocalStorageKeys } from '~/app/shared/interfaces/local-storage';
+import { ITag } from '~/app/shared/interfaces/tag';
+import { HeaderComponent } from './header/header.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @Component({
   selector: 'app-layout',
@@ -24,7 +24,7 @@ export class LayoutComponent {
       this.localStorage.get(ELocalStorageKeys.SIDEBAR_COLLAPSE) === 'true';
   }
 
-  collaseSidebar() {
+  handleCollaseSidebar() {
     this.isSidebarCollapse = !this.isSidebarCollapse;
 
     this.localStorage.set(

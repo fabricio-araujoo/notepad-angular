@@ -17,7 +17,7 @@ export class DrawerComponent {
 
   opened = signal<boolean>(false);
 
-  onClose() {
+  handleClose() {
     this.closed.emit();
   }
 
@@ -25,7 +25,7 @@ export class DrawerComponent {
     this.opened.set(!this.opened());
 
     if (!this.opened()) {
-      this.onClose();
+      this.handleClose();
     }
   }
 }

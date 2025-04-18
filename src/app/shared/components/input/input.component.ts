@@ -49,8 +49,8 @@ export class InputComponent implements ControlValueAccessor {
 
   value: string | null = null; // Valor do input
 
-  private onChange: (value: string) => void = () => {};
-  private onTouched: () => void = () => {};
+  private handleChange: (value: string) => void = () => {};
+  private handleTouched: () => void = () => {};
 
   // Métodos do ControlValueAccessor (para formulários reativos)
   writeValue(value: string): void {
@@ -58,27 +58,27 @@ export class InputComponent implements ControlValueAccessor {
   }
 
   registerOnChange(fn: (value: string) => void): void {
-    this.onChange = fn;
+    this.handleChange = fn;
   }
 
   registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
+    this.handleTouched = fn;
   }
 
   // Métodos para interação com o input
-  onInput(event: Event): void {
+  handleInput(event: Event): void {
     const target = event.target as HTMLInputElement;
 
     this.value = target.value;
-    this.onChange(this.value); // Atualiza o valor no formulário reativo
+    this.handleChange(this.value); // Atualiza o valor no formulário reativo
     this.changed.emit(this.value); // Emite o evento no modo independente
   }
 
-  onBlur(): void {
-    this.onTouched(); // Marca como "tocado" no formulário reativo
+  handleBlur(): void {
+    this.handleTouched(); // Marca como "tocado" no formulário reativo
   }
 
-  onFocus(): void {
+  handleFocus(): void {
     this.focused.emit();
   }
 

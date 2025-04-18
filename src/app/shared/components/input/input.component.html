@@ -16,9 +16,9 @@
     [value]="value"
     [type]="type"
     [placeholder]="placeholder"
-    (input)="onInput($event)"
-    (blur)="onBlur()"
-    (focus)="onFocus()"
+    (input)="handleInput($event)"
+    (blur)="handleBlur()"
+    (focus)="handleFocus()"
   />
 
   <div class="input__error" *ngIf="showError && error">

@@ -13,7 +13,7 @@ export class TagComponent {
 
   @Output() closed = new EventEmitter<void>();
 
-  onClose() {
+  handleClose() {
     this.closed.emit();
   }
 }

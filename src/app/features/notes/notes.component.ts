@@ -63,7 +63,7 @@ export class NotesComponent implements OnInit {
     console.log(this.notes);
   }
 
-  openAddNote() {
+  handleOpenNote() {
     this.noteDrawer.open();
   }
 }

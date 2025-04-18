@@ -3,7 +3,7 @@
     <mat-icon
       class="header__icon header__icon--clickable"
       svgIcon="custom-menu"
-      (click)="onClick()"
+      (click)="handleClick()"
     ></mat-icon>
 
     <div class="header__title">
@@ -24,7 +24,7 @@
       <app-button
         [variant]="'text'"
         [suffixIcon]="'custom-exit'"
-        (click)="onSignOut()"
+        (click)="handleSignOut()"
       ></app-button>
     </app-tooltip>
   </div>

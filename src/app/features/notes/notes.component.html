@@ -4,12 +4,10 @@
       type="button"
       variant="primary"
       suffixIcon="custom-add"
-      (click)="openAddNote()"
+      (click)="handleOpenNote()"
     >
       Adicionar nota
     </app-button>
-
-    <app-note-modal #noteDrawer></app-note-modal>
 
     <div class="notes__panel">
       <div class="notes__title">
@@ -23,8 +21,10 @@
       <div class="notes__title">
         <p>Outras</p>
       </div>
-
+      
       <app-grid [items]="notes"></app-grid>
     </div> -->
   </div>
+
+  <app-note-modal #noteDrawer></app-note-modal>
 </app-layout>

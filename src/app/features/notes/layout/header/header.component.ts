@@ -28,11 +28,11 @@ export class HeaderComponent {
     });
   }
 
-  onClick() {
+  handleClick() {
     this.collapsed.emit();
   }
 
-  onSignOut() {
+  handleSignOut() {
     this.authService.signOut();
   }
 }

@@ -23,7 +23,7 @@ export class MenuComponent {
 
   @Output() selected = new EventEmitter<MenuItem>(); // Emite quando um item do menu é clicado
 
-  onMenuItemClick(event: MouseEvent, item: MenuItem): void {
+  handleMenuItemClick(event: MouseEvent, item: MenuItem): void {
     if (!item.disabled) {
       this.selected.emit(item); // Emite o item clicado
     }

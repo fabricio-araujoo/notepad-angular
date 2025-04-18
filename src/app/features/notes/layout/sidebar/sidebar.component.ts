@@ -6,10 +6,10 @@ import { RouterAdapterService } from '~/app/core/adapter/router-adapter/router-a
 import { ITag } from '~/app/shared/interfaces/tag';
 
 @Component({
-    selector: 'app-sidebar',
-    imports: [CommonModule, MatIconModule, RouterLink],
-    templateUrl: './sidebar.component.html',
-    styleUrl: './sidebar.component.scss'
+  selector: 'app-sidebar',
+  imports: [CommonModule, MatIconModule, RouterLink],
+  templateUrl: './sidebar.component.html',
+  styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent implements OnInit {
   @Input() collapse: boolean = false;
@@ -24,13 +24,13 @@ export class SidebarComponent implements OnInit {
     this.getCurrentRoute();
   }
 
-  hasTags() {
-    return this.tags && this.tags.length;
-  }
-
   private getCurrentRoute() {
     this.routeService.currentRoute$.subscribe((route) => {
       this.currentRoute = route;
     });
+  }
+
+  hasTags() {
+    return this.tags && this.tags.length;
   }
 }

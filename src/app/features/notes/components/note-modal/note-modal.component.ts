@@ -24,11 +24,11 @@ export class NoteModalComponent {
     { label: 'Importante', value: 'important' },
   ];
 
-  onClose() {
-    console.log('close');
-  }
-
   open() {
     this.drawer.toogle();
+  }
+
+  handleClose() {
+    console.log('close');
   }
 }

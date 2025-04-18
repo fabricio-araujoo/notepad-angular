@@ -7,7 +7,7 @@
     <button
       mat-menu-item
       [disabled]="item.disabled"
-      (click)="onMenuItemClick($event, item)"
+      (click)="handleMenuItemClick($event, item)"
       *ngIf="!item.visible"
     >
       <mat-icon *ngIf="item.icon">{{ item.icon }}</mat-icon>

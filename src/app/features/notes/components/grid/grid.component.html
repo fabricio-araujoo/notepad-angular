@@ -2,7 +2,7 @@
   class="grid__container"
   cdkDropListOrientation="mixed"
   cdkDropList
-  (cdkDropListDropped)="drop($event)"
+  (cdkDropListDropped)="handleDrop($event)"
 >
   @for (card of items; track card._id) {
   <div class="grid__card card" cdkDrag>

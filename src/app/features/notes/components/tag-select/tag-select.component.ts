@@ -60,7 +60,7 @@ export class TagSelectComponent {
   }
 
   @HostListener('document:click', ['$event'])
-  onClickOutside(event: MouseEvent) {
+  handleClickOutside(event: MouseEvent) {
     const clickedInside = this.tagSelectContainerRef?.nativeElement.contains(
       event.target
     );
@@ -71,11 +71,11 @@ export class TagSelectComponent {
     }
   }
 
-  onFocusComponent() {
+  handleFocusComponent() {
     this.focused.set(true);
   }
 
-  onSelectedTag(tag: Tag) {
+  handleSelectedTag(tag: Tag) {
     const selectedTag = this.selectedTags().find(
       (item) => item.label === tag.label
     );
@@ -89,7 +89,7 @@ export class TagSelectComponent {
     this.inputValue = '';
   }
 
-  onCreateTag() {
+  handleCreateTag() {
     const newTagId = this.selectedTags().length + 1;
 
     const _tag: Tag = {
@@ -102,7 +102,7 @@ export class TagSelectComponent {
     this.selectedTags.set([...this.selectedTags(), _tag]);
   }
 
-  onRemoveTag(tag: Tag) {
+  handleRemoveTag(tag: Tag) {
     const arr = this.selectedTags().filter((item) => item.id !== tag.id);
 
     this.selectedTags.set([...arr]);

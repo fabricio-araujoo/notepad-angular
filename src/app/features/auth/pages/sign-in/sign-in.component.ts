@@ -1,15 +1,15 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { SignInUseCase } from '../../use-cases/sign-in/sign-in.use-case';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { InputComponent } from '../../../../shared/components/input/input.component';
-import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { LoadingStore } from '~/app/core/stores/loading/loading.service';
+import { ButtonComponent } from '../../../../shared/components/button/button.component';
+import { InputComponent } from '../../../../shared/components/input/input.component';
+import { SignInUseCase } from '../../use-cases/sign-in/sign-in.use-case';
 import { ValidationService } from '../../validation/sign-in/validation.service';
 
 @Component({
@@ -34,7 +34,24 @@ export class SignInComponent {
     });
   }
 
-  onSubmit() {
+  private async onSignIn() {
+    this.loadingStore.show();
+
+    const { email, password } = this.form.value;
+
+    const response = await this.signInUseCase.execute({
+      email,
+      password,
+    });
+
+    if (response?.error) {
+      this.error = response.error;
+    }
+
+    this.loadingStore.hide();
+  }
+
+  handleSubmit() {
     if (!this.form.valid) {
       return;
     }
@@ -42,7 +59,7 @@ export class SignInComponent {
     this.onSignIn();
   }
 
-  onClickForgotPassword() {
+  handleClickForgotPassword() {
     console.log('esqueci minha senha');
   }
 
@@ -60,22 +77,5 @@ export class SignInComponent {
     const errorValue = field.getError(firstErrorKey);
 
     return ValidationService.getErrorMessage(firstErrorKey, errorValue);
-  }
-
-  async onSignIn() {
-    this.loadingStore.show();
-
-    const { email, password } = this.form.value;
-
-    const response = await this.signInUseCase.execute({
-      email,
-      password,
-    });
-
-    if (response?.error) {
-      this.error = response.error;
-    }
-
-    this.loadingStore.hide();
   }
 }
