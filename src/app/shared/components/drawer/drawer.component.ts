@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { DrawerModule } from 'primeng/drawer';
+import { TooltipComponent } from '../tooltip/tooltip.component';
 
 @Component({
   selector: 'app-drawer',
-  imports: [DrawerModule, MatIcon],
+  imports: [DrawerModule, MatIcon, TooltipComponent],
   templateUrl: './drawer.component.html',
   styleUrl: './drawer.component.scss',
 })
@@ -12,9 +13,19 @@ export class DrawerComponent {
   @Input() title: string = '';
   @Input() width: string = '480px';
 
-  opened: boolean = false;
+  @Output() closed = new EventEmitter<void>();
+
+  opened = signal<boolean>(false);
+
+  onClose() {
+    this.closed.emit();
+  }
 
   toogle() {
-    this.opened = !this.opened;
+    this.opened.set(!this.opened());
+
+    if (!this.opened()) {
+      this.onClose();
+    }
   }
 }

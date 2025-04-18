@@ -43,9 +43,9 @@ export class InputComponent implements ControlValueAccessor {
   @Input() variant?: InputVariant = 'outlined';
 
   // Output para eventos no modo independente
-  @Output() inputChange = new EventEmitter<string>();
-  @Output() inputFocus = new EventEmitter<FocusEvent>();
-  @Output() inputBlur = new EventEmitter<FocusEvent>();
+  @Output() changed = new EventEmitter<string>();
+  @Output() focused = new EventEmitter<FocusEvent>();
+  @Output() blured = new EventEmitter<FocusEvent>();
 
   value: string | null = null; // Valor do input
 
@@ -71,7 +71,7 @@ export class InputComponent implements ControlValueAccessor {
 
     this.value = target.value;
     this.onChange(this.value); // Atualiza o valor no formulário reativo
-    this.inputChange.emit(this.value); // Emite o evento no modo independente
+    this.changed.emit(this.value); // Emite o evento no modo independente
   }
 
   onBlur(): void {
@@ -79,7 +79,7 @@ export class InputComponent implements ControlValueAccessor {
   }
 
   onFocus(): void {
-    this.inputFocus.emit();
+    this.focused.emit();
   }
 
   focus() {

@@ -11,9 +11,11 @@
   }"
   [disabled]="disabled"
 >
-  @if (suffixIcon) {
-  <mat-icon class="button__icon" [svgIcon]="suffixIcon"></mat-icon>
-  }
+  <mat-icon
+    class="button__icon"
+    [svgIcon]="suffixIcon"
+    *ngIf="suffixIcon"
+  ></mat-icon>
 
   <span class="button__text" *ngIf="!isIconOnly" #textContainer>
     <ng-content></ng-content>

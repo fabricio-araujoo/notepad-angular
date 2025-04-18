@@ -5,11 +5,9 @@
         <h4>Acesse sua conta</h4>
       </div>
 
-      @if (error) {
-      <div class="sign-in__error">
+      <div class="sign-in__error" *ngIf="error">
         <p>{{ error }}</p>
       </div>
-      }
 
       <form class="sign-in__form" [formGroup]="form" (ngSubmit)="onSubmit()">
         <app-input

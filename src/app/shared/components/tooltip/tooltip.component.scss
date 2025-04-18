@@ -1,0 +1,28 @@
+@use "sass:map" as map;
+@use "tokens" as *;
+@use "mixins" as *;
+
+.tooltip {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: map.get($map: $gap, $key: sm);
+
+  &__text {
+    @include body-small;
+
+    color: $font-tooltip-color;
+    font-size: 0.75rem;
+  }
+  &__helper {
+    @include body-small;
+
+    color: $font-tooltip-helper-color !important;
+    font-size: 0.75rem;
+  }
+
+  &__reference {
+    width: fit-content;
+    height: fit-content;
+  }
+}

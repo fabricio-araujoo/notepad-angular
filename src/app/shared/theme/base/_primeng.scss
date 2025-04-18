@@ -16,3 +16,15 @@
   padding: 0 map.get($map: $padding, $key: lg) map.get($map: $padding, $key: lg)
     map.get($map: $padding, $key: lg) !important;
 }
+
+.p-tooltip {
+  transition: none !important;
+}
+
+.p-tooltip-text {
+  padding: 0.4rem !important;
+}
+
+.p-tooltip-arrow {
+  display: none !important;
+}

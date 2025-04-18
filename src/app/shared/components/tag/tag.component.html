@@ -1,11 +1,10 @@
 <div class="tag">
   <span><ng-content></ng-content></span>
 
-  @if (close) {
   <mat-icon
     class="tag__close"
     svgIcon="custom-close"
-    (click)="handleCloseTag()"
+    (click)="onClose()"
+    *ngIf="close"
   ></mat-icon>
-  }
 </div>

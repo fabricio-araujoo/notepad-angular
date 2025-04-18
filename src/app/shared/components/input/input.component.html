@@ -1,9 +1,7 @@
 <div class="input" [ngClass]="{ 'input--full': full }">
-  @if (label) {
-  <label class="input__label" [for]="id">
+  <label class="input__label" [for]="id" *ngIf="label">
     {{ label }}
   </label>
-  }
 
   <input
     #input
@@ -23,9 +21,7 @@
     (focus)="onFocus()"
   />
 
-  @if (showError && error) {
-  <div class="input__error">
+  <div class="input__error" *ngIf="showError && error">
     {{ error }}
   </div>
-  }
 </div>

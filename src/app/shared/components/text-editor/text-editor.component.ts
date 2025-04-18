@@ -16,10 +16,11 @@ import Placeholder from '@tiptap/extension-placeholder';
 import Underline from '@tiptap/extension-underline';
 import StarterKit from '@tiptap/starter-kit';
 import { NgxTiptapModule } from 'ngx-tiptap';
+import { TooltipComponent } from '../tooltip/tooltip.component';
 
 @Component({
   selector: 'app-text-editor',
-  imports: [NgxTiptapModule, MatIcon],
+  imports: [NgxTiptapModule, MatIcon, TooltipComponent],
   templateUrl: './text-editor.component.html',
   styleUrl: './text-editor.component.scss',
 })
@@ -29,7 +30,7 @@ export class TextEditorComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() placeholder: string = 'Digite aqui...';
   @Input() initialContent: string = '';
 
-  @Output() contentChange = new EventEmitter<string>();
+  @Output() changed = new EventEmitter<string>();
 
   editor!: Editor;
 
@@ -49,7 +50,7 @@ export class TextEditorComponent implements OnInit, OnDestroy, AfterViewInit {
       ],
       onUpdate: ({ editor }) => {
         // Emite o conteúdo sempre que o editor for alterado
-        this.contentChange.emit(editor.getHTML());
+        this.changed.emit(editor.getHTML());
       },
     });
   }

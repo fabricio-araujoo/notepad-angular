@@ -5,42 +5,52 @@
 ></tiptap-editor>
 
 <tiptap-bubble-menu [editor]="editor" class="bubble-menu">
-  <button
-    class="bubble-menu__button"
-    (click)="editor.chain().focus().toggleBold().run()"
-    [class.active]="editor.isActive('bold')"
-  >
-    <mat-icon class="bubble-menu__icon" svgIcon="custom-bold"></mat-icon>
-  </button>
+  <app-tooltip text="Negrito" helper="Ctrl + B" placement="top">
+    <button
+      class="bubble-menu__button"
+      (click)="editor.chain().focus().toggleBold().run()"
+      [class.active]="editor.isActive('bold')"
+    >
+      <mat-icon class="bubble-menu__icon" svgIcon="custom-bold"></mat-icon>
+    </button>
+  </app-tooltip>
   <button
     class="bubble-menu__button"
     (click)="editor.chain().focus().toggleItalic().run()"
     [class.active]="editor.isActive('italic')"
   >
-    <mat-icon class="bubble-menu__icon" svgIcon="custom-italic"></mat-icon>
+    <app-tooltip text="Itálico" helper="Ctrl + I" placement="top">
+      <mat-icon class="bubble-menu__icon" svgIcon="custom-italic"></mat-icon>
+    </app-tooltip>
   </button>
   <button
     class="bubble-menu__button"
     (click)="editor.chain().focus().toggleUnderline().run()"
     [class.active]="editor.isActive('underline')"
   >
-    <mat-icon class="bubble-menu__icon" svgIcon="custom-underline"></mat-icon>
+    <app-tooltip text="Sublinhado" helper="Ctrl + U" placement="top">
+      <mat-icon class="bubble-menu__icon" svgIcon="custom-underline"></mat-icon>
+    </app-tooltip>
   </button>
   <button
     class="bubble-menu__button"
     (click)="editor.chain().focus().toggleStrike().run()"
     [class.active]="editor.isActive('strike')"
   >
-    <mat-icon
-      class="bubble-menu__icon"
-      svgIcon="custom-strikethrough"
-    ></mat-icon>
+    <app-tooltip text="Tachado" helper="Ctrl + Shift + S" placement="top">
+      <mat-icon
+        class="bubble-menu__icon"
+        svgIcon="custom-strikethrough"
+      ></mat-icon>
+    </app-tooltip>
   </button>
   <button
     class="bubble-menu__button"
     (click)="editor.chain().focus().toggleCode().run()"
     [class.active]="editor.isActive('code')"
   >
-    <mat-icon class="bubble-menu__icon" svgIcon="custom-code"></mat-icon>
+    <app-tooltip text="Código" helper="Ctrl + E" placement="top">
+      <mat-icon class="bubble-menu__icon" svgIcon="custom-code"></mat-icon>
+    </app-tooltip>
   </button>
 </tiptap-bubble-menu>

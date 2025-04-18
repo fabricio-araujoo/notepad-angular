@@ -1,1 +1,14 @@
-<p>tooltip works!</p>
+<ng-template #tooltipContent>
+  <div class="tooltip">
+    <p class="tooltip__text">{{ text }}</p>
+    <span class="tooltip__helper" *ngIf="helper">{{ helper }}</span>
+  </div>
+</ng-template>
+
+<div
+  class="tooltip__reference"
+  [pTooltip]="tooltipContent"
+  [tooltipPosition]="placement"
+>
+  <ng-content></ng-content>
+</div>

@@ -13,19 +13,19 @@ export interface MenuItem {
 }
 
 @Component({
-    selector: 'app-menu',
-    imports: [CommonModule, MatMenuModule, MatIconModule],
-    templateUrl: './menu.component.html',
-    styleUrl: './menu.component.scss'
+  selector: 'app-menu',
+  imports: [CommonModule, MatMenuModule, MatIconModule],
+  templateUrl: './menu.component.html',
+  styleUrl: './menu.component.scss',
 })
 export class MenuComponent {
   @Input() items: MenuItem[] = [];
 
-  @Output() itemSelected = new EventEmitter<MenuItem>(); // Emite quando um item do menu é clicado
+  @Output() selected = new EventEmitter<MenuItem>(); // Emite quando um item do menu é clicado
 
   onMenuItemClick(event: MouseEvent, item: MenuItem): void {
     if (!item.disabled) {
-      this.itemSelected.emit(item); // Emite o item clicado
+      this.selected.emit(item); // Emite o item clicado
     }
   }
 }
