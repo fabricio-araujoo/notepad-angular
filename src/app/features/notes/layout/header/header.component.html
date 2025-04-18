@@ -1,16 +1,17 @@
 <header class="layout__header header">
   <div class="header__sidebar-control">
-    <mat-icon
+    <app-icon
       class="header__icon header__icon--clickable"
-      svgIcon="custom-menu"
-      (click)="handleClick()"
-    ></mat-icon>
+      name="menu"
+      [size]="18"
+    ></app-icon>
 
     <div class="header__title">
-      <mat-icon
+      <app-icon
         class="header__icon header__icon--logo"
-        svgIcon="custom-notepad"
-      ></mat-icon>
+        name="notepad"
+        [size]="18"
+      ></app-icon>
       <h4>NotePad</h4>
     </div>
   </div>
@@ -22,8 +23,8 @@
 
     <app-tooltip text="Logout" placement="bottom">
       <app-button
-        [variant]="'text'"
-        [suffixIcon]="'custom-exit'"
+        suffixIcon="exit"
+        variant="text"
         (click)="handleSignOut()"
       ></app-button>
     </app-tooltip>

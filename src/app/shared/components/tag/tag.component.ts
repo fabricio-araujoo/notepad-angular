@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatIcon } from '@angular/material/icon';
+import { IconComponent } from '../icon/icon.component';
 
 @Component({
   selector: 'app-tag',
-  imports: [MatIcon, CommonModule],
+  imports: [CommonModule, IconComponent],
   templateUrl: './tag.component.html',
   styleUrl: './tag.component.scss',
 })

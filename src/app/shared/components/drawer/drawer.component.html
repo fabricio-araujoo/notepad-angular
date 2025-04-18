@@ -3,19 +3,18 @@
   position="right"
   [style]="{ width: '600px', borderRadius: '5px' }"
   [closable]="false"
-  (onHide)="onClose()"
+  (onHide)="handleClose()"
   [(visible)]="opened"
 >
   <ng-template #header>
     <div class="drawer__header">
-      <div class="drawer__close" (mousedown)="toogle()">
-        <app-tooltip text="Fechar" helper="Esc" placement="bottom">
-          <mat-icon
-            class="drawer__icon"
-            svgIcon="custom-double-right"
-          ></mat-icon>
-        </app-tooltip>
-      </div>
+      <app-tooltip text="Fechar" helper="Esc" placement="bottom">
+        <app-button
+          suffixIcon="double-right"
+          variant="text"
+          (click)="toogle()"
+        ></app-button>
+      </app-tooltip>
     </div>
   </ng-template>
 

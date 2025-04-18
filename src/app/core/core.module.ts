@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { HttpAdapterService } from './adapter/http-adapter/http-adapter.service';
-import { IconAdapterService } from './adapter/icon-adapter/icon-adapter.service';
 import { LocalStorageService } from './adapter/local-storage/local-storage.service';
 import { NotificationAdapterService } from './adapter/notification-adapter/notification-adapter.service';
 import { RouterAdapterService } from './adapter/router-adapter/router-adapter.service';
@@ -15,7 +14,6 @@ import { ProfileStore } from './stores/profile/profile.service';
   providers: [
     // Adapters
     HttpAdapterService,
-    IconAdapterService,
     LocalStorageService,
     RouterAdapterService,
     NotificationAdapterService,

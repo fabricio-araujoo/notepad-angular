@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
-import { MatIcon } from '@angular/material/icon';
 import { DrawerModule } from 'primeng/drawer';
+import { ButtonComponent } from '../button/button.component';
 import { TooltipComponent } from '../tooltip/tooltip.component';
 
 @Component({
   selector: 'app-drawer',
-  imports: [DrawerModule, MatIcon, TooltipComponent],
+  imports: [DrawerModule, TooltipComponent, ButtonComponent],
   templateUrl: './drawer.component.html',
   styleUrl: './drawer.component.scss',
 })

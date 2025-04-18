@@ -11,7 +11,7 @@
       (click)="editor.chain().focus().toggleBold().run()"
       [class.active]="editor.isActive('bold')"
     >
-      <mat-icon class="bubble-menu__icon" svgIcon="custom-bold"></mat-icon>
+      <app-icon class="bubble-menu__icon" name="bold"></app-icon>
     </button>
   </app-tooltip>
   <button
@@ -20,7 +20,7 @@
     [class.active]="editor.isActive('italic')"
   >
     <app-tooltip text="Itálico" helper="Ctrl + I" placement="top">
-      <mat-icon class="bubble-menu__icon" svgIcon="custom-italic"></mat-icon>
+      <app-icon class="bubble-menu__icon" name="italic"></app-icon>
     </app-tooltip>
   </button>
   <button
@@ -29,7 +29,7 @@
     [class.active]="editor.isActive('underline')"
   >
     <app-tooltip text="Sublinhado" helper="Ctrl + U" placement="top">
-      <mat-icon class="bubble-menu__icon" svgIcon="custom-underline"></mat-icon>
+      <app-icon class="bubble-menu__icon" name="underline"></app-icon>
     </app-tooltip>
   </button>
   <button
@@ -38,10 +38,7 @@
     [class.active]="editor.isActive('strike')"
   >
     <app-tooltip text="Tachado" helper="Ctrl + Shift + S" placement="top">
-      <mat-icon
-        class="bubble-menu__icon"
-        svgIcon="custom-strikethrough"
-      ></mat-icon>
+      <app-icon class="bubble-menu__icon" name="strike"></app-icon>
     </app-tooltip>
   </button>
   <button
@@ -50,7 +47,7 @@
     [class.active]="editor.isActive('code')"
   >
     <app-tooltip text="Código" helper="Ctrl + E" placement="top">
-      <mat-icon class="bubble-menu__icon" svgIcon="custom-code"></mat-icon>
+      <app-icon class="bubble-menu__icon" name="code"></app-icon>
     </app-tooltip>
   </button>
 </tiptap-bubble-menu>

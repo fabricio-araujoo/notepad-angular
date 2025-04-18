@@ -1,7 +1,4 @@
 import { Routes } from '@angular/router';
-import { NotesComponent } from './features/notes/notes.component';
-import { SignInComponent } from './features/auth/pages/sign-in/sign-in.component';
-import { SignUpComponent } from './features/auth/pages/sign-up/sign-up.component';
 import { AuthGuard } from './core/guards/auth/auth.guard';
 
 export const routes: Routes = [
@@ -12,11 +9,19 @@ export const routes: Routes = [
   },
   {
     path: 'sign-in',
-    component: SignInComponent,
+    async loadComponent() {
+      return import('./features/auth/pages/sign-in/sign-in.component').then(
+        (m) => m.SignInComponent
+      );
+    },
   },
   {
     path: 'sign-up',
-    component: SignUpComponent,
+    async loadComponent() {
+      return import('./features/auth/pages/sign-up/sign-up.component').then(
+        (m) => m.SignUpComponent
+      );
+    },
   },
   {
     path: '',
@@ -24,7 +29,11 @@ export const routes: Routes = [
     children: [
       {
         path: 'notes',
-        component: NotesComponent,
+        async loadComponent() {
+          return import('./features/notes/notes.component').then(
+            (m) => m.NotesComponent
+          );
+        },
       },
     ],
   },

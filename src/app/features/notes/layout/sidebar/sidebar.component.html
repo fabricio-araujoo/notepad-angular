@@ -9,7 +9,7 @@
         'sidebar__item--collapse': collapse
       }"
     >
-      <mat-icon class="sidebar__icon" svgIcon="custom-note"></mat-icon>
+      <app-icon class="sidebar__icon" name="note" [size]="18"></app-icon>
       <span class="sidebar__label">Notas</span>
     </a>
   </div>
@@ -24,7 +24,8 @@
             'sidebar__item--collapse': collapse
           }"
         >
-          <mat-icon class="sidebar__icon" svgIcon="custom-edit"></mat-icon>
+          <app-icon class="sidebar__icon" name="edit" [size]="18"></app-icon>
+
           <span class="sidebar__label">Editar marcadores</span>
         </a>
       </li>

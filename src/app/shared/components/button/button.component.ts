@@ -8,16 +8,17 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { IconComponent } from '../icon/icon.component';
 
 type ButtonVariant = 'default' | 'primary' | 'link' | 'text';
 
 type ButtonType = 'button' | 'submit';
 
 @Component({
-    selector: 'app-button',
-    imports: [CommonModule, MatIconModule],
-    templateUrl: './button.component.html',
-    styleUrl: './button.component.scss'
+  selector: 'app-button',
+  imports: [CommonModule, MatIconModule, IconComponent],
+  templateUrl: './button.component.html',
+  styleUrl: './button.component.scss',
 })
 export class ButtonComponent implements AfterViewInit {
   @ViewChild('button', { static: false }) button!: ElementRef;
@@ -27,7 +28,7 @@ export class ButtonComponent implements AfterViewInit {
   @Input() type?: ButtonType = 'button';
   @Input() disabled?: boolean = false;
   @Input() block?: boolean = false; // Ocupar todo o espaço
-  @Input() suffixIcon?: string;
+  @Input() suffixIcon!: string;
 
   isIconOnly = false;
 

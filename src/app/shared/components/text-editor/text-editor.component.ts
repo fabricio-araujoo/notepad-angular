@@ -10,17 +10,17 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { MatIcon } from '@angular/material/icon';
 import { Editor } from '@tiptap/core';
 import Placeholder from '@tiptap/extension-placeholder';
 import Underline from '@tiptap/extension-underline';
 import StarterKit from '@tiptap/starter-kit';
 import { NgxTiptapModule } from 'ngx-tiptap';
+import { IconComponent } from '../icon/icon.component';
 import { TooltipComponent } from '../tooltip/tooltip.component';
 
 @Component({
   selector: 'app-text-editor',
-  imports: [NgxTiptapModule, MatIcon, TooltipComponent],
+  imports: [NgxTiptapModule, TooltipComponent, IconComponent],
   templateUrl: './text-editor.component.html',
   styleUrl: './text-editor.component.scss',
 })
