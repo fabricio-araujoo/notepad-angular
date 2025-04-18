@@ -14,7 +14,6 @@ import { IconComponent } from '../../../../shared/components/icon/icon.component
 })
 export class SidebarComponent implements OnInit {
   @Input() collapse: boolean = false;
-
   @Input() tags: ITag[] = [];
 
   currentRoute!: string;
