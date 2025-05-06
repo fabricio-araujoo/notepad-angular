@@ -11,13 +11,13 @@
   &__text {
     @include body-small;
 
-    color: $font-tooltip-color;
+    color: $text-inverted;
     font-size: 0.75rem;
   }
   &__helper {
     @include body-small;
 
-    color: $font-tooltip-helper-color !important;
+    color: $text-disabled !important;
     font-size: 0.75rem;
   }
 

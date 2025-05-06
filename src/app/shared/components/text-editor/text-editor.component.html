@@ -6,48 +6,43 @@
 
 <tiptap-bubble-menu [editor]="editor" class="bubble-menu">
   <app-tooltip text="Negrito" helper="Ctrl + B" placement="top">
-    <button
-      class="bubble-menu__button"
+    <app-button
+      suffixIcon="bold"
+      variant="text"
+      size="small"
       (click)="editor.chain().focus().toggleBold().run()"
-      [class.active]="editor.isActive('bold')"
-    >
-      <app-icon class="bubble-menu__icon" name="bold"></app-icon>
-    </button>
+    ></app-button>
   </app-tooltip>
-  <button
-    class="bubble-menu__button"
-    (click)="editor.chain().focus().toggleItalic().run()"
-    [class.active]="editor.isActive('italic')"
-  >
-    <app-tooltip text="Itálico" helper="Ctrl + I" placement="top">
-      <app-icon class="bubble-menu__icon" name="italic"></app-icon>
-    </app-tooltip>
-  </button>
-  <button
-    class="bubble-menu__button"
-    (click)="editor.chain().focus().toggleUnderline().run()"
-    [class.active]="editor.isActive('underline')"
-  >
-    <app-tooltip text="Sublinhado" helper="Ctrl + U" placement="top">
-      <app-icon class="bubble-menu__icon" name="underline"></app-icon>
-    </app-tooltip>
-  </button>
-  <button
-    class="bubble-menu__button"
-    (click)="editor.chain().focus().toggleStrike().run()"
-    [class.active]="editor.isActive('strike')"
-  >
-    <app-tooltip text="Tachado" helper="Ctrl + Shift + S" placement="top">
-      <app-icon class="bubble-menu__icon" name="strike"></app-icon>
-    </app-tooltip>
-  </button>
-  <button
-    class="bubble-menu__button"
-    (click)="editor.chain().focus().toggleCode().run()"
-    [class.active]="editor.isActive('code')"
-  >
-    <app-tooltip text="Código" helper="Ctrl + E" placement="top">
-      <app-icon class="bubble-menu__icon" name="code"></app-icon>
-    </app-tooltip>
-  </button>
+  <app-tooltip text="Itálico" helper="Ctrl + I" placement="top">
+    <app-button
+      suffixIcon="italic"
+      variant="text"
+      size="small"
+      (click)="editor.chain().focus().toggleItalic().run()"
+    ></app-button>
+  </app-tooltip>
+  <app-tooltip text="Sublinhado" helper="Ctrl + U" placement="top">
+    <app-button
+      variant="text"
+      size="small"
+      suffixIcon="underline"
+      (click)="editor.chain().focus().toggleUnderline().run()"
+    ></app-button>
+  </app-tooltip>
+  <app-tooltip text="Tachado" helper="Ctrl + Shift + S" placement="top">
+    <app-button
+      variant="text"
+      size="small"
+      suffixIcon="strike"
+      (click)="editor.chain().focus().toggleStrike().run()"
+    ></app-button>
+  </app-tooltip>
+  <app-tooltip text="Código" helper="Ctrl + E" placement="top">
+    <app-button
+      variant="text"
+      size="small"
+      suffixIcon="code"
+      (click)="editor.chain().focus().toggleCode().run()"
+    ></app-button>
+  </app-tooltip>
 </tiptap-bubble-menu>

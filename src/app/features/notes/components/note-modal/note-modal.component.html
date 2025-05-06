@@ -9,7 +9,14 @@
 
       <div class="note-modal__tags tags">
         <div class="tags__label"><span>Marcadores</span></div>
-        <app-tag-select class="tags__select"></app-tag-select>
+        <app-tag-select
+          class="tags__select"
+          [options]="[
+            { id: '1', label: 'Desenvolvimento' },
+            { id: '2', label: 'Diversão' },
+            { id: '3', label: 'Importante' }
+          ]"
+        ></app-tag-select>
       </div>
     </div>
 

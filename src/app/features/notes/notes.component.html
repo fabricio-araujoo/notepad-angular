@@ -4,6 +4,7 @@
       type="button"
       variant="primary"
       suffixIcon="add"
+      size="small"
       (click)="handleOpenNote()"
     >
       Adicionar nota
@@ -18,5 +19,5 @@
     </div>
   </div>
 
-  <ng-container #noteDrawer></ng-container>
+  <app-note-modal #noteDrawer></app-note-modal>
 </app-layout>

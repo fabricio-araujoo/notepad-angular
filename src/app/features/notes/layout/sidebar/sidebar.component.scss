@@ -2,116 +2,81 @@
 @use "tokens" as *;
 @use "mixins" as *;
 
-@mixin open() {
-  width: 15rem;
-}
-
 .sidebar {
-  $icon-size: 1.125rem;
-  $border-left: 4px;
-
+  box-sizing: border-box;
+  width: 15rem;
   height: 100%;
+  padding: map.get($map: $padding, $key: md);
 
-  transition: all 0.1s ease-in;
+  display: flex;
+  flex-direction: column;
+  gap: map.get($map: $gap, $key: lg);
 
-  @include open();
+  background-color: $background-soft;
+  border-left: 0.0625rem solid $background-contrast;
 
-  &:hover {
-    @include open();
-  }
+  @include transition;
 
-  &--collapse {
-    width: calc(
-      map.get($map: $padding, $key: lg) + $icon-size +
-        map.get($map: $padding, $key: lg)
-    );
-  }
+  &__header {
+    cursor: pointer;
 
-  &__home {
-    margin-bottom: map.get($map: $margin, $key: lg);
-  }
-
-  &__item {
     width: 100%;
-    padding: map.get($map: $padding, $key: md);
-    padding-left: calc(map.get($map: $padding, $key: lg) - $border-left);
 
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+  }
+
+  &__title {
+    width: 100%;
+    padding-block: map.get($map: $padding, $key: sm);
+    padding-inline: map.get($map: $padding, $key: md);
+
+    display: flex;
+    align-items: center;
     gap: map.get($map: $gap, $key: md);
 
-    border-left: $border-left solid transparent;
-
-    overflow: hidden;
-
-    transition: all 0.1s ease-in;
+    border-radius: 0.375rem;
+    border: 0.0625rem solid transparent;
 
     &:hover {
-      border-left: $border-left solid $primary;
+      background-color: $background-hover;
     }
 
-    &--active {
-      background-color: $primary-container;
-      border-left: $border-left solid $primary;
-    }
+    span {
+      user-select: none;
 
-    &--add {
-      cursor: pointer;
-
-      color: $primary;
+      @include body-small($font-weight-semi-bold);
     }
   }
 
-  &__icon {
-    width: $icon-size;
-    height: $icon-size;
+  &__profile {
+    width: 1.25rem;
+    height: 1.25rem;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    flex-shrink: 0;
+    background-color: $background-contrast;
+    border-radius: 0.3125rem;
 
-    color: $primary;
+    @include body-small($font-weight-semi-bold);
 
-    @include body-small;
-
-    &--tag {
-      color: $on-background;
-    }
+    font-size: 0.625rem;
   }
 
-  &__tags {
-    width: 100%;
-
+  &__section {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
     gap: map.get($map: $gap, $key: md);
   }
 
-  &__list {
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: map.get($map: $gap, $key: sm);
-
-    & > li {
-      width: 100%;
-    }
-  }
-
-  &__label {
-    margin-left: map.get($map: $margin, $key: md);
-
-    text-wrap: nowrap;
+  &__subtitle {
+    padding-inline: map.get($map: $padding, $key: md);
 
     @include body-small($font-weight-semi-bold);
+
+    font-size: 0.75rem;
+    color: $text-disabled;
   }
 }

@@ -1,36 +1,56 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
-import { RouterAdapterService } from '~/app/core/adapter/router-adapter/router-adapter.service';
-import { ITag } from '~/app/shared/interfaces/tag';
-import { IconComponent } from '../../../../shared/components/icon/icon.component';
+import { AuthService } from '~/app/core/services/auth/auth.service';
+import { ProfileStore } from '~/app/core/stores/profile/profile.store';
+import { ButtonComponent } from '../../../../shared/components/button/button.component';
+
+type INavigationItem = {
+  label: string;
+  icon: string;
+  route: string;
+  handleClick: VoidFunction;
+}[];
 
 @Component({
   selector: 'app-sidebar',
-  imports: [CommonModule, MatIconModule, RouterLink, IconComponent],
+  imports: [CommonModule, MatIconModule, ButtonComponent],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
-export class SidebarComponent implements OnInit {
-  @Input() collapse: boolean = false;
-  @Input() tags: ITag[] = [];
+export class SidebarComponent {
+  private authService = inject(AuthService);
+  private profileStore = inject(ProfileStore);
 
-  currentRoute!: string;
+  readonly username = signal<string>('');
 
-  constructor(private routeService: RouterAdapterService) {}
+  readonly navigationItems: INavigationItem = [
+    {
+      label: 'Notas',
+      icon: 'note',
+      route: '/notes',
+      handleClick() {
+        console.log('Notas clicked');
+      },
+    },
+    {
+      label: 'Tarefas',
+      icon: 'check-mark',
+      route: '/tasks',
+      handleClick() {
+        console.log('Tarefas clicked');
+      },
+    },
+  ];
 
-  ngOnInit(): void {
-    this.getCurrentRoute();
-  }
-
-  private getCurrentRoute() {
-    this.routeService.currentRoute$.subscribe((route) => {
-      this.currentRoute = route;
+  constructor() {
+    effect(() => {
+      const profile = this.profileStore.profile();
+      this.username.set(profile?.name || '');
     });
   }
 
-  hasTags() {
-    return this.tags && this.tags.length;
+  handleSignOut() {
+    this.authService.signOut();
   }
 }

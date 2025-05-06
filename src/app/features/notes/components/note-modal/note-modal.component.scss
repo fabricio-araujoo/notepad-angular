@@ -53,7 +53,7 @@
     span {
       @include body-small;
 
-      color: $font-placeholder-color;
+      color: $text-disabled;
       line-height: $line-height-h4;
     }
   }

@@ -1,13 +1,6 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  ComponentRef,
-  OnInit,
-  ViewChild,
-  ViewContainerRef,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '~/app/core/services/user/user.service';
-import { ProfileStore } from '~/app/core/stores/profile/profile.service';
+import { ProfileStore } from '~/app/core/stores/profile/profile.store';
 import { INote } from '~/app/shared/interfaces/note';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { GridComponent } from './components/grid/grid.component';
@@ -19,15 +12,19 @@ import { NotesService } from './services/notes/notes.service';
 
 @Component({
   selector: 'app-notes',
-  imports: [CommonModule, LayoutComponent, ButtonComponent, GridComponent],
+  imports: [
+    CommonModule,
+    LayoutComponent,
+    ButtonComponent,
+    GridComponent,
+    NoteModalComponent,
+  ],
   templateUrl: './notes.component.html',
   styleUrl: './notes.component.scss',
 })
 export class NotesComponent implements OnInit {
-  @ViewChild('noteDrawer', { read: ViewContainerRef, static: true })
-  noteDrawerContainer!: ViewContainerRef;
-
-  noteDrawerRef!: ComponentRef<NoteModalComponent>;
+  @ViewChild('noteDrawer')
+  noteDrawerRef!: NoteModalComponent;
 
   notes: INote[] = [];
   fixed: INote[] = [];
@@ -41,6 +38,10 @@ export class NotesComponent implements OnInit {
 
   async ngOnInit() {
     await Promise.all([this.fetchUser(), this.fetchListNotes()]);
+  }
+
+  handleOpenNote() {
+    this.noteDrawerRef.open();
   }
 
   private async fetchUser() {
@@ -68,24 +69,5 @@ export class NotesComponent implements OnInit {
     }));
 
     console.log(this.notes);
-  }
-
-  async handleOpenNote() {
-    if (this.noteDrawerRef) {
-      return this.noteDrawerRef.instance.open();
-    }
-
-    const { NoteModalComponent } = await import(
-      './components/note-modal/note-modal.component'
-    );
-
-    this.noteDrawerContainer.clear(); // limpa antes de adicionar
-
-    this.noteDrawerRef =
-      this.noteDrawerContainer.createComponent(NoteModalComponent);
-
-    this.cdr.detectChanges();
-
-    this.noteDrawerRef?.instance?.open();
   }
 }

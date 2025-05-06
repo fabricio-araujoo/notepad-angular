@@ -1,10 +1,11 @@
-@forward "primary";
 @forward "background";
-@forward "border";
-@forward "font";
-@forward "code";
-@forward "error";
+
+@forward "primary";
+@forward "secondary";
+
+@forward "text";
+
 @forward "info";
 @forward "success";
 @forward "warning";
-@forward "tag";
+@forward "error";

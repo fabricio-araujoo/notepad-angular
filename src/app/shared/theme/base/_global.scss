@@ -7,7 +7,7 @@ body {
   height: 100%;
   font-family: $font-family;
   background-color: $background;
-  color: $font-default-color;
+  color: $text-default;
 }
 
 ::-webkit-scrollbar {
@@ -15,7 +15,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: $on-background;
+  background: $background-contrast;
   border-radius: 0.1rem;
 }
 

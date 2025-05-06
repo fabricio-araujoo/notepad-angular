@@ -16,7 +16,7 @@
     width: 100%;
     height: 100%;
 
-    color: $font-default-color;
+    color: $text-default;
 
     &:focus-visible {
       outline: none;
@@ -37,9 +37,8 @@
   }
 
   & code {
-    background-color: $code;
+    background-color: $background-hover;
     border-radius: 0.4rem;
-    color: $font-code-color;
     font-size: 0.85rem;
     padding: 0.25em 0.3em;
   }
@@ -49,7 +48,7 @@
   }
 
   & .is-editor-empty:first-child::before {
-    color: $font-placeholder-color;
+    color: $text-disabled;
     content: attr(data-placeholder);
     float: left;
     height: 0;
@@ -58,7 +57,7 @@
 }
 
 .bubble-menu {
-  height: 2.25rem;
+  // height: 2.25rem;
   padding: 0.25rem;
 
   display: flex;
@@ -66,42 +65,9 @@
 
   background: $background;
   border-radius: 6px;
-  border: 1px solid $border-default;
+  border: 1px solid $background-contrast;
 
   z-index: 100;
-
-  &__button {
-    width: 1.75rem;
-    height: 1.75rem;
-
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    border-radius: 4px;
-
-    color: $font-default-color;
-
-    @include body-small($font-weight-regular);
-
-    &:hover {
-      background-color: $background-container;
-    }
-  }
-
-  &__icon {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    svg {
-      width: 1.25rem;
-      height: 1.25rem;
-      fill: $font-default-color;
-    }
-  }
 }
 
 .bubble-menu button.active {

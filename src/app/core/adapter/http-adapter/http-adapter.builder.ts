@@ -1,8 +1,8 @@
 import { HttpParams } from '@angular/common/http';
-import { IHttpServiceGet } from './http-adapter.interface';
+import { IHttpServiceQueryParams } from './http-adapter.interface';
 
 export const buildQueryParams = (
-  queryParams: IHttpServiceGet['queryParams'] = {}
+  queryParams: IHttpServiceQueryParams = {}
 ): HttpParams => {
   let params = new HttpParams();
 

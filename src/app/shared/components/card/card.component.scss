@@ -8,7 +8,7 @@
   height: 100%;
   padding: map.get($map: $padding, $key: md);
 
-  border: 1px solid #ddd;
+  border: 1px solid $background-contrast;
 
   border-radius: 0.25rem;
 }

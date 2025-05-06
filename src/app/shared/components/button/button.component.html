@@ -1,16 +1,4 @@
-<button
-  #button
-  class="button"
-  [ngClass]="{
-    'button--primary': variant === 'primary',
-    'button--link': variant === 'link',
-    'button--text': variant === 'text',
-    'button--block': block,
-    'button--disabled': disabled,
-    'button--icon-only': isIconOnly
-  }"
-  [disabled]="disabled"
->
+<button #button class="button" [ngClass]="buttonClass" [disabled]="disabled">
   <app-icon
     class="button__icon"
     [name]="suffixIcon"

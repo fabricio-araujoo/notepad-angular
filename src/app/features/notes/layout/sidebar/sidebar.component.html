@@ -1,49 +1,25 @@
-<nav class="sidebar" [ngClass]="{ 'sidebar--collapse': collapse }">
-  <div class="sidebar__home">
-    <a
-      class="sidebar__item"
-      routerLinkActive="active"
-      [routerLink]="['/']"
-      [ngClass]="{
-        'sidebar__item--active': currentRoute === '/',
-        'sidebar__item--collapse': collapse
-      }"
+<aside class="sidebar">
+  <div class="sidebar__header">
+    <div class="sidebar__title">
+      <div class="sidebar__profile">F</div>
+      <span>{{ username() }}</span>
+    </div>
+  </div>
+
+  <div class="sidebar__section">
+    <span class="sidebar__subtitle">Páginas</span>
+
+    @for (item of navigationItems; track item.route) {
+    <app-button
+      variant="text"
+      size="small"
+      justify="left"
+      [suffixIcon]="item.icon"
+      [block]="true"
+      (click)="item.handleClick()"
     >
-      <app-icon class="sidebar__icon" name="note" [size]="18"></app-icon>
-      <span class="sidebar__label">Notas</span>
-    </a>
+      {{ item.label }}
+    </app-button>
+    }
   </div>
-
-  <div class="sidebar__tags">
-    <ul class="sidebar__list">
-      <li>
-        <a
-          class="sidebar__item sidebar__item--add"
-          routerLinkActive="inactive"
-          [ngClass]="{
-            'sidebar__item--collapse': collapse
-          }"
-        >
-          <app-icon class="sidebar__icon" name="edit" [size]="18"></app-icon>
-
-          <span class="sidebar__label">Editar marcadores</span>
-        </a>
-      </li>
-      <li>
-        <a
-          class="sidebar__item"
-          routerLinkActive="active"
-          *ngFor="let tag of tags"
-          [routerLink]="[tag.path]"
-          [ngClass]="{
-            'sidebar__item--active': currentRoute === tag.path,
-            'sidebar__item--collapse': collapse
-          }"
-        >
-          <span class="sidebar__icon sidebar__icon--tag">#</span>
-          <span class="sidebar__label">{{ tag.name }}</span>
-        </a>
-      </li>
-    </ul>
-  </div>
-</nav>
+</aside>

@@ -4,7 +4,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
 import Aura from '@primeng/themes/aura';
-import { provideToastr } from 'ngx-toastr';
+import { MessageService } from 'primeng/api';
 import { providePrimeNG } from 'primeng/config';
 import { routes } from './app.routes';
 import { authTokenInterceptor } from './core/interceptors/auth-token/auth-token.interceptor';
@@ -19,11 +19,6 @@ export const appConfig: ApplicationConfig = {
       withInterceptors([authTokenInterceptor, unauthorizedInterceptor])
     ),
     provideAnimations(),
-    provideToastr({
-      positionClass: 'toast-top-right', // Posição das notificações
-      preventDuplicates: true, // Evita notificações duplicadas
-      timeOut: 3000, // Tempo padrão de exibição
-    }),
     providePrimeNG({
       theme: {
         preset: Aura,
@@ -32,5 +27,6 @@ export const appConfig: ApplicationConfig = {
         },
       },
     }),
+    MessageService,
   ],
 };

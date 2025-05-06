@@ -12,25 +12,22 @@
 
   border-radius: 0.25rem;
 
-  background-color: $tag-default-background;
+  background-color: $background-contrast;
 
   span {
     @include body-small($font-weight-semi-bold);
 
-    color: $font-default-color;
+    color: $text-default;
     font-size: 0.75rem;
   }
 
   &__close {
+    cursor: pointer;
+
     width: 0.75rem;
     height: 0.75rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
-
-    &:hover {
-      color: $tag-close-hover;
-    }
   }
 }

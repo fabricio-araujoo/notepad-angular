@@ -2,6 +2,12 @@
 @use "tokens" as *;
 @use "mixins" as *;
 
+@mixin variant($color, $background, $border-color) {
+  color: $color;
+  background: $background;
+  border: 0.0625rem solid $border-color;
+}
+
 .button {
   cursor: pointer;
   font-family: $font-family;
@@ -15,32 +21,133 @@
   justify-content: center;
   gap: map.get($map: $gap, $key: md);
 
-  color: $font-default-color;
+  color: $text-default;
 
-  border: 0.0625rem solid $border-default;
   border-radius: 0.375rem;
 
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
 
-  @include transition();
+  @include transition;
+
+  @include variant($text-default, transparent, $background-contrast);
 
   &:hover {
-    color: $primary;
-    border-color: $border-primary;
+    @include variant($primary, transparent, $primary);
   }
 
   &:disabled {
     cursor: not-allowed;
 
-    color: $border-default;
-    background: #0000000a;
-    border-color: $border-default;
+    @include variant(
+      $text-disabled,
+      $background-contrast,
+      $background-contrast
+    );
 
     &:hover {
-      color: $border-default;
-      background: #0000000a;
-      border-color: $border-default;
+      @include variant(
+        $text-disabled,
+        $background-contrast,
+        $background-contrast
+      );
     }
+  }
+
+  &--primary {
+    @include variant($on-primary, $primary, $primary);
+
+    &:hover {
+      @include variant($on-primary, $primary-hover, $primary-hover);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+
+      @include variant(
+        $text-disabled,
+        $background-contrast,
+        $background-contrast
+      );
+
+      &:hover {
+        @include variant(
+          $text-disabled,
+          $background-contrast,
+          $background-contrast
+        );
+      }
+    }
+  }
+
+  &--link {
+    box-shadow: none;
+
+    @include variant($primary, transparent, transparent);
+
+    &:hover {
+      @include variant($primary-hover, transparent, transparent);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+
+      @include variant($text-disabled, transparent, transparent);
+
+      &:hover {
+        @include variant($text-disabled, transparent, transparent);
+      }
+    }
+  }
+
+  &--text {
+    box-shadow: none;
+
+    @include variant($text-default, transparent, transparent);
+
+    &:hover {
+      border-color: transparent;
+
+      @include variant($text-default, $background-hover, transparent);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+
+      @include variant($text-disabled, transparent, transparent);
+
+      &:hover {
+        @include variant($text-disabled, transparent, transparent);
+      }
+    }
+  }
+
+  &--small {
+    height: 1.75rem;
+    padding: 0.375rem 0.5rem;
+    gap: map.get($map: $gap, $key: sm);
+
+    @include body-small;
+
+    .button {
+      &--icon-only {
+        width: 1.5rem;
+        height: 1.5rem;
+        padding: 0.25rem;
+      }
+
+      &__icon {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+  }
+
+  &--left {
+    justify-content: flex-start;
+  }
+
+  &--right {
+    justify-content: flex-end;
   }
 
   &--block {
@@ -49,68 +156,8 @@
 
   &--icon-only {
     width: 2rem;
+    height: 2rem;
     padding: 0.25rem;
-  }
-
-  &--primary {
-    background: $primary;
-    color: $on-primary;
-    border-color: $border-primary;
-
-    &:hover {
-      background: $on-primary-container;
-      color: $on-primary;
-      border-color: $border-primary-hover;
-    }
-  }
-
-  &--link {
-    background: transparent;
-    color: $primary;
-    border-color: transparent;
-    box-shadow: none;
-
-    &:hover {
-      background: transparent;
-      color: $on-primary-container;
-      border-color: transparent;
-    }
-
-    &:disabled {
-      color: $border-default;
-      background: transparent;
-      border-color: transparent;
-
-      &:hover {
-        color: $border-default;
-        background: transparent;
-        border-color: transparent;
-      }
-    }
-  }
-
-  &--text {
-    background: transparent;
-    border-color: transparent;
-    box-shadow: none;
-
-    &:hover {
-      background: $background-container;
-      color: $font-default-color;
-      border-color: transparent;
-    }
-
-    &:disabled {
-      color: $border-default;
-      background: transparent;
-      border-color: transparent;
-
-      &:hover {
-        color: $border-default;
-        background: transparent;
-        border-color: transparent;
-      }
-    }
   }
 
   &__icon {

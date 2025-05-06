@@ -1,28 +1,44 @@
-import { Injectable } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+import { inject, Injectable } from '@angular/core';
+import { MessageService } from 'primeng/api';
+
+type INotification = {
+  title: string;
+  message?: string;
+  type: 'success' | 'error' | 'info' | 'warn';
+};
 
 @Injectable({
   providedIn: 'root',
 })
 export class NotificationAdapterService {
-  constructor(private toastr: ToastrService) {}
+  private messageService = inject(MessageService);
 
-  private readonly defaultDuration = 3000;
-
-  success(message: string, duration = this.defaultDuration) {
-    this.toastr.success(message, undefined, { timeOut: duration });
+  private show(options: INotification) {
+    this.messageService.add({
+      severity: options.type,
+      summary: options.title,
+      detail: options.message,
+      life: 3000,
+    });
   }
 
-  error(message: string, duration = this.defaultDuration) {
-    this.toastr.error(message, undefined, { timeOut: duration });
+  success(options: Omit<INotification, 'type'>) {
+    this.show({ ...options, type: 'success' });
   }
 
-  info(message: string, duration = this.defaultDuration) {
-    console.log('info');
-    this.toastr.info(message, undefined, { timeOut: duration });
+  error(options: Omit<INotification, 'type'>) {
+    this.show({ ...options, type: 'error' });
   }
 
-  warning(message: string, duration = this.defaultDuration) {
-    this.toastr.warning(message, undefined, { timeOut: duration });
+  info(options: Omit<INotification, 'type'>) {
+    this.show({ ...options, type: 'info' });
+  }
+
+  warning(options: Omit<INotification, 'type'>) {
+    this.show({ ...options, type: 'warn' });
+  }
+
+  clear() {
+    this.messageService.clear();
   }
 }

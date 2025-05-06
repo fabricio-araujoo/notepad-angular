@@ -42,8 +42,8 @@ $angular-notepad-theme: mat.define-theme(
       item-label-text-line-height: $line-height-body-small,
       item-label-text-weight: $font-weight-regular,
 
-      item-icon-color: $font-default-color,
-      item-label-text-color: $font-default-color,
+      item-icon-color: $text-default,
+      item-label-text-color: $text-default,
     )
   );
 }

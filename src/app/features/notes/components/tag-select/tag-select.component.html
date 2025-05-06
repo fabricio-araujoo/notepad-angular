@@ -47,8 +47,8 @@
     <div class="dropdown__options">
       <span class="dropdown__tip"> Selecione uma opção ou crie uma </span>
 
-      @for (item of filteredOptions(); track item.id) {
-      <div class="dropdown__option" (mousedown)="handleSelectedTag(item)">
+      @for (item of getFilteredOptions(); track item.id) {
+      <div class="dropdown__option" (mousedown)="handleSelectTag(item)">
         <app-tag>{{ item.label }}</app-tag>
       </div>
       }
@@ -56,9 +56,9 @@
       <div
         class="dropdown__option"
         (mousedown)="handleCreateTag()"
-        *ngIf="inputValue && !matchTagLabel()"
+        *ngIf="inputValue() && !tagAlreadyExists()"
       >
-        Criar <app-tag>{{ inputValue }}</app-tag>
+        Criar <app-tag>{{ inputValue() }}</app-tag>
       </div>
     </div>
   </div>

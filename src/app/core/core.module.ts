@@ -6,8 +6,8 @@ import { NotificationAdapterService } from './adapter/notification-adapter/notif
 import { RouterAdapterService } from './adapter/router-adapter/router-adapter.service';
 import { AuthService } from './services/auth/auth.service';
 import { UserService } from './services/user/user.service';
-import { LoadingStore } from './stores/loading/loading.service';
-import { ProfileStore } from './stores/profile/profile.service';
+import { LoadingStore } from './stores/loading/loading.store';
+import { ProfileStore } from './stores/profile/profile.store';
 
 @NgModule({
   imports: [CommonModule],

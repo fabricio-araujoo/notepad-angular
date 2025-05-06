@@ -1,5 +1,5 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import {
   IHttpService,
@@ -12,9 +12,9 @@ import {
   providedIn: 'root',
 })
 export class HttpAdapterService implements IHttpService {
-  readonly baseUrl: string = 'http://localhost:3000';
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) {}
+  readonly baseUrl: string = 'http://localhost:3000';
 
   private buildUrl(url: string) {
     return this.baseUrl + url;

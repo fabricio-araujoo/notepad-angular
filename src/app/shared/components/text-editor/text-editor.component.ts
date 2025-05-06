@@ -15,12 +15,12 @@ import Placeholder from '@tiptap/extension-placeholder';
 import Underline from '@tiptap/extension-underline';
 import StarterKit from '@tiptap/starter-kit';
 import { NgxTiptapModule } from 'ngx-tiptap';
-import { IconComponent } from '../icon/icon.component';
+import { ButtonComponent } from '../button/button.component';
 import { TooltipComponent } from '../tooltip/tooltip.component';
 
 @Component({
   selector: 'app-text-editor',
-  imports: [NgxTiptapModule, TooltipComponent, IconComponent],
+  imports: [NgxTiptapModule, TooltipComponent, ButtonComponent],
   templateUrl: './text-editor.component.html',
   styleUrl: './text-editor.component.scss',
 })

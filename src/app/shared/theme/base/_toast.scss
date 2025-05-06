@@ -2,7 +2,7 @@
 @use "mixins" as *;
 
 @mixin default-style() {
-  color: $font-notification-color !important;
+  color: $text-default !important;
   box-shadow: none !important;
   border-radius: 0.5rem !important;
 
@@ -22,8 +22,6 @@
 }
 
 .toast-info {
-  background-color: $info !important;
-
   @include default-style();
 }
 
@@ -31,4 +29,80 @@
   background-color: $warning !important;
 
   @include default-style();
+}
+
+.p-toast-message {
+  // background-color: $info !important;
+  // border-color: $info !important;
+
+  .p-toast-message-icon,
+  .p-toast-message-text,
+  .p-toast-detail,
+  .p-toast-close-icon {
+    color: $text-default !important;
+  }
+
+  .p-toast-message-text,
+  .p-toast-summary,
+  .p-toast-detail {
+    font-size: $font-size-body-small !important;
+  }
+}
+
+.p-toast {
+  &-message-icon {
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+    display: flex;
+    color: $text-default !important;
+
+    infocircleicon,
+    checkicon,
+    exclamationtriangleicon,
+    timescircleicon,
+    timesicon {
+      width: 0.875rem !important;
+      height: 0.875rem !important;
+    }
+  }
+
+  &-message-text {
+    color: $text-default !important;
+    font-size: $font-size-body-small !important;
+  }
+
+  &-close-icon {
+    color: $text-default !important;
+    width: 0.875rem !important;
+  }
+
+  &-summary {
+    font-size: $font-size-body-small !important;
+    line-height: $line-height-body-regular !important;
+  }
+
+  &-detail {
+    color: $text-default !important;
+    font-size: $font-size-body-regular !important;
+  }
+
+  &-message-info {
+    border-color: $info !important;
+    background-color: $info !important;
+  }
+
+  &-message-success {
+    border-color: $success !important;
+    background-color: $success !important;
+  }
+
+  &-message-warn {
+    border-color: $warning !important;
+    background-color: $warning !important;
+  }
+
+  &-message-error {
+    border-color: $error !important;
+    background-color: $error !important;
+  }
 }

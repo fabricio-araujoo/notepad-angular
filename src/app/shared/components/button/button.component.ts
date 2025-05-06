@@ -14,6 +14,10 @@ type ButtonVariant = 'default' | 'primary' | 'link' | 'text';
 
 type ButtonType = 'button' | 'submit';
 
+type ButtonSize = 'small' | 'medium' | 'large';
+
+type ButtonJustify = 'left' | 'center' | 'right';
+
 @Component({
   selector: 'app-button',
   imports: [CommonModule, MatIconModule, IconComponent],
@@ -27,28 +31,42 @@ export class ButtonComponent implements AfterViewInit {
   @ViewChild('textContainer', { static: false })
   textContainer?: ElementRef;
 
-  @Input() variant?: ButtonVariant = 'default'; // Define estilo
-  @Input() type?: ButtonType = 'button';
-  @Input() disabled?: boolean = false;
-  @Input() block?: boolean = false; // Ocupar todo o espaço
   @Input() suffixIcon!: string;
+  @Input() variant?: ButtonVariant = 'default';
+  @Input() size?: ButtonSize = 'medium';
+  @Input() type?: ButtonType = 'button';
+  @Input() justify?: ButtonJustify = 'center';
+  @Input() disabled?: boolean = false;
+  @Input() block?: boolean = false;
 
   isIconOnly = false;
 
   constructor(private cdr: ChangeDetectorRef) {}
 
-  // Semelhante ao onBeforeMount do Vue
-  ngAfterViewInit() {
-    this.checkContent();
+  get buttonClass() {
+    return {
+      'button--primary': this.variant === 'primary',
+      'button--link': this.variant === 'link',
+      'button--text': this.variant === 'text',
+      'button--small': this.size === 'small',
+      'button--large': this.size === 'large',
+      'button--left': this.justify === 'left',
+      'button--right': this.justify === 'right',
+      'button--block': this.block,
+      'button--disabled': this.disabled,
+      'button--icon-only': this.isIconOnly,
+    };
   }
 
   private checkContent() {
-    // Verifica se o span tem conteúdo ou não
     const hasContent =
       this.textContainer?.nativeElement?.textContent?.trim()?.length > 0;
     this.isIconOnly = !hasContent;
 
-    // Solicita ao Angular que verifique mudanças se necessário
     this.cdr.detectChanges();
+  }
+
+  ngAfterViewInit() {
+    this.checkContent();
   }
 }

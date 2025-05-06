@@ -1,12 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { LoadingStore } from '~/app/core/stores/loading/loading.service';
+import { MessageService } from 'primeng/api';
+import { NotificationAdapterService } from '~/app/core/adapter/notification-adapter/notification-adapter.service';
+import { LoadingStore } from '~/app/core/stores/loading/loading.store';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { InputComponent } from '../../../../shared/components/input/input.component';
 import { SignInUseCase } from '../../use-cases/sign-in/sign-in.use-case';
@@ -15,41 +17,21 @@ import { ValidationService } from '../../validation/sign-in/validation.service';
 @Component({
   selector: 'app-sign-in',
   imports: [CommonModule, ReactiveFormsModule, InputComponent, ButtonComponent],
+  providers: [MessageService],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss',
 })
 export class SignInComponent {
-  form: FormGroup;
+  private notification = inject(NotificationAdapterService);
+  private signInUseCase = inject(SignInUseCase);
+  private fb = inject(FormBuilder);
 
-  error?: string;
+  protected loadingStore = inject(LoadingStore);
 
-  constructor(
-    public loadingStore: LoadingStore,
-    private signInUseCase: SignInUseCase,
-    private fb: FormBuilder
-  ) {
-    this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
-    });
-  }
-
-  private async onSignIn() {
-    this.loadingStore.show();
-
-    const { email, password } = this.form.value;
-
-    const response = await this.signInUseCase.execute({
-      email,
-      password,
-    });
-
-    if (response?.error) {
-      this.error = response.error;
-    }
-
-    this.loadingStore.hide();
-  }
+  form: FormGroup = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
+  });
 
   handleSubmit() {
     if (!this.form.valid) {
@@ -77,5 +59,22 @@ export class SignInComponent {
     const errorValue = field.getError(firstErrorKey);
 
     return ValidationService.getErrorMessage(firstErrorKey, errorValue);
+  }
+
+  private async onSignIn() {
+    this.loadingStore.show();
+
+    const { email, password } = this.form.value;
+
+    const response = await this.signInUseCase.execute({
+      email,
+      password,
+    });
+
+    if (response?.error) {
+      this.notification.error({ title: 'Erro', message: response.error });
+    }
+
+    this.loadingStore.hide();
   }
 }
