@@ -1,16 +1,19 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { BehaviorSubject, filter } from 'rxjs';
+import { IRouterAdapter } from './router-adapter.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class RouterAdapterService {
+export class RouterAdapterService implements IRouterAdapter {
+  private router: Router = inject(Router);
+
   private currentRouteSubject = new BehaviorSubject<string>('');
 
   currentRoute$ = this.currentRouteSubject.asObservable();
 
-  constructor(private router: Router) {
+  constructor() {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {

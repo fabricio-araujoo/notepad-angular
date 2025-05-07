@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   Input,
   OnInit,
 } from '@angular/core';
@@ -16,12 +17,12 @@ import { ICONS } from './icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconComponent implements OnInit {
+  private sanitizer: DomSanitizer = inject(DomSanitizer);
+
   @Input({ required: true }) name!: string;
   @Input() size?: number = 16;
 
   safeSvg!: SafeHtml;
-
-  constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
     const svg = this.getSvgByName(this.name);

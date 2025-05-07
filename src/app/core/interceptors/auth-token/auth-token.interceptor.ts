@@ -1,7 +1,7 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { LocalStorageService } from '../../adapter/local-storage/local-storage.service';
 import { ELocalStorageKeys } from '~/app/shared/interfaces/local-storage';
+import { LocalStorageService } from '../../adapter/local-storage/local-storage.service';
 
 export const authTokenInterceptor: HttpInterceptorFn = (req, next) => {
   const accessToken = inject(LocalStorageService).get(

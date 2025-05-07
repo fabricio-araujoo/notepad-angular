@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { IDefaultResponse } from '../../adapter/http-adapter/http-adapter.interface';
 import { HttpAdapterService } from '../../adapter/http-adapter/http-adapter.service';
 import { IGetCurrentUserReponse } from './user.service.interface';
-import { IDefaultResponse } from '../../adapter/http-adapter/http-adapter.interface';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private http: HttpAdapterService) {}
+  private http = inject(HttpAdapterService);
 
   async getCurrentUser(): Promise<IGetCurrentUserReponse | undefined> {
     try {
@@ -16,15 +16,17 @@ export class UserService {
         IDefaultResponse<IGetCurrentUserReponse>
       >('/v1/notepad/user/get-current');
 
-      if (!response.body) {
+      if (this.http.hasError(response)) {
+        this.http.handleError(response);
+
         return;
       }
 
       return response.body?.result;
     } catch (err) {
-      if (err instanceof HttpErrorResponse) {
-        return err.error;
-      }
+      const _err = err as HttpErrorResponse;
+
+      console.error(_err.error);
 
       return;
     }

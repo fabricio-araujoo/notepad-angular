@@ -1,8 +1,11 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpStatusCode } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { INotificationAdapter } from '../notification-adapter/notification-adapter.interface';
+import { NotificationAdapterService } from '../notification-adapter/notification-adapter.service';
 import {
-  IHttpService,
+  IDefaultResponse,
+  IHttpAdapter,
   IHttpServiceBody,
   IHttpServiceOptions,
   IHttpServiceQueryParams,
@@ -11,10 +14,13 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class HttpAdapterService implements IHttpService {
-  private http = inject(HttpClient);
+export class HttpAdapterService implements IHttpAdapter {
+  private http: HttpClient = inject(HttpClient);
+  private notification: INotificationAdapter = inject(
+    NotificationAdapterService
+  );
 
-  readonly baseUrl: string = 'http://localhost:3000';
+  private readonly baseUrl: string = 'http://localhost:3000';
 
   private buildUrl(url: string) {
     return this.baseUrl + url;
@@ -72,5 +78,33 @@ export class HttpAdapterService implements IHttpService {
         observe: 'response' as const,
       })
     );
+  }
+
+  hasError<T>(request: HttpResponse<IDefaultResponse<T>>): boolean {
+    if (!request.body) {
+      return true;
+    }
+
+    const SUCCESS_CODE = [
+      HttpStatusCode.Ok,
+      HttpStatusCode.Created,
+      HttpStatusCode.NoContent,
+    ];
+
+    const error =
+      request.body.code && !SUCCESS_CODE.includes(request.body.code);
+
+    if (error) {
+      return true;
+    }
+
+    return false;
+  }
+
+  handleError<T>(request: HttpResponse<IDefaultResponse<T>>): void {
+    this.notification.error({
+      title: 'Erro',
+      message: request.body?.error || 'Erro inesperado',
+    });
   }
 }

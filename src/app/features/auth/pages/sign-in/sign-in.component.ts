@@ -25,7 +25,6 @@ export class SignInComponent {
   private notification = inject(NotificationAdapterService);
   private signInUseCase = inject(SignInUseCase);
   private fb = inject(FormBuilder);
-
   protected loadingStore = inject(LoadingStore);
 
   form: FormGroup = this.fb.group({

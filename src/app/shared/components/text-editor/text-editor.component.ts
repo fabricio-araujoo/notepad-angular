@@ -4,6 +4,7 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  inject,
   Input,
   OnDestroy,
   OnInit,
@@ -25,6 +26,8 @@ import { TooltipComponent } from '../tooltip/tooltip.component';
   styleUrl: './text-editor.component.scss',
 })
 export class TextEditorComponent implements OnInit, OnDestroy, AfterViewInit {
+  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+
   @ViewChild('editorContainer', { static: false })
   editorContainer!: ElementRef;
 
@@ -34,8 +37,6 @@ export class TextEditorComponent implements OnInit, OnDestroy, AfterViewInit {
   @Output() changed = new EventEmitter<string>();
 
   editor!: Editor;
-
-  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     // Configuração inicial do editor

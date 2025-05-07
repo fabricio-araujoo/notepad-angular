@@ -5,6 +5,8 @@ import {
 import { TestBed } from '@angular/core/testing';
 
 import { provideHttpClient } from '@angular/common/http';
+import { MessageService } from 'primeng/api';
+import { NotificationAdapterService } from '../notification-adapter/notification-adapter.service';
 import { HttpAdapterService } from './http-adapter.service';
 
 describe('HttpAdapterService', () => {
@@ -15,7 +17,12 @@ describe('HttpAdapterService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [provideHttpClient(), provideHttpClientTesting()],
+      providers: [
+        NotificationAdapterService,
+        MessageService,
+        provideHttpClient(),
+        provideHttpClientTesting(),
+      ],
     });
 
     httpService = TestBed.inject(HttpAdapterService);

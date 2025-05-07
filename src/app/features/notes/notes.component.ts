@@ -1,4 +1,10 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { UserService } from '~/app/core/services/user/user.service';
 import { ProfileStore } from '~/app/core/stores/profile/profile.store';
 import { INote } from '~/app/shared/interfaces/note';
@@ -23,18 +29,16 @@ import { NotesService } from './services/notes/notes.service';
   styleUrl: './notes.component.scss',
 })
 export class NotesComponent implements OnInit {
+  private userService = inject(UserService);
+  private notesService = inject(NotesService);
+  private profileStore = inject(ProfileStore);
+  private cdr = inject(ChangeDetectorRef);
+
   @ViewChild('noteDrawer')
   noteDrawerRef!: NoteModalComponent;
 
   notes: INote[] = [];
   fixed: INote[] = [];
-
-  constructor(
-    private userService: UserService,
-    private notesService: NotesService,
-    private profileStore: ProfileStore,
-    private cdr: ChangeDetectorRef
-  ) {}
 
   async ngOnInit() {
     await Promise.all([this.fetchUser(), this.fetchListNotes()]);

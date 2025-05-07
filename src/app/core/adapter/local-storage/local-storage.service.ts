@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ELocalStorageKeys } from '~/app/shared/interfaces/local-storage';
+import { ILocalStorageService } from './local-storage.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LocalStorageService {
-  get(key: ELocalStorageKeys) {
+export class LocalStorageService implements ILocalStorageService {
+  get(key: ELocalStorageKeys): string | null {
     return localStorage.getItem(key);
   }
 

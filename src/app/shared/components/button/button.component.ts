@@ -4,6 +4,7 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  inject,
   Input,
   ViewChild,
 } from '@angular/core';
@@ -25,6 +26,8 @@ type ButtonJustify = 'left' | 'center' | 'right';
   styleUrl: './button.component.scss',
 })
 export class ButtonComponent implements AfterViewInit {
+  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+
   @ViewChild('button', { static: false })
   button!: ElementRef;
 
@@ -40,8 +43,6 @@ export class ButtonComponent implements AfterViewInit {
   @Input() block?: boolean = false;
 
   isIconOnly = false;
-
-  constructor(private cdr: ChangeDetectorRef) {}
 
   get buttonClass() {
     return {

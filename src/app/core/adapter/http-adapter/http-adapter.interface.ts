@@ -1,26 +1,28 @@
-import { HttpEvent } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 
-export interface IHttpService {
+export interface IHttpAdapter {
   get<T>(
     url: string,
     queryParams?: IHttpServiceQueryParams,
     options?: IHttpServiceOptions
-  ): Promise<HttpEvent<T>>;
+  ): Promise<HttpResponse<T>>;
   post<T>(
     url: string,
     body?: IHttpServiceBody,
     options?: IHttpServiceOptions
-  ): Promise<HttpEvent<T>>;
+  ): Promise<HttpResponse<T>>;
   put<T>(
     url: string,
     body?: IHttpServiceBody,
     options?: IHttpServiceOptions
-  ): Promise<HttpEvent<T>>;
+  ): Promise<HttpResponse<T>>;
   delete<T>(
     url: string,
     queryParams?: IHttpServiceQueryParams,
     options?: IHttpServiceOptions
-  ): Promise<HttpEvent<T>>;
+  ): Promise<HttpResponse<T>>;
+  hasError<T>(request: HttpResponse<IDefaultResponse<T>>): boolean;
+  handleError<T>(request: HttpResponse<IDefaultResponse<T>>): void;
 }
 
 export type IHttpServiceQueryParams = Record<string, any>;

@@ -27,14 +27,10 @@ export class SignInUseCase {
 
     const response = await this.authService.signIn(input);
 
-    const token = response?.result?.access_token || '';
+    const token = response?.access_token || '';
 
     if (!token) {
-      return {
-        error:
-          response?.error ||
-          'Não foi possível fazer o login, tente novamente mais tarde.',
-      };
+      return;
     }
 
     this.localStorageService.set(ELocalStorageKeys.ACCESS_TOKEN, token);

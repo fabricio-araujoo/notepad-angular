@@ -1,17 +1,15 @@
 import { inject, Injectable } from '@angular/core';
 import { MessageService } from 'primeng/api';
-
-type INotification = {
-  title: string;
-  message?: string;
-  type: 'success' | 'error' | 'info' | 'warn';
-};
+import {
+  INotification,
+  INotificationAdapter,
+} from './notification-adapter.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class NotificationAdapterService {
-  private messageService = inject(MessageService);
+export class NotificationAdapterService implements INotificationAdapter {
+  private messageService: MessageService = inject(MessageService);
 
   private show(options: INotification) {
     this.messageService.add({

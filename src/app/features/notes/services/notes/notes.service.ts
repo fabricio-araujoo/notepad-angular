@@ -1,6 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { IDefaultResponse } from '~/app/core/adapter/http-adapter/http-adapter.interface';
+import { inject, Injectable } from '@angular/core';
+import {
+  IDefaultResponse,
+  IHttpAdapter,
+} from '~/app/core/adapter/http-adapter/http-adapter.interface';
 import { HttpAdapterService } from '~/app/core/adapter/http-adapter/http-adapter.service';
 import {
   IAddNoteParams,
@@ -12,7 +15,7 @@ import {
   providedIn: 'root',
 })
 export class NotesService {
-  constructor(private http: HttpAdapterService) {}
+  private http: IHttpAdapter = inject(HttpAdapterService);
 
   async getListNotes(): Promise<IGetNotesResponse | undefined> {
     try {
@@ -20,7 +23,9 @@ export class NotesService {
         '/v1/notepad/notes/list'
       );
 
-      if (!response.body) {
+      if (this.http.hasError(response)) {
+        this.http.handleError(response);
+
         return;
       }
 
@@ -41,7 +46,9 @@ export class NotesService {
         { ...params }
       );
 
-      if (!response.body) {
+      if (this.http.hasError(response)) {
+        this.http.handleError(response);
+
         return;
       }
 
