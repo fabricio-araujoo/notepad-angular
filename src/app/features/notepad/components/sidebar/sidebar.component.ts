@@ -2,8 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, effect, inject, signal } from '@angular/core';
 import { IRouterAdapter } from '~/app/core/adapter/router-adapter/router-adapter.interface';
 import { RouterAdapterService } from '~/app/core/adapter/router-adapter/router-adapter.service';
-import { AuthService } from '~/app/core/services/auth/auth.service';
+
 import { ProfileStore } from '~/app/core/stores/profile/profile.store';
+import { AuthService } from '~/app/features/auth/services/auth/auth.service';
 import { IconComponent } from '~/app/shared/components/icon/icon.component';
 
 type INavigationItem = {

@@ -10,11 +10,11 @@ import { MessageService } from 'primeng/api';
 import { IRouterAdapter } from '~/app/core/adapter/router-adapter/router-adapter.interface';
 import { RouterAdapterService } from '~/app/core/adapter/router-adapter/router-adapter.service';
 import { LocalStoragePlugin } from '~/app/core/plugins/local-storage/local-storage.plugin';
-import { AuthService } from '~/app/core/services/auth/auth.service';
 import { LoadingStore } from '~/app/core/stores/loading/loading.store';
 import { ELocalStorageKeys } from '~/app/shared/interfaces/local-storage';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { InputComponent } from '../../../../shared/components/input/input.component';
+import { AuthService } from '../../services/auth/auth.service';
 import { ValidationService } from '../../validation/sign-in/validation.service';
 
 @Component({
@@ -90,7 +90,7 @@ export class SignInComponent {
       ELocalStorageKeys.ACCESS_TOKEN,
       response?.access_token
     );
-    this.router.navigate('/note');
+    this.router.navigate('/');
 
     this.loadingStore.hide();
   }

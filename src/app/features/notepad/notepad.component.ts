@@ -1,12 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { UserService } from '~/app/core/services/user/user.service';
 import { ProfileStore } from '~/app/core/stores/profile/profile.store';
+import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { UserService } from './services/user/user.service';
 
 @Component({
   selector: 'app-notepad',
-  imports: [RouterOutlet, SidebarComponent],
+  imports: [RouterOutlet, SidebarComponent, HeaderComponent],
   templateUrl: './notepad.component.html',
   styleUrl: './notepad.component.scss',
 })

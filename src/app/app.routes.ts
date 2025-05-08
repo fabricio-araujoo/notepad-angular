@@ -21,11 +21,15 @@ export const routes: Routes = [
   },
   {
     path: '',
+    title: 'Notepad',
     canActivate: [authGuard],
     component: NotepadComponent,
     children: [
       {
         path: '',
+        data: {
+          name: '',
+        },
         async loadComponent() {
           return import('./features/notepad/pages/home/home.component').then(
             (m) => m.HomeComponent
@@ -34,6 +38,9 @@ export const routes: Routes = [
       },
       {
         path: 'note',
+        data: {
+          name: 'Notas',
+        },
         async loadComponent() {
           return import('./features/notepad/pages/notes/notes.component').then(
             (m) => m.NotesComponent
@@ -42,6 +49,9 @@ export const routes: Routes = [
       },
       {
         path: 'task',
+        data: {
+          name: 'Tarefas',
+        },
         async loadComponent() {
           return import('./features/notepad/pages/tasks/tasks.component').then(
             (m) => m.TasksComponent

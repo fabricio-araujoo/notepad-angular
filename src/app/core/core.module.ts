@@ -4,8 +4,7 @@ import { HttpAdapterService } from './adapter/http-adapter/http-adapter.service'
 import { NotificationAdapterService } from './adapter/notification-adapter/notification-adapter.service';
 import { RouterAdapterService } from './adapter/router-adapter/router-adapter.service';
 import { LocalStoragePlugin } from './plugins/local-storage/local-storage.plugin';
-import { AuthService } from './services/auth/auth.service';
-import { UserService } from './services/user/user.service';
+
 import { LoadingStore } from './stores/loading/loading.store';
 import { ProfileStore } from './stores/profile/profile.store';
 
@@ -16,10 +15,6 @@ import { ProfileStore } from './stores/profile/profile.store';
     HttpAdapterService,
     RouterAdapterService,
     NotificationAdapterService,
-
-    // Services
-    AuthService,
-    UserService,
 
     // Plugins
     LocalStoragePlugin,

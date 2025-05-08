@@ -1,0 +1,65 @@
+<div
+  #tagSelectContainer
+  class="tag-select"
+  (mousedown)="handleFocusComponent()"
+>
+  <div
+    class="tag-select__view view"
+    [style]="{ visibility: focused() ? 'hidden' : 'visible' }"
+  >
+    <div
+      class="view__tags"
+      style="padding: 0"
+      *ngIf="!!selectedTags().length; else elsePlaceholder"
+    >
+      @for (item of selectedTags(); track item.id) {
+      <app-tag>
+        {{ item.label }}
+      </app-tag>
+      }
+    </div>
+
+    <ng-template #elsePlaceholder>
+      <span class="view__empty">Vazio</span>
+    </ng-template>
+  </div>
+
+  <div class="tag-select__dropdown dropdown" [appShowComponent]="focused()">
+    <div
+      class="dropdown__container"
+      [ngClass]="{ 'dropdown__container--open': focused }"
+    >
+      @for (item of selectedTags(); track item.id) {
+      <app-tag [close]="true" (closed)="handleRemoveTag(item)">
+        {{ item.label }}
+      </app-tag>
+      }
+
+      <app-input
+        #tagSelectInput
+        class="dropdown__input"
+        variant="borderless"
+        [(ngModel)]="inputValue"
+        [full]="true"
+      ></app-input>
+    </div>
+
+    <div class="dropdown__options">
+      <span class="dropdown__tip"> Selecione uma opção ou crie uma </span>
+
+      @for (item of filteredOptions(); track item.id) {
+      <div class="dropdown__option" (mousedown)="handleSelectedTag(item)">
+        <app-tag>{{ item.label }}</app-tag>
+      </div>
+      }
+
+      <div
+        class="dropdown__option"
+        (mousedown)="handleCreateTag()"
+        *ngIf="inputValue && !matchTagLabel()"
+      >
+        Criar <app-tag>{{ inputValue }}</app-tag>
+      </div>
+    </div>
+  </div>
+</div>

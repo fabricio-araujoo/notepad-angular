@@ -1,14 +1,15 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ELocalStorageKeys } from '~/app/shared/interfaces/local-storage';
+
 import {
   IDefaultResponse,
   IHttpAdapter,
-} from '../../adapter/http-adapter/http-adapter.interface';
-import { HttpAdapterService } from '../../adapter/http-adapter/http-adapter.service';
-import { IRouterAdapter } from '../../adapter/router-adapter/router-adapter.interface';
-import { RouterAdapterService } from '../../adapter/router-adapter/router-adapter.service';
-import { LocalStoragePlugin } from '../../plugins/local-storage/local-storage.plugin';
+} from '~/app/core/adapter/http-adapter/http-adapter.interface';
+import { HttpAdapterService } from '~/app/core/adapter/http-adapter/http-adapter.service';
+import { IRouterAdapter } from '~/app/core/adapter/router-adapter/router-adapter.interface';
+import { RouterAdapterService } from '~/app/core/adapter/router-adapter/router-adapter.service';
+import { LocalStoragePlugin } from '~/app/core/plugins/local-storage/local-storage.plugin';
 import { ISignInParams, ISignInResponse } from './auth.service.interface';
 
 @Injectable({

@@ -1,6 +1,8 @@
 import { addIcon } from './svg/add';
 import { boldIcon } from './svg/bold';
+import { calendarIcon } from './svg/calendar';
 import { checkMarkIcon } from './svg/check-mark';
+import { clockIcon } from './svg/clock';
 import { closeIcon } from './svg/close';
 import { codeIcon } from './svg/code';
 import { doubleLeftIcon } from './svg/double-left';
@@ -19,7 +21,9 @@ import { underlineIcon } from './svg/underline';
 export const ICONS: Record<string, string> = {
   add: addIcon,
   bold: boldIcon,
+  calendar: calendarIcon,
   'check-mark': checkMarkIcon,
+  clock: clockIcon,
   close: closeIcon,
   code: codeIcon,
   'double-left': doubleLeftIcon,
