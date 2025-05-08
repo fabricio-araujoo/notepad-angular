@@ -1,0 +1,39 @@
+<aside class="sidebar">
+  <div class="sidebar__header">
+    <div class="sidebar__item">
+      <div class="sidebar__profile">F</div>
+      <span class="sidebar__title">{{ username() }}</span>
+      <!-- <app-icon class="sidebar__icon" [name]="item.icon" [size]="16"></app-icon> -->
+    </div>
+  </div>
+
+  <div class="sidebar__section">
+    <div
+      class="sidebar__item"
+      [class]="{ 'sidebar__item--active': isCurrentRoute('/') }"
+      (mousedown)="handleNavigate('/')"
+    >
+      <div class="sidebar__icon">
+        <app-icon name="home" [size]="18"></app-icon>
+      </div>
+
+      <span>Página inicial</span>
+    </div>
+
+    <span class="sidebar__subtitle">Páginas</span>
+
+    @for (item of navigationItems; track item.route) {
+    <div
+      class="sidebar__item"
+      [class]="{ 'sidebar__item--active': isCurrentRoute(item.route) }"
+      (mousedown)="item.handleClick()"
+    >
+      <div class="sidebar__icon">
+        <app-icon [name]="item.icon" [size]="16"></app-icon>
+      </div>
+
+      <span>{{ item.label }}</span>
+    </div>
+    }
+  </div>
+</aside>

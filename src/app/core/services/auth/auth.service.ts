@@ -1,19 +1,23 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ELocalStorageKeys } from '~/app/shared/interfaces/local-storage';
-import { IDefaultResponse } from '../../adapter/http-adapter/http-adapter.interface';
+import {
+  IDefaultResponse,
+  IHttpAdapter,
+} from '../../adapter/http-adapter/http-adapter.interface';
 import { HttpAdapterService } from '../../adapter/http-adapter/http-adapter.service';
-import { LocalStorageService } from '../../adapter/local-storage/local-storage.service';
+import { IRouterAdapter } from '../../adapter/router-adapter/router-adapter.interface';
 import { RouterAdapterService } from '../../adapter/router-adapter/router-adapter.service';
+import { LocalStoragePlugin } from '../../plugins/local-storage/local-storage.plugin';
 import { ISignInParams, ISignInResponse } from './auth.service.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private http = inject(HttpAdapterService);
-  private localStorage = inject(LocalStorageService);
-  private routerService = inject(RouterAdapterService);
+  private http: IHttpAdapter = inject(HttpAdapterService);
+  private router: IRouterAdapter = inject(RouterAdapterService);
+  private localStorage: LocalStoragePlugin = inject(LocalStoragePlugin);
 
   async signIn(params: ISignInParams): Promise<ISignInResponse | undefined> {
     try {
@@ -40,6 +44,6 @@ export class AuthService {
 
   async signOut() {
     this.localStorage.remove(ELocalStorageKeys.ACCESS_TOKEN);
-    this.routerService.navigate('/sign-in');
+    this.router.navigate('/sign-in');
   }
 }

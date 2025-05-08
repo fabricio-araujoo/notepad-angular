@@ -7,11 +7,14 @@ import {
   Validators,
 } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { NotificationAdapterService } from '~/app/core/adapter/notification-adapter/notification-adapter.service';
+import { IRouterAdapter } from '~/app/core/adapter/router-adapter/router-adapter.interface';
+import { RouterAdapterService } from '~/app/core/adapter/router-adapter/router-adapter.service';
+import { LocalStoragePlugin } from '~/app/core/plugins/local-storage/local-storage.plugin';
+import { AuthService } from '~/app/core/services/auth/auth.service';
 import { LoadingStore } from '~/app/core/stores/loading/loading.store';
+import { ELocalStorageKeys } from '~/app/shared/interfaces/local-storage';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { InputComponent } from '../../../../shared/components/input/input.component';
-import { SignInUseCase } from '../../use-cases/sign-in/sign-in.use-case';
 import { ValidationService } from '../../validation/sign-in/validation.service';
 
 @Component({
@@ -22,9 +25,11 @@ import { ValidationService } from '../../validation/sign-in/validation.service';
   styleUrl: './sign-in.component.scss',
 })
 export class SignInComponent {
-  private notification = inject(NotificationAdapterService);
-  private signInUseCase = inject(SignInUseCase);
+  private router: IRouterAdapter = inject(RouterAdapterService);
+  private localStorage: LocalStoragePlugin = inject(LocalStoragePlugin);
+  private authService = inject(AuthService);
   private fb = inject(FormBuilder);
+
   protected loadingStore = inject(LoadingStore);
 
   form: FormGroup = this.fb.group({
@@ -65,14 +70,21 @@ export class SignInComponent {
 
     const { email, password } = this.form.value;
 
-    const response = await this.signInUseCase.execute({
-      email,
-      password,
-    });
-
-    if (response?.error) {
-      this.notification.error({ title: 'Erro', message: response.error });
+    if (!email || !password) {
+      return;
     }
+
+    const response = await this.authService.signIn({ email, password });
+
+    if (response?.access_token) {
+      return;
+    }
+
+    this.localStorage.set(
+      ELocalStorageKeys.ACCESS_TOKEN,
+      response?.access_token
+    );
+    this.router.navigate('/notes');
 
     this.loadingStore.hide();
   }

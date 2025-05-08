@@ -14,7 +14,7 @@ import { LocalStorageService } from '../../adapter/local-storage/local-storage.s
 import { RouterAdapterService } from '../../adapter/router-adapter/router-adapter.service';
 import { unauthorizedInterceptor } from './unauthorized.interceptor';
 
-describe('unauthorizedInterceptor (Angular 17+)', () => {
+describe('unauthorizedInterceptor', () => {
   let http: HttpClient;
   let httpMock: HttpTestingController;
   let localStorageService: jasmine.SpyObj<LocalStorageService>;

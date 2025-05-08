@@ -7,6 +7,7 @@ import { doubleLeftIcon } from './svg/double-left';
 import { doubleRightIcon } from './svg/double-right';
 import { editIcon } from './svg/edit';
 import { exitIcon } from './svg/exit';
+import { homeIcon } from './svg/home';
 import { italicIcon } from './svg/italic';
 import { menuIcon } from './svg/menu';
 import { noteIcon } from './svg/note';
@@ -25,6 +26,7 @@ export const ICONS: Record<string, string> = {
   'double-right': doubleRightIcon,
   edit: editIcon,
   exit: exitIcon,
+  home: homeIcon,
   italic: italicIcon,
   menu: menuIcon,
   note: noteIcon,

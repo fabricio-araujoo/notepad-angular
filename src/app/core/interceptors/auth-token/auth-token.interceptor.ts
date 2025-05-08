@@ -1,12 +1,12 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { ELocalStorageKeys } from '~/app/shared/interfaces/local-storage';
-import { LocalStorageService } from '../../adapter/local-storage/local-storage.service';
+import { LocalStoragePlugin } from '../../plugins/local-storage/local-storage.plugin';
 
 export const authTokenInterceptor: HttpInterceptorFn = (req, next) => {
-  const accessToken = inject(LocalStorageService).get(
-    ELocalStorageKeys.ACCESS_TOKEN
-  );
+  const localStorage: LocalStoragePlugin = inject(LocalStoragePlugin);
+
+  const accessToken = localStorage.get(ELocalStorageKeys.ACCESS_TOKEN);
 
   if (!accessToken) {
     return next(req);

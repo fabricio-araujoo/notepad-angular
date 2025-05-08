@@ -45,7 +45,7 @@ describe('authGuard', () => {
     localStorage.clear();
   });
 
-  it('deve permitir acesso quando o token existe', () => {
+  it('should able access when token exists', () => {
     localStorage.setItem(ELocalStorageKeys.ACCESS_TOKEN, 'fake-token');
 
     const result = runInInjectionContext(TestBed, () =>
@@ -55,7 +55,7 @@ describe('authGuard', () => {
     expect(result).toBeTrue();
   });
 
-  it('deve bloquear acesso e redirecionar para /sign-in se token estiver ausente', () => {
+  it('should disable access and redirect to /sign-in if token doesnt exist', () => {
     const navigateSpy = spyOn(routerAdapterService, 'navigate');
 
     const result = runInInjectionContext(TestBed, () =>

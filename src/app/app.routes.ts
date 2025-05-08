@@ -1,12 +1,8 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth/auth.guard';
+import { NotepadComponent } from './features/notepad/notepad.component';
 
 export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'notes',
-    pathMatch: 'full',
-  },
   {
     path: 'sign-in',
     async loadComponent() {
@@ -26,12 +22,29 @@ export const routes: Routes = [
   {
     path: '',
     canActivate: [authGuard],
+    component: NotepadComponent,
     children: [
       {
-        path: 'notes',
+        path: '',
         async loadComponent() {
-          return import('./features/notes/notes.component').then(
+          return import('./features/notepad/pages/home/home.component').then(
+            (m) => m.HomeComponent
+          );
+        },
+      },
+      {
+        path: 'note',
+        async loadComponent() {
+          return import('./features/notepad/pages/notes/notes.component').then(
             (m) => m.NotesComponent
+          );
+        },
+      },
+      {
+        path: 'task',
+        async loadComponent() {
+          return import('./features/notepad/pages/tasks/tasks.component').then(
+            (m) => m.TasksComponent
           );
         },
       },
