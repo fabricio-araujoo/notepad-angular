@@ -71,20 +71,26 @@ export class SignInComponent {
     const { email, password } = this.form.value;
 
     if (!email || !password) {
+      this.loadingStore.hide();
+
       return;
     }
 
     const response = await this.authService.signIn({ email, password });
 
-    if (response?.access_token) {
+    if (!response?.access_token) {
+      this.loadingStore.hide();
+
       return;
     }
+
+    console.log('navigate');
 
     this.localStorage.set(
       ELocalStorageKeys.ACCESS_TOKEN,
       response?.access_token
     );
-    this.router.navigate('/notes');
+    this.router.navigate('/note');
 
     this.loadingStore.hide();
   }

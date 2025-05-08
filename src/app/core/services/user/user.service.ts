@@ -17,7 +17,7 @@ export class UserService {
       >('/v1/notepad/user/get-current');
 
       if (this.http.hasError(response)) {
-        this.http.handleError(response);
+        this.http.handleError(response.body?.error);
 
         return;
       }
@@ -26,7 +26,7 @@ export class UserService {
     } catch (err) {
       const _err = err as HttpErrorResponse;
 
-      console.error(_err.error);
+      this.http.handleError(_err.error?.error);
 
       return;
     }

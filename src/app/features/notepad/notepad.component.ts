@@ -23,7 +23,7 @@ export class NotepadComponent implements OnInit {
 
     this.profileStore.updateProfile({
       id: response?.profile?.id || '',
-      dateOfBirth: response?.profile?.dateOfBirth || '',
+      birth: response?.profile?.dateOfBirth || '',
       email: response?.profile?.email || '',
       name: response?.profile?.name || '',
     });

@@ -101,10 +101,10 @@ export class HttpAdapterService implements IHttpAdapter {
     return false;
   }
 
-  handleError<T>(request: HttpResponse<IDefaultResponse<T>>): void {
+  handleError(err?: string): void {
     this.notification.error({
       title: 'Erro',
-      message: request.body?.error || 'Erro inesperado',
+      message: err || 'Ocorreu um erro inesperado',
     });
   }
 }

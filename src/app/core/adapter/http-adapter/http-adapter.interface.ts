@@ -22,7 +22,7 @@ export interface IHttpAdapter {
     options?: IHttpServiceOptions
   ): Promise<HttpResponse<T>>;
   hasError<T>(request: HttpResponse<IDefaultResponse<T>>): boolean;
-  handleError<T>(request: HttpResponse<IDefaultResponse<T>>): void;
+  handleError(err?: string): void;
 }
 
 export type IHttpServiceQueryParams = Record<string, any>;

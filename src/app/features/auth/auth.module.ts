@@ -1,10 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SignInUseCase } from './use-cases/sign-in/sign-in.use-case';
+import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [],
   imports: [CommonModule],
-  providers: [SignInUseCase],
+  providers: [],
 })
 export class AuthModule {}
