@@ -1,1 +1,59 @@
-<div class="notes">oi</div>
+<div class="note">
+  <div class="note__header">
+    <div class="note__title">
+      <app-icon name="note"></app-icon>
+      <h4>Notas</h4>
+    </div>
+
+    <div class="note__action">
+      <app-tooltip text="Visualizar arquivadas" placement="top">
+        <app-button
+          variant="text"
+          suffixIcon="archive"
+          size="small"
+          [class]="{ 'note__archived--active': showArchivedNotes }"
+          (click)="handleShowArchivedNotes()"
+        ></app-button>
+      </app-tooltip>
+
+      <app-button
+        variant="primary"
+        suffixIcon="add"
+        size="small"
+        (click)="handleOpenNote()"
+      >
+        Criar anotação
+      </app-button>
+    </div>
+  </div>
+
+  @if (loading | async) {
+  <div>
+    <app-skeleton width="6rem" height="1rem"></app-skeleton>
+    <app-grid>
+      <app-skeleton width="100%" height="5rem"></app-skeleton>
+      <app-skeleton width="100%" height="5rem"></app-skeleton>
+      <app-skeleton width="100%" height="5rem"></app-skeleton>
+    </app-grid>
+  </div>
+  } @else if (!showArchivedNotes) {
+  <app-grid title="Fixado" *ngIf="notes.pinned.length">
+    @for (note of notes.pinned; track note._id) {
+    <app-note [note]="note"></app-note>
+    }
+  </app-grid>
+  <app-grid title="Todas as notas">
+    @for (note of notes.default; track note._id) {
+    <app-note [note]="note"></app-note>
+    }
+  </app-grid>
+  } @else {
+  <app-grid title="Arquivado">
+    @for (note of notes.archived; track note._id) {
+    <app-note [note]="note"></app-note>
+    }
+  </app-grid>
+  }
+
+  <app-note-modal #noteModal></app-note-modal>
+</div>

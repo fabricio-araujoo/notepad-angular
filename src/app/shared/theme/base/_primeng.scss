@@ -1,5 +1,6 @@
 @use "sass:map" as map;
 @use "tokens" as *;
+@use "mixins" as *;
 
 .p-drawer {
   background-color: $background !important; // sobrescrevendo o fundo do drawer
@@ -8,7 +9,8 @@
   border: none !important;
 }
 
-.p-drawer-header {
+.p-drawer-header,
+.p-drawer-footer {
   padding: map.get($map: $padding, $key: lg) !important;
 }
 
@@ -23,6 +25,7 @@
 
 .p-tooltip-text {
   padding: 0.4rem !important;
+  box-shadow: none !important;
 }
 
 .p-tooltip-arrow {
@@ -34,4 +37,28 @@
   border: none !important;
   padding: 0 !important;
   margin: 0 !important;
+}
+
+.p-menu {
+  background-color: $background !important;
+  border-color: $background !important;
+  border: 1px solid $background-contrast !important;
+}
+
+.p-menu-item-content {
+  &:hover {
+    background-color: $background-hover !important;
+  }
+}
+
+.p-menu-submenu-label {
+  @include body-small;
+
+  padding: 8px 12px 4px !important;
+}
+
+.p-menu-item-label {
+  @include body-small;
+
+  color: $text-default;
 }

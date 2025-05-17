@@ -10,8 +10,8 @@ import { MessageService } from 'primeng/api';
 import { IRouterAdapter } from '~/app/core/adapter/router-adapter/router-adapter.interface';
 import { RouterAdapterService } from '~/app/core/adapter/router-adapter/router-adapter.service';
 import { LocalStoragePlugin } from '~/app/core/plugins/local-storage/local-storage.plugin';
-import { LoadingStore } from '~/app/core/stores/loading/loading.store';
 import { ELocalStorageKeys } from '~/app/shared/interfaces/local-storage';
+import { LoadingStore } from '~/app/shared/stores/loading/loading.store';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { InputComponent } from '../../../../shared/components/input/input.component';
 import { AuthService } from '../../services/auth/auth.service';
@@ -84,14 +84,13 @@ export class SignInComponent {
       return;
     }
 
-    console.log('navigate');
-
     this.localStorage.set(
       ELocalStorageKeys.ACCESS_TOKEN,
       response?.access_token
     );
-    this.router.navigate('/');
 
     this.loadingStore.hide();
+
+    this.router.navigate('/');
   }
 }

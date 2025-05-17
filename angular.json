@@ -51,7 +51,10 @@
               ],
               "outputHashing": "all",
               "optimization": true,
-              "extractLicenses": true
+              "extractLicenses": true,
+              "sourceMap": false,
+              "namedChunks": false,
+              "aot": true
             },
             "development": {
               "optimization": false,

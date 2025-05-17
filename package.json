@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start:prod": "ng build --configuration production && serve -l 4201 -s dist/angular-notepad/browser",
     "build": "ng build",
+    "build:prod": "ng build --configuration production && serve -l 4201 -s dist/angular-notepad/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint"

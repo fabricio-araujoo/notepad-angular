@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ProfileStore } from '~/app/core/stores/profile/profile.store';
+import { ProfileStore } from '~/app/shared/stores/profile/profile.store';
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { UserService } from './services/user/user.service';
@@ -23,8 +23,7 @@ export class NotepadComponent implements OnInit {
     const response = await this.userService.getCurrentUser();
 
     this.profileStore.updateProfile({
-      id: response?.profile?.id || '',
-      birth: response?.profile?.dateOfBirth || '',
+      _id: response?.profile?._id || '',
       email: response?.profile?.email || '',
       name: response?.profile?.name || '',
     });

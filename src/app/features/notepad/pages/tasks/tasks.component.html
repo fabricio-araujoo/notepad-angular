@@ -1,1 +1,19 @@
-<p>tasks works!</p>
+<div class="page-container">
+  <div
+    class="page-title"
+    contenteditable="true"
+    (input)="onTitleInput($event)"
+    #titleRef
+  ></div>
+
+  <div class="editor" [attr.data-empty]="editor.isEmpty" #editorElement>
+    <ng-container *ngIf="editor">
+      <div [innerHTML]="editor.getHTML()" hidden></div>
+      <div
+        [appTiptapEditor]="editor"
+        class="editor-content"
+        contenteditable="true"
+      ></div>
+    </ng-container>
+  </div>
+</div>

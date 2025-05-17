@@ -1,12 +1,12 @@
-<button #button class="button" [ngClass]="buttonClass" [disabled]="disabled">
+<button class="button" [ngClass]="buttonClass" [disabled]="disabled">
   <app-icon
     class="button__icon"
     [name]="suffixIcon"
-    [size]="18"
+    [size]="size === 'small' ? 14 : 16"
     *ngIf="suffixIcon"
   ></app-icon>
 
-  <span class="button__text" *ngIf="!isIconOnly" #textContainer>
+  <div class="button__text" *ngIf="!iconOnly" #textContainer>
     <ng-content></ng-content>
-  </span>
+  </div>
 </button>

@@ -1,0 +1,47 @@
+<div
+  class="note"
+  [class]="{ 'note--hovered': menuOpen }"
+  (mouseenter)="handleFocusNote()"
+  (mouseleave)="handleFocusNote()"
+>
+  <div class="note__container">
+    <app-card (mousedown)="handleClickNote()">
+      <div class="note__container">
+        <div
+          class="note__header"
+          [class]="{ 'note__header--no-title': !note.title }"
+        >
+          <span>{{ note.title || "Nova anotação" }}</span>
+        </div>
+
+        <div class="note__tag" *ngIf="note.tags?.length">
+          @for (item of note.tags; track $index) {
+          <app-tag>{{ item }}</app-tag>
+          }
+        </div>
+      </div>
+    </app-card>
+
+    <div class="note__action">
+      <app-tooltip
+        text="Edite, exclua e realize outras ações na sua anotação"
+        placement="top"
+      >
+        <app-button
+          suffixIcon="menu"
+          size="small"
+          [appShowComponent]="focused || menuOpen"
+          (click)="menu.toggle($event)"
+        ></app-button>
+      </app-tooltip>
+    </div>
+  </div>
+
+  <p-menu
+    #menu
+    [model]="note.isArchived ? menuArchivedItems : menuItems"
+    [popup]="true"
+    (onShow)="handleOpenMenu()"
+    (onHide)="handleOpenMenu()"
+  ></p-menu>
+</div>

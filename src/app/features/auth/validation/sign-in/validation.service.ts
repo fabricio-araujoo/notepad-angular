@@ -5,6 +5,18 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
   providedIn: 'root',
 })
 export class ValidationService {
+  customValidator(requiredSubstring: string): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value;
+
+      if (typeof value === 'string' && value.includes(requiredSubstring)) {
+        return null;
+      }
+
+      return { custom: true };
+    };
+  }
+
   static errorMessages: Record<string, string | ((params: unknown) => string)> =
     {
       required: 'Este campo é obrigatório.',
@@ -17,17 +29,5 @@ export class ValidationService {
     return typeof message === 'function'
       ? message(errorValue)
       : message || 'Erro desconhecido.';
-  }
-
-  customValidator(requiredSubstring: string): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const value = control.value;
-
-      if (typeof value === 'string' && value.includes(requiredSubstring)) {
-        return null;
-      }
-
-      return { custom: true };
-    };
   }
 }

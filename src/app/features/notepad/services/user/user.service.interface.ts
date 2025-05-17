@@ -1,20 +1,5 @@
-import { ITag } from '~/app/shared/interfaces/tag';
+import { IUser } from '~/app/shared/interfaces/user';
 
 export type IGetCurrentUserReponse = {
-  profile: {
-    id: string;
-    dateOfBirth: string;
-    email: string;
-    name: string;
-    lastAccess: Date;
-  };
-};
-
-export type IGetLastActivityResponse = {
-  page: {
-    name: string;
-    path: string;
-    lastAccess: string;
-  };
-  events: ITag[];
+  profile: IUser;
 };

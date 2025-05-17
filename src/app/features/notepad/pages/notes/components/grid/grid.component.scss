@@ -1,0 +1,35 @@
+@use "sass:map" as map;
+@use "tokens" as *;
+@use "mixins" as *;
+
+.grid {
+  width: auto;
+  height: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: map.get($map: $gap, $key: md);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: map.get($map: $gap, $key: md);
+
+    color: $text-muted;
+  }
+
+  &__title {
+    @include body-small($font-weight-bold);
+
+    font-size: 0.75rem;
+  }
+
+  &__content {
+    width: 100%;
+    height: auto;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: map.get($map: $gap, $key: md);
+  }
+}

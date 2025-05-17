@@ -4,45 +4,22 @@
   class="editor"
 ></tiptap-editor>
 
-<tiptap-bubble-menu [editor]="editor" class="bubble-menu">
-  <app-tooltip text="Negrito" helper="Ctrl + B" placement="top">
-    <app-button
-      suffixIcon="bold"
-      variant="text"
-      size="small"
-      (click)="editor.chain().focus().toggleBold().run()"
-    ></app-button>
-  </app-tooltip>
-  <app-tooltip text="Itálico" helper="Ctrl + I" placement="top">
-    <app-button
-      suffixIcon="italic"
-      variant="text"
-      size="small"
-      (click)="editor.chain().focus().toggleItalic().run()"
-    ></app-button>
-  </app-tooltip>
-  <app-tooltip text="Sublinhado" helper="Ctrl + U" placement="top">
+<tiptap-bubble-menu
+  [editor]="editor"
+  [tippyOptions]="{ placement: 'top' }"
+  class="bubble-menu"
+>
+  @for (item of menu; track $index) {
+  <app-tooltip
+    [text]="item.tooltip.text"
+    [helper]="item.tooltip.helper"
+    placement="top"
+  >
     <app-button
       variant="text"
-      size="small"
-      suffixIcon="underline"
-      (click)="editor.chain().focus().toggleUnderline().run()"
+      [suffixIcon]="item.icon"
+      (click)="item.click()"
     ></app-button>
   </app-tooltip>
-  <app-tooltip text="Tachado" helper="Ctrl + Shift + S" placement="top">
-    <app-button
-      variant="text"
-      size="small"
-      suffixIcon="strike"
-      (click)="editor.chain().focus().toggleStrike().run()"
-    ></app-button>
-  </app-tooltip>
-  <app-tooltip text="Código" helper="Ctrl + E" placement="top">
-    <app-button
-      variant="text"
-      size="small"
-      suffixIcon="code"
-      (click)="editor.chain().focus().toggleCode().run()"
-    ></app-button>
-  </app-tooltip>
+  }
 </tiptap-bubble-menu>

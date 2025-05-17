@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth/auth.guard';
-import { NotepadComponent } from './features/notepad/notepad.component';
 
 export const routes: Routes = [
   {
@@ -23,7 +22,11 @@ export const routes: Routes = [
     path: '',
     title: 'Notepad',
     canActivate: [authGuard],
-    component: NotepadComponent,
+    async loadComponent() {
+      return import('./features/notepad/notepad.component').then(
+        (m) => m.NotepadComponent
+      );
+    },
     children: [
       {
         path: '',

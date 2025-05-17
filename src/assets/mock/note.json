@@ -1,0 +1,47 @@
+{
+  "notes": [
+    {
+      "_id": "1",
+      "userId": "",
+      "title": "Nota Mock",
+      "content": {
+        "type": "doc",
+        "content": [{ "type": "text", "text": "Conteúdo da nota mock" }]
+      },
+      "tags": ["Teste"],
+      "projectId": "",
+      "isPinned": false,
+      "isArchived": false,
+      "isFavorite": false,
+      "reminderAt": "2025-05-08T20:41:02.112+00:00"
+    },
+    {
+      "_id": "2",
+      "userId": "",
+      "title": "Nota mock com texto muito longo para forçar quebra de linha",
+      "content": {
+        "type": "doc",
+        "content": [{ "type": "text", "text": "Conteúdo da nota mock" }]
+      },
+      "projectId": "",
+      "isPinned": false,
+      "isArchived": false,
+      "isFavorite": false,
+      "reminderAt": "2025-05-08T20:41:02.112+00:00"
+    },
+    {
+      "_id": "3",
+      "userId": "",
+      "title": "",
+      "content": {
+        "type": "doc",
+        "content": [{ "type": "text", "text": "Conteúdo da nota mock" }]
+      },
+      "projectId": "",
+      "isPinned": false,
+      "isArchived": true,
+      "isFavorite": false,
+      "reminderAt": "2025-05-08T20:41:02.112+00:00"
+    }
+  ]
+}

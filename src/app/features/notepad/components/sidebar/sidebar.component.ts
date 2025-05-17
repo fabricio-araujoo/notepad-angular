@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, effect, inject, signal } from '@angular/core';
+import { MenuItem } from 'primeng/api';
+import { Menu } from 'primeng/menu';
 import { IRouterAdapter } from '~/app/core/adapter/router-adapter/router-adapter.interface';
 import { RouterAdapterService } from '~/app/core/adapter/router-adapter/router-adapter.service';
-
-import { ProfileStore } from '~/app/core/stores/profile/profile.store';
 import { AuthService } from '~/app/features/auth/services/auth/auth.service';
 import { IconComponent } from '~/app/shared/components/icon/icon.component';
+import { ProfileStore } from '~/app/shared/stores/profile/profile.store';
 
 type INavigationItem = {
   label: string;
@@ -16,7 +17,7 @@ type INavigationItem = {
 
 @Component({
   selector: 'app-sidebar',
-  imports: [CommonModule, IconComponent],
+  imports: [CommonModule, IconComponent, Menu],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
@@ -25,6 +26,7 @@ export class SidebarComponent {
   private authService: AuthService = inject(AuthService);
   private profileStore: ProfileStore = inject(ProfileStore);
 
+  readonly email = signal<string>('');
   readonly username = signal<string>('');
 
   readonly navigationItems: INavigationItem = [
@@ -46,9 +48,20 @@ export class SidebarComponent {
     },
   ];
 
+  readonly userMenuItems: MenuItem[] = [
+    {
+      label: 'Sair',
+      command: () => {
+        this.handleSignOut();
+      },
+    },
+  ];
+
   constructor() {
     effect(() => {
       const profile = this.profileStore.profile();
+
+      this.email.set(profile?.email || '');
       this.username.set(profile?.name || '');
     });
   }

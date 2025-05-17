@@ -1,0 +1,22 @@
+.page-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: bold;
+  outline: none;
+  margin-bottom: 20px;
+}
+
+.editor-content {
+  border: none;
+  outline: none;
+  min-height: 400px;
+  font-size: 1rem;
+  line-height: 1.6;
+  padding: 0.5rem;
+}

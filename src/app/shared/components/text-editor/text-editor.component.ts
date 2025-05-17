@@ -11,7 +11,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { Editor } from '@tiptap/core';
+import { Editor, JSONContent } from '@tiptap/core';
 import Placeholder from '@tiptap/extension-placeholder';
 import Underline from '@tiptap/extension-underline';
 import StarterKit from '@tiptap/starter-kit';
@@ -34,25 +34,83 @@ export class TextEditorComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() placeholder: string = 'Digite aqui...';
   @Input() initialContent: string = '';
 
-  @Output() changed = new EventEmitter<string>();
+  @Output() changed = new EventEmitter<JSONContent>();
 
-  editor!: Editor;
+  protected editor!: Editor;
+
+  protected menu: {
+    icon: string;
+    tooltip: {
+      text: string;
+      helper: string;
+    };
+    click: () => void;
+  }[] = [
+    {
+      icon: 'bold',
+      tooltip: {
+        text: 'Negrito',
+        helper: 'Ctrl + B',
+      },
+      click: () => {
+        this.editor.chain().focus().toggleBold().run();
+      },
+    },
+    {
+      icon: 'italic',
+      tooltip: {
+        text: 'Itálico',
+        helper: 'Ctrl + I',
+      },
+      click: () => {
+        this.editor.chain().focus().toggleItalic().run();
+      },
+    },
+    {
+      icon: 'underline',
+      tooltip: {
+        text: 'Sublinhado',
+        helper: 'Ctrl + U',
+      },
+      click: () => {
+        this.editor.chain().focus().toggleUnderline().run();
+      },
+    },
+    {
+      icon: 'strike',
+      tooltip: {
+        text: 'Tachado',
+        helper: 'Ctrl + Shift + S',
+      },
+      click: () => {
+        this.editor.chain().focus().toggleStrike().run();
+      },
+    },
+    {
+      icon: 'code',
+      tooltip: {
+        text: 'Código',
+        helper: 'Ctrl + E',
+      },
+      click: () => {
+        this.editor.chain().focus().toggleCode().run();
+      },
+    },
+  ];
 
   ngOnInit(): void {
-    // Configuração inicial do editor
     this.editor = new Editor({
-      content: this.initialContent, // Conteúdo inicial passado pelo input
+      content: this.initialContent,
       editable: true,
       extensions: [
-        StarterKit, // Funções básicas como negrito, itálico, listas
+        StarterKit,
         Placeholder.configure({
           placeholder: this.placeholder,
         }),
         Underline,
       ],
       onUpdate: ({ editor }) => {
-        // Emite o conteúdo sempre que o editor for alterado
-        this.changed.emit(editor.getHTML());
+        this.changed.emit(editor.getJSON());
       },
     });
   }

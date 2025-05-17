@@ -26,6 +26,9 @@ export default Component {
     // ==== Effects ====
     readonly autoFocusEffect = effect(() => {});
 
+    // ==== Protected Methods ====
+    method() {}
+
     // ==== Public Methods ====
     method() {}
 

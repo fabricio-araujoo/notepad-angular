@@ -5,14 +5,23 @@
         class="note-modal__title"
         variant="borderless"
         placeholder="Nova nota"
+        (changed)="handleChangeTitle($event)"
       ></app-input>
 
-      <div class="note-modal__tags tags">
+      <!-- <div class="note-modal__tags tags">
         <div class="tags__label"><span>Marcadores</span></div>
         <app-tag-select class="tags__select"></app-tag-select>
-      </div>
+      </div> -->
     </div>
 
-    <app-text-editor class="note-modal__editor"></app-text-editor>
+    <app-text-editor
+      class="note-modal__editor"
+      (changed)="handleChangeContent($event)"
+    ></app-text-editor>
+  </div>
+
+  <div footer class="note-modal__footer">
+    <app-button (click)="open()">Voltar</app-button>
+    <app-button variant="primary" (click)="handleSave()">Salvar</app-button>
   </div>
 </app-drawer>

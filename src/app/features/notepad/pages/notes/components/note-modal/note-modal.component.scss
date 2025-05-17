@@ -37,6 +37,15 @@
       height: 100%;
     }
   }
+
+  &__footer {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 .tags {
@@ -53,7 +62,7 @@
     span {
       @include body-small;
 
-      color: $font-placeholder-color;
+      color: $text-disabled;
       line-height: $line-height-h4;
     }
   }

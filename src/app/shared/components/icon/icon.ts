@@ -1,4 +1,5 @@
 import { addIcon } from './svg/add';
+import { archiveIcon } from './svg/archive';
 import { boldIcon } from './svg/bold';
 import { calendarIcon } from './svg/calendar';
 import { checkMarkIcon } from './svg/check-mark';
@@ -9,6 +10,7 @@ import { doubleLeftIcon } from './svg/double-left';
 import { doubleRightIcon } from './svg/double-right';
 import { editIcon } from './svg/edit';
 import { exitIcon } from './svg/exit';
+import { filterIcon } from './svg/filter';
 import { homeIcon } from './svg/home';
 import { italicIcon } from './svg/italic';
 import { menuIcon } from './svg/menu';
@@ -20,6 +22,7 @@ import { underlineIcon } from './svg/underline';
 
 export const ICONS: Record<string, string> = {
   add: addIcon,
+  archive: archiveIcon,
   bold: boldIcon,
   calendar: calendarIcon,
   'check-mark': checkMarkIcon,
@@ -30,6 +33,7 @@ export const ICONS: Record<string, string> = {
   'double-right': doubleRightIcon,
   edit: editIcon,
   exit: exitIcon,
+  filter: filterIcon,
   home: homeIcon,
   italic: italicIcon,
   menu: menuIcon,

@@ -1,10 +1,23 @@
 <aside class="sidebar">
   <div class="sidebar__header">
-    <div class="sidebar__item">
+    <div class="sidebar__item" (mousedown)="menu.toggle($event)">
       <div class="sidebar__profile">F</div>
       <span class="sidebar__title">{{ username() }}</span>
-      <!-- <app-icon class="sidebar__icon" [name]="item.icon" [size]="16"></app-icon> -->
     </div>
+
+    <p-menu
+      #menu
+      [model]="userMenuItems"
+      [popup]="true"
+      [style]="{ minWidth: '223px' }"
+    >
+      <ng-template #start>
+        <span class="sidebar__menu">
+          <span class="sidebar__title">{{ username() }}</span>
+          <span class="sidebar__subtitle">{{ email() }}</span>
+        </span>
+      </ng-template>
+    </p-menu>
   </div>
 
   <div class="sidebar__section">

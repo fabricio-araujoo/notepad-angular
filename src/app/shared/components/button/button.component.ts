@@ -6,6 +6,7 @@ import {
   ElementRef,
   inject,
   Input,
+  signal,
   ViewChild,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
@@ -28,11 +29,8 @@ type ButtonJustify = 'left' | 'center' | 'right';
 export class ButtonComponent implements AfterViewInit {
   private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
 
-  @ViewChild('button', { static: false })
-  button!: ElementRef;
-
   @ViewChild('textContainer', { static: false })
-  textContainer?: ElementRef;
+  private textContainer?: ElementRef;
 
   @Input() suffixIcon!: string;
   @Input() variant?: ButtonVariant = 'default';
@@ -42,10 +40,17 @@ export class ButtonComponent implements AfterViewInit {
   @Input() disabled?: boolean = false;
   @Input() block?: boolean = false;
 
-  isIconOnly = false;
+  private _isIconOnly = signal<boolean>(false);
+
+  get iconOnly() {
+    return this._isIconOnly();
+  }
 
   get buttonClass() {
     return {
+      'button--icon-only': this.iconOnly,
+      'button--block': this.block,
+      'button--disabled': this.disabled,
       'button--primary': this.variant === 'primary',
       'button--link': this.variant === 'link',
       'button--text': this.variant === 'text',
@@ -53,21 +58,19 @@ export class ButtonComponent implements AfterViewInit {
       'button--large': this.size === 'large',
       'button--left': this.justify === 'left',
       'button--right': this.justify === 'right',
-      'button--block': this.block,
-      'button--disabled': this.disabled,
-      'button--icon-only': this.isIconOnly,
     };
+  }
+
+  ngAfterViewInit() {
+    this.checkContent();
   }
 
   private checkContent() {
     const hasContent =
       this.textContainer?.nativeElement?.textContent?.trim()?.length > 0;
-    this.isIconOnly = !hasContent;
+
+    this._isIconOnly.set(!hasContent);
 
     this.cdr.detectChanges();
-  }
-
-  ngAfterViewInit() {
-    this.checkContent();
   }
 }

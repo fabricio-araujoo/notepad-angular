@@ -5,8 +5,8 @@ import { NotificationAdapterService } from './adapter/notification-adapter/notif
 import { RouterAdapterService } from './adapter/router-adapter/router-adapter.service';
 import { LocalStoragePlugin } from './plugins/local-storage/local-storage.plugin';
 
-import { LoadingStore } from './stores/loading/loading.store';
-import { ProfileStore } from './stores/profile/profile.store';
+import { LoadingStore } from '../shared/stores/loading/loading.store';
+import { ProfileStore } from '../shared/stores/profile/profile.store';
 
 @NgModule({
   imports: [CommonModule],

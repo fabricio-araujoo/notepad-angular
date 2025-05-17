@@ -7,7 +7,7 @@
   [(visible)]="opened"
 >
   <ng-template #header>
-    <div class="drawer__header">
+    <div class="drawer__header" header>
       <app-tooltip text="Fechar" helper="Esc" placement="bottom">
         <app-button
           suffixIcon="double-right"
@@ -20,4 +20,10 @@
   </ng-template>
 
   <ng-content></ng-content>
+
+  <ng-template #footer>
+    <div class="drawer__footer">
+      <ng-content select="[footer]"></ng-content>
+    </div>
+  </ng-template>
 </p-drawer>

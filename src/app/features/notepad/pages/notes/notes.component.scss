@@ -1,0 +1,44 @@
+@use "sass:map" as map;
+@use "tokens" as *;
+@use "mixins" as *;
+
+.note {
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: map.get($map: $gap, $key: lg);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: map.get($map: $gap, $key: md);
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: map.get($map: $gap, $key: md);
+
+    h4 {
+      @include h6;
+    }
+  }
+
+  &__action {
+    display: flex;
+    align-items: center;
+    gap: map.get($map: $gap, $key: md);
+  }
+
+  &__archived {
+    &--active {
+      ::ng-deep .button {
+        background-color: $background-contrast;
+      }
+    }
+  }
+}

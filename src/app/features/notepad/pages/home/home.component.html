@@ -1,6 +1,30 @@
 <div class="home">
   <div class="home__section section">
     <div class="section__header">
+      <div class="section__title">Suas páginas</div>
+    </div>
+
+    <div class="section__panel">
+      @for (item of navigationItems; track item.route) {
+      <div class="section__page page" (mousedown)="item.handleClick()">
+        <div class="page__background">
+          <div class="page__icon">
+            <app-icon [name]="item.icon" [size]="16"></app-icon>
+          </div>
+        </div>
+
+        <div class="page__label">
+          <span>
+            {{ item.label }}
+          </span>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+
+  <!-- <div class="home__section section">
+    <div class="section__header">
       <div class="section__icon">
         <app-icon name="clock" [size]="12"></app-icon>
       </div>
@@ -19,5 +43,5 @@
     </div>
 
     <div class="home__last-access">last access</div>
-  </div>
+  </div> -->
 </div>

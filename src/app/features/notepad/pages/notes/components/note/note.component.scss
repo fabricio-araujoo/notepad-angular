@@ -1,0 +1,77 @@
+@use "sass:map" as map;
+@use "tokens" as *;
+@use "mixins" as *;
+
+.note {
+  cursor: pointer;
+
+  width: 100%;
+  height: auto;
+
+  ::ng-deep .card {
+    @include transition;
+  }
+
+  &:hover {
+    ::ng-deep .card {
+      background-color: $background-soft;
+    }
+  }
+
+  &--hovered {
+    ::ng-deep .card {
+      background-color: $background-soft;
+    }
+  }
+
+  &__container {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+  }
+
+  &__action {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+
+    min-height: 2rem;
+    padding: map.get($map: $padding, $key: sm);
+
+    display: flex;
+    align-items: center;
+
+    ::ng-deep .button {
+      width: 1.5rem;
+      height: 1.5rem;
+
+      background-color: $background;
+    }
+  }
+
+  &__header {
+    width: 100%;
+    height: auto;
+    min-height: 2rem;
+    padding: map.get($map: $padding, $key: sm);
+
+    display: flex;
+    align-items: center;
+
+    @include body-small($font-weight-bold);
+
+    line-height: $line-height-body-large;
+
+    &--no-title {
+      color: $text-disabled;
+    }
+  }
+
+  &__tag {
+    @include body-small;
+
+    padding-inline: map.get($map: $padding, $key: sm);
+    padding-bottom: map.get($map: $padding, $key: sm);
+  }
+}
